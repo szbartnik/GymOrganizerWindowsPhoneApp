@@ -9,69 +9,59 @@ using System.Threading.Tasks;
 
 namespace FitAndGym.Models
 {
-    public enum Intensity
+    public class TrainingDay : INotifyPropertyChanging, INotifyPropertyChanged
     {
-        VeryLow,
-        Low, 
-        Medium, 
-        High,
-        VeryHigh
-    }
-
-    [Table]
-    public class Exercise : INotifyPropertyChanged, INotifyPropertyChanging
-    {
-        private int _exerciseId;
-        private string _exerciseName;
-        private Nullable<int> _amountOfSeries;
+        private int _trainingDayId;
+        private string _trainingDayName;
+        private DateTime _startTime;
         private TimeSpan _duration;
-        private Intensity _intensity;
+        private Nullable<decimal> _hydration;
         private string _otherInfo;
 
         [Column(IsVersion = true)]
         private Binary _version;
 
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false)]
-        public int ExerciseId
+        public int TrainingDayId
         {
-            get { return _exerciseId; }
+            get { return _trainingDayId; }
             set
             {
-                if (_exerciseId != value)
+                if (_trainingDayId != value)
                 {
-                    NotifyPropertyChanging("ExerciseId");
-                    _exerciseId = value;
-                    NotifyPropertyChanged("ExerciseId");
+                    NotifyPropertyChanging("TrainingDayId");
+                    _trainingDayId = value;
+                    NotifyPropertyChanged("TrainingDayId");
                 }
             }
         }
-
-        [Column(DbType = "NOT NULL", CanBeNull = false)]
-        public string ExerciseName
+        
+        [Column(CanBeNull = true)]
+        public string TrainingDayName
         {
-            get { return _exerciseName; }
+            get { return _trainingDayName; }
             set
             {
-                if (_exerciseName != value)
+                if (_trainingDayName != value)
                 {
-                    NotifyPropertyChanging("ExerciseName");
-                    _exerciseName = value;
-                    NotifyPropertyChanged("ExerciseName");
+                    NotifyPropertyChanging("TrainingDayName");
+                    _trainingDayName = value;
+                    NotifyPropertyChanged("TrainingDayName");
                 }
             }
         }
 
         [Column(CanBeNull = true)]
-        public int? AmountOfSeries
+        public DateTime StartTime
         {
-            get { return _amountOfSeries; }
+            get { return _startTime; }
             set
             {
-                if (_amountOfSeries != value)
+                if (_startTime != value)
                 {
-                    NotifyPropertyChanging("AmountOfSeries");
-                    _amountOfSeries = value;
-                    NotifyPropertyChanged("AmountOfSeries");
+                    NotifyPropertyChanging("StartTime");
+                    _startTime = value;
+                    NotifyPropertyChanged("StartTime");
                 }
             }
         }
@@ -92,16 +82,16 @@ namespace FitAndGym.Models
         }
 
         [Column(CanBeNull = true)]
-        public Intensity Intensity
+        public decimal? Hydration
         {
-            get { return _intensity; }
+            get { return _hydration; }
             set
             {
-                if (_intensity != value)
+                if (_hydration != value)
                 {
-                    NotifyPropertyChanging("Intensity");
-                    _intensity = value;
-                    NotifyPropertyChanged("Intensity");
+                    NotifyPropertyChanging("Hydration");
+                    _hydration = value;
+                    NotifyPropertyChanged("Hydration");
                 }
             }
         }
