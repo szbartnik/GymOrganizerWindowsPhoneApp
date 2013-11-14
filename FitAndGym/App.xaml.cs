@@ -67,6 +67,7 @@ namespace FitAndGym
 
             using (var db = new FitAndGymDataContext(DBConnectionString))
             {
+                db.Log = new Utilities.DebugTextWriter();
                 if (db.DatabaseExists() == false)
                 {
                     db.CreateDatabase();
