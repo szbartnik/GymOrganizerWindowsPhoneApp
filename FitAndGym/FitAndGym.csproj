@@ -97,6 +97,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Exercise.cs" />
+    <Compile Include="Models\ExTrDayConn.cs" />
     <Compile Include="Models\TrainingDay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">

@@ -11,12 +11,41 @@ namespace FitAndGym.Models
 {
     public class TrainingDay : INotifyPropertyChanging, INotifyPropertyChanged
     {
+        // Private members
         private int _trainingDayId;
         private string _trainingDayName;
         private DateTime _startTime;
         private TimeSpan _duration;
         private Nullable<decimal> _hydration;
         private string _otherInfo;
+        private EntitySet<ExTrDayConn> _exConns;
+
+        public TrainingDay()
+        {
+            _exConns = new EntitySet<ExTrDayConn>(
+                new Action<ExTrDayConn>(this.attach_ExTrDay),
+                new Action<ExTrDayConn>(this.detach_ExTrDay)
+             );
+        }
+
+        private void attach_ExTrDay(ExTrDayConn exTrDayConn)
+        {
+            NotifyPropertyChanging("ExTrDayConn");
+            exTrDayConn._trainingDayId = this._trainingDayId;
+        }
+
+        private void detach_ExTrDay(ExTrDayConn exTrDayConn)
+        {
+            NotifyPropertyChanging("ExTrDayConn");
+            //ExConns[1].
+        }
+
+        [Association(Storage = "_exercises", OtherKey = "_trainingDay", ThisKey = "TrainingDayId")]
+        public EntitySet<ExTrDayConn> ExConns
+        {
+            get { return this._exConns; }
+            set { this._exConns.Assign(value); }
+        }
 
         [Column(IsVersion = true)]
         private Binary _version;
