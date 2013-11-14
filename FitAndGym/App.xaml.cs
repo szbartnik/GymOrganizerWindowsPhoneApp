@@ -7,6 +7,8 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using FitAndGym.Resources;
+using FitAndGym.Models;
+using System.IO.IsolatedStorage;
 
 namespace FitAndGym
 {
@@ -53,6 +55,23 @@ namespace FitAndGym
                 // Caution:- Use this under debug mode only. Application that disables user idle detection will continue to run
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
+            }
+
+            // for testing purposes
+            //
+            IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
+            if (storage.FileExists("Base.sdf"))
+                storage.DeleteFile("Base.sdf");
+
+            string DBConnectionString = "Data Source=isostore:/Base.sdf";
+
+            using (var db = new FitAndGymDataContext(DBConnectionString))
+            {
+                if (db.DatabaseExists() == false)
+                {
+                    db.CreateDatabase();
+                    db.SubmitChanges();
+                }
             }
 
         }

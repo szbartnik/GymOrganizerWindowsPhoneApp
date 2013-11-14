@@ -9,10 +9,30 @@ using System.Threading.Tasks;
 
 namespace FitAndGym.Models
 {
+    [Table]
     public class ExTrDayConn : INotifyPropertyChanged, INotifyPropertyChanging
     {
+        private int _Id;
         private EntityRef<Exercise> _exercise;
         private EntityRef<TrainingDay> _trainingDay;
+
+        [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false)]
+        public int Id
+        {
+            get { return _Id; }
+            set
+            {
+                if (_Id != value)
+                {
+                    NotifyPropertyChanging("Id");
+                    _Id = value;
+                    NotifyPropertyChanged("Id");
+                }
+            }
+        }
+
+        //
+        // exercise
 
         [Column]
         internal int _exerciseId;
@@ -33,6 +53,9 @@ namespace FitAndGym.Models
                 NotifyPropertyChanged("Exercise");
             }
         }
+
+        //
+        // training day
 
         [Column]
         internal int _trainingDayId;

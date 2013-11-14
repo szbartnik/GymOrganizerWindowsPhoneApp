@@ -24,9 +24,11 @@ namespace FitAndGym.Models
         private int _exerciseId;
         private string _exerciseName;
         private Nullable<int> _amountOfSeries;
-        private TimeSpan _duration;
         private Intensity _intensity;
         private string _otherInfo;
+        private EntitySet<ExTrDayConn> _exConns;
+
+        #region Ordinary properties
 
         [Column(IsVersion = true)]
         private Binary _version;
@@ -46,7 +48,7 @@ namespace FitAndGym.Models
             }
         }
 
-        [Column(DbType = "NOT NULL", CanBeNull = false)]
+        [Column(CanBeNull = false)]
         public string ExerciseName
         {
             get { return _exerciseName; }
@@ -77,15 +79,17 @@ namespace FitAndGym.Models
         }
 
         [Column(CanBeNull = true)]
+        private long _duration;
+
         public TimeSpan Duration
         {
-            get { return _duration; }
+            get { return TimeSpan.FromTicks(_duration); }
             set
             {
-                if (_duration != value)
+                if (_duration != value.Ticks)
                 {
                     NotifyPropertyChanging("Duration");
-                    _duration = value;
+                    _duration = value.Ticks;
                     NotifyPropertyChanged("Duration");
                 }
             }
@@ -120,6 +124,24 @@ namespace FitAndGym.Models
                 }
             }
         }
+
+        #endregion
+
+        #region Association stuff + constructor
+
+        public Exercise()
+        {
+            _exConns = new EntitySet<ExTrDayConn>();
+        }
+
+        [Association(Storage = "_exConns", OtherKey = "_exerciseId", ThisKey = "ExerciseId")]
+        public EntitySet<ExTrDayConn> ExConns
+        {
+            get { return this._exConns; }
+            set { this._exConns.Assign(value); }
+        }
+
+        #endregion
 
         #region Events Stuff
 
