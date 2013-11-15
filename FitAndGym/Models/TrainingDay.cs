@@ -15,6 +15,7 @@ namespace FitAndGym.Models
         private int _trainingDayId;
         private string _trainingDayName;
         private DateTime _startTime;
+        private int _durationInMinutes;
         private Nullable<decimal> _hydration;
         private string _otherInfo;
         private EntitySet<ExTrDayConn> _exConns;
@@ -70,18 +71,16 @@ namespace FitAndGym.Models
         }
 
         [Column(CanBeNull = true)]
-        private long _duration;
-
-        public TimeSpan Duration
+        public int DurationInMinutes
         {
-            get { return TimeSpan.FromTicks(_duration); }
+            get { return _durationInMinutes; }
             set
             {
-                if (_duration != value.Ticks)
+                if (_durationInMinutes != value)
                 {
-                    NotifyPropertyChanging("Duration");
-                    _duration = value.Ticks;
-                    NotifyPropertyChanged("Duration");
+                    NotifyPropertyChanging("DurationInMinutes");
+                    _durationInMinutes = value;
+                    NotifyPropertyChanged("DurationInMinutes");
                 }
             }
         }
