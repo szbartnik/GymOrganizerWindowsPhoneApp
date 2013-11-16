@@ -16,20 +16,8 @@ namespace FitAndGym
         public MainPage()
         {
             InitializeComponent();
-
-            //BuildLocalizedApplicationBar();
+            App.FitAndGymViewModel.LoadTrainingDaysCollectionFromDatabase();
+            DataContext = App.FitAndGymViewModel.TrainingDays;
         }
-
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    ApplicationBar = new ApplicationBar();
-
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
-
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
     }
 }

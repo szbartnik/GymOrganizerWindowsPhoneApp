@@ -140,6 +140,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\DebugTextWriter.cs" />
+    <Compile Include="ViewModels\FitAndGymViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

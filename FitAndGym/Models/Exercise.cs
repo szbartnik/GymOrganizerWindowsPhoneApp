@@ -23,10 +23,12 @@ namespace FitAndGym.Models
     {
         private int _exerciseId;
         private string _exerciseName;
-        private Nullable<int> _amountOfSeries;
-        private int _durationInMinutes;
+        private Nullable<int> _amountOfSets;
+        private Nullable<int> _amountOfReps;
+        private Nullable<int> _durationInMinutes;
         private Intensity _intensity;
         private string _otherInfo;
+        private string _imageUri;
         private EntitySet<ExTrDayConn> _exConns;
 
         #region Ordinary properties
@@ -65,22 +67,37 @@ namespace FitAndGym.Models
         }
 
         [Column(CanBeNull = true)]
-        public int? AmountOfSeries
+        public int? AmountOfSets
         {
-            get { return _amountOfSeries; }
+            get { return _amountOfSets; }
             set
             {
-                if (_amountOfSeries != value)
+                if (_amountOfSets != value)
                 {
-                    NotifyPropertyChanging("AmountOfSeries");
-                    _amountOfSeries = value;
-                    NotifyPropertyChanged("AmountOfSeries");
+                    NotifyPropertyChanging("AmountOfSets");
+                    _amountOfSets = value;
+                    NotifyPropertyChanged("AmountOfSets");
                 }
             }
         }
 
         [Column(CanBeNull = true)]
-        public int DurationInMinutes
+        public int? AmountOfReps
+        {
+            get { return _amountOfReps; }
+            set
+            {
+                if (_amountOfReps != value)
+                {
+                    NotifyPropertyChanging("AmountOfReps");
+                    _amountOfReps = value;
+                    NotifyPropertyChanged("AmountOfReps");
+                }
+            }
+        }
+
+        [Column(CanBeNull = true)]
+        public int? DurationInMinutes
         {
             get { return _durationInMinutes; }
             set
@@ -124,6 +141,21 @@ namespace FitAndGym.Models
             }
         }
 
+        [Column(CanBeNull = true)]
+        public string ImageUri
+        {
+            get { return _imageUri; }
+            set
+            {
+                if (_imageUri != value)
+                {
+                    NotifyPropertyChanging("ImageUri");
+                    _imageUri = value;
+                    NotifyPropertyChanged("ImageUri");
+                }
+            }
+        }
+
         #endregion
 
         #region Association stuff + constructor
@@ -144,7 +176,7 @@ namespace FitAndGym.Models
 
         #region Events Stuff
 
-        public event PropertyChangingEventHandler PropertyChanging;
+        public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -153,7 +185,7 @@ namespace FitAndGym.Models
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangingEventHandler PropertyChanging;
         private void NotifyPropertyChanging(string propertyName)
         {
             if (PropertyChanging != null)

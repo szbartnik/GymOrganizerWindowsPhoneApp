@@ -79,7 +79,7 @@ namespace FitAndGym.Models
 
         #region Events Stuff
 
-        public event PropertyChangingEventHandler PropertyChanging;
+        public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -88,7 +88,7 @@ namespace FitAndGym.Models
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangingEventHandler PropertyChanging;
         private void NotifyPropertyChanging(string propertyName)
         {
             if (PropertyChanging != null)

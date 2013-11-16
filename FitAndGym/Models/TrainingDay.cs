@@ -15,7 +15,7 @@ namespace FitAndGym.Models
         private int _trainingDayId;
         private string _trainingDayName;
         private DateTime _startTime;
-        private int _durationInMinutes;
+        private Nullable<int> _durationInMinutes;
         private Nullable<decimal> _hydration;
         private string _otherInfo;
         private EntitySet<ExTrDayConn> _exConns;
@@ -71,7 +71,7 @@ namespace FitAndGym.Models
         }
 
         [Column(CanBeNull = true)]
-        public int DurationInMinutes
+        public int? DurationInMinutes
         {
             get { return _durationInMinutes; }
             set
@@ -135,7 +135,7 @@ namespace FitAndGym.Models
 
         #region Events Stuff
 
-        public event PropertyChangingEventHandler PropertyChanging;
+        public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -144,7 +144,7 @@ namespace FitAndGym.Models
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangingEventHandler PropertyChanging;
         private void NotifyPropertyChanging(string propertyName)
         {
             if (PropertyChanging != null)

@@ -9,6 +9,7 @@ using Microsoft.Phone.Shell;
 using FitAndGym.Resources;
 using FitAndGym.Models;
 using System.IO.IsolatedStorage;
+using FitAndGym.ViewModels;
 
 namespace FitAndGym
 {
@@ -19,7 +20,25 @@ namespace FitAndGym
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
+        private const string DBConnectionString = "Data Source=isostore:/Base.sdf";
         private const string DbName = "Base.sdf";
+
+        private static FitAndGymViewModel _fitAndGymViewModel = null;
+
+        /// <summary>
+        /// A singleton static FitAndGymViewModel used by views to bind data.
+        /// </summary>
+        /// <returns>The FitAndGymViewModel object.</returns>
+        public static FitAndGymViewModel FitAndGymViewModel
+        {
+            get
+            {
+                if (_fitAndGymViewModel == null)
+                    _fitAndGymViewModel = new FitAndGymViewModel(DBConnectionString);
+
+                return _fitAndGymViewModel;
+            }
+        }
 
         /// <summary>
         /// Constructor for the Application object.
@@ -31,7 +50,7 @@ namespace FitAndGym
             InitializeComponent();
             InitializePhoneApplication();
             InitializeLanguage();
-            DeleteDatabase();
+            DeleteDatabase(); // while DelBase is declared - debugging
 
             // Show graphics profiling information while debugging.
             if (Debugger.IsAttached)
@@ -40,8 +59,6 @@ namespace FitAndGym
                 Application.Current.Host.Settings.EnableFrameRateCounter = true;
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-
-            string DBConnectionString = "Data Source=isostore:/" + DbName;
 
             using (var db = new FitAndGymDataContext(DBConnectionString))
             {
