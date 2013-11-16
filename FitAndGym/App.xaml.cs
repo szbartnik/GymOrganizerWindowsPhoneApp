@@ -66,6 +66,9 @@ namespace FitAndGym
                 if (db.DatabaseExists() == false)
                 {
                     db.CreateDatabase();
+
+                    
+
                     db.SubmitChanges();
                 }
             }

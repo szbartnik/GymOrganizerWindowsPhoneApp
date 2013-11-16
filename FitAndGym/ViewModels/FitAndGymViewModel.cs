@@ -11,13 +11,13 @@ namespace FitAndGym.ViewModels
     public class FitAndGymViewModel : INotifyPropertyChanged
     {
         // Constructor & DataContext initialization
-        private FitAndGymDataContext fitAndGymDB;
+        private FitAndGymDataContext db;
 
-        public FitAndGymViewModel() { } // for DesignTime data access
-
+        public FitAndGymViewModel() { } // to fulfill Design-Time data access requirements
         public FitAndGymViewModel(string fitAndGymConnectionString)
         {
-            fitAndGymDB = new FitAndGymDataContext(fitAndGymConnectionString);
+            db = new FitAndGymDataContext(fitAndGymConnectionString);
+            db.Log = new Utilities.DebugTextWriter();
         }
 
         #region Application's DB Collections
@@ -49,10 +49,19 @@ namespace FitAndGym.ViewModels
         public void LoadTrainingDaysCollectionFromDatabase()
         {
             var trainingDaysInDB = from TrainingDay trDay
-                                   in fitAndGymDB.TrainingDays
+                                   in db.TrainingDays
                                    select trDay;
 
             TrainingDays = new ObservableCollection<TrainingDay>(trainingDaysInDB);
+        }
+
+        public void LoadExercisesCollectionFromDatabase()
+        {
+            var exercisesInDB = from Exercise ex
+                                in db.Exercises
+                                select ex;
+
+            Exercises = new ObservableCollection<Exercise>(exercisesInDB);
         }
 
         #region Events Stuff

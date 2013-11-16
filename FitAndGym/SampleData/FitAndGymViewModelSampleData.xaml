@@ -6,6 +6,22 @@
 
     <vm:FitAndGymViewModel.TrainingDays>
         <m:TrainingDay TrainingDayId="1" TrainingDayName="Pierwszy dzień" StartTime="2013-04-23" DurationInMinutes="20" Hydration="2.3" OtherInfo="Nic tu nie ma" />
-        <m:TrainingDay TrainingDayId="1" TrainingDayName="Drugi dzień" StartTime="2013-04-22" DurationInMinutes="40" Hydration="1.9" OtherInfo="Hehe" />
+        <m:TrainingDay TrainingDayId="2" TrainingDayName="Drugi dzień" StartTime="2013-04-22" DurationInMinutes="40" Hydration="1.9" OtherInfo="Hehe" />
+        <m:TrainingDay TrainingDayId="3" TrainingDayName="Trzeci dzień" StartTime="2013-05-18" DurationInMinutes="50" Hydration="1.1" OtherInfo="Koment" />
+        <m:TrainingDay TrainingDayId="4" TrainingDayName="Trzeci dzień vol. 2" StartTime="2013-05-18" DurationInMinutes="20" OtherInfo="Niccc" />
+        <m:TrainingDay TrainingDayId="5" TrainingDayName="Czwarty dzień" StartTime="2013-07-08" DurationInMinutes="10" Hydration="3.2" />
+        <m:TrainingDay TrainingDayId="6" TrainingDayName="Piąty dzień" StartTime="2013-07-01" DurationInMinutes="120" Hydration="2.0" />
     </vm:FitAndGymViewModel.TrainingDays>
+    
+    <vm:FitAndGymViewModel.Exercises>
+        <m:Exercise ExerciseId="1" ExerciseName="Pierwsze ćwiczenie" Intensity="High" DurationInMinutes="5" AmountOfReps="5" AmountOfSets="12" OtherInfo="Nic tu nie ma" />
+        <m:Exercise ExerciseId="2" ExerciseName="Drugie ćwiczenie" Intensity="Medium" DurationInMinutes="6" AmountOfReps="5" AmountOfSets="9" OtherInfo="Info" />
+        <m:Exercise ExerciseId="3" ExerciseName="Trzecie ćwiczenie" Intensity="Low" DurationInMinutes="4" AmountOfReps="8" AmountOfSets="15" OtherInfo="Nic tu nie ma" />
+        <m:Exercise ExerciseId="4" ExerciseName="Czwarte ćwiczenie" Intensity="VeryHigh" DurationInMinutes="5" AmountOfReps="2" AmountOfSets="13" OtherInfo="Info" />
+        <m:Exercise ExerciseId="5" ExerciseName="Piąte ćwiczenie" Intensity="High" DurationInMinutes="9" AmountOfReps="4" AmountOfSets="8" OtherInfo="Nic tu nie ma" />
+        <m:Exercise ExerciseId="6" ExerciseName="Szóste ćwiczenie" Intensity="Medium" DurationInMinutes="4" AmountOfReps="3" AmountOfSets="12" OtherInfo="Info" />
+        <m:Exercise ExerciseId="7" ExerciseName="Siódme ćwiczenie" Intensity="Low" DurationInMinutes="3" AmountOfReps="2" AmountOfSets="6" OtherInfo="Nic tu nie ma" />
+        <m:Exercise ExerciseId="8" ExerciseName="Ósme ćwiczenie" Intensity="Low" DurationInMinutes="2" AmountOfReps="7" AmountOfSets="8" OtherInfo="Info" />
+        <m:Exercise ExerciseId="9" ExerciseName="Dziewiąte ćwiczenie" Intensity="VeryHigh" DurationInMinutes="8" AmountOfReps="1" AmountOfSets="9" OtherInfo="Nic tu nie ma" />
+    </vm:FitAndGymViewModel.Exercises>
 </vm:FitAndGymViewModel>
