@@ -1,0 +1,11 @@
+﻿<vm:FitAndGymViewModel
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:FitAndGym.ViewModels"
+    xmlns:m="clr-namespace:FitAndGym.Models">
+
+    <vm:FitAndGymViewModel.TrainingDays>
+        <m:TrainingDay TrainingDayId="1" TrainingDayName="Pierwszy dzień" StartTime="2013-04-23" DurationInMinutes="20" Hydration="2.3" OtherInfo="Nic tu nie ma" />
+        <m:TrainingDay TrainingDayId="1" TrainingDayName="Drugi dzień" StartTime="2013-04-22" DurationInMinutes="40" Hydration="1.9" OtherInfo="Hehe" />
+    </vm:FitAndGymViewModel.TrainingDays>
+</vm:FitAndGymViewModel>

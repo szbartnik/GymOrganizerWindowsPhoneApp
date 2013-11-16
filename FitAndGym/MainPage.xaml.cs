@@ -16,8 +16,10 @@ namespace FitAndGym
         public MainPage()
         {
             InitializeComponent();
+
+
             App.FitAndGymViewModel.LoadTrainingDaysCollectionFromDatabase();
-            DataContext = App.FitAndGymViewModel.TrainingDays;
+            DataContext = App.FitAndGymViewModel;
         }
     }
 }

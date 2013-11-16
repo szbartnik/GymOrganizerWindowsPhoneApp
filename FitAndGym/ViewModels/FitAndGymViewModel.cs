@@ -13,6 +13,8 @@ namespace FitAndGym.ViewModels
         // Constructor & DataContext initialization
         private FitAndGymDataContext fitAndGymDB;
 
+        public FitAndGymViewModel() { } // for DesignTime data access
+
         public FitAndGymViewModel(string fitAndGymConnectionString)
         {
             fitAndGymDB = new FitAndGymDataContext(fitAndGymConnectionString);
