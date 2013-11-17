@@ -142,6 +142,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\DebugTextWriter.cs" />
+    <Compile Include="ViewModels\AddNewExercisePageViewModel.cs" />
     <Compile Include="ViewModels\FitAndGymViewModel.cs" />
     <Compile Include="View\AddNewExercisePage.xaml.cs">
       <DependentUpon>AddNewExercisePage.xaml</DependentUpon>
