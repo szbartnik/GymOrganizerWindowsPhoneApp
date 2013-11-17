@@ -124,6 +124,78 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to High.
+        /// </summary>
+        public static string IntensityHigh {
+            get {
+                return ResourceManager.GetString("IntensityHigh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low.
+        /// </summary>
+        public static string IntensityLow {
+            get {
+                return ResourceManager.GetString("IntensityLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medium.
+        /// </summary>
+        public static string IntensityMedium {
+            get {
+                return ResourceManager.GetString("IntensityMedium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Very High.
+        /// </summary>
+        public static string IntensityVeryHigh {
+            get {
+                return ResourceManager.GetString("IntensityVeryHigh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Very Low.
+        /// </summary>
+        public static string IntensityVeryLow {
+            get {
+                return ResourceManager.GetString("IntensityVeryLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        public static string NewExerciseDurationText {
+            get {
+                return ResourceManager.GetString("NewExerciseDurationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intensity.
+        /// </summary>
+        public static string NewExerciseIntensityText {
+            get {
+                return ResourceManager.GetString("NewExerciseIntensityText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string NewExerciseNameText {
+            get {
+                return ResourceManager.GetString("NewExerciseNameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeftToRight.
         /// </summary>
         public static string ResourceFlowDirection {
@@ -156,6 +228,15 @@ namespace FitAndGym.Resources {
         public static string TrainingDaysPivotHeader {
             get {
                 return ResourceManager.GetString("TrainingDaysPivotHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type the name of exercise....
+        /// </summary>
+        public static string TypeNameOfExercisePlaceholder {
+            get {
+                return ResourceManager.GetString("TypeNameOfExercisePlaceholder", resourceCulture);
             }
         }
     }

@@ -5,6 +5,8 @@ using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using FitAndGym.Infrastructure;
+using FitAndGym.Models;
 using FitAndGym.Resources;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -17,6 +19,9 @@ namespace FitAndGym.View
         {
             BuildLocalizedApplicationBar();
             InitializeComponent();
+
+            // fill ListPicker
+            NewExIntensityListPicker.ItemsSource = Enum.GetValues(typeof(Intensity));
         }
 
         private void BuildLocalizedApplicationBar()

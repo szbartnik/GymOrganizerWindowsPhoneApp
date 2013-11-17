@@ -154,4 +154,31 @@
     <value>porzuć</value>
     <comment>for ApplicationBar - max 11 lower-case chars</comment>
   </data>
+  <data name="NewExerciseDurationText" xml:space="preserve">
+    <value>Cz.trwania</value>
+  </data>
+  <data name="NewExerciseIntensityText" xml:space="preserve">
+    <value>Intens.</value>
+  </data>
+  <data name="NewExerciseNameText" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="IntensityHigh" xml:space="preserve">
+    <value>Duża</value>
+  </data>
+  <data name="IntensityLow" xml:space="preserve">
+    <value>Mała</value>
+  </data>
+  <data name="IntensityMedium" xml:space="preserve">
+    <value>Średnia</value>
+  </data>
+  <data name="IntensityVeryHigh" xml:space="preserve">
+    <value>Bardzo duża</value>
+  </data>
+  <data name="IntensityVeryLow" xml:space="preserve">
+    <value>Bardzo mała</value>
+  </data>
+  <data name="TypeNameOfExercisePlaceholder" xml:space="preserve">
+    <value>Wpisz nazwę ćwiczenia...</value>
+  </data>
 </root>

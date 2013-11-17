@@ -6,15 +6,21 @@ using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FitAndGym.Infrastructure;
 
 namespace FitAndGym.Models
 {
     public enum Intensity
     {
+        [LocalizedDescription("IntensityVeryLow")]
         VeryLow,
-        Low, 
-        Medium, 
+        [LocalizedDescription("IntensityLow")]
+        Low,
+        [LocalizedDescription("IntensityMedium")]
+        Medium,
+        [LocalizedDescription("IntensityHigh")]
         High,
+        [LocalizedDescription("IntensityVeryHigh")]
         VeryHigh
     }
 
