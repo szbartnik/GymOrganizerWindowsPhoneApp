@@ -196,6 +196,42 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Additional info.
+        /// </summary>
+        public static string NewExerciseOtherInfoHeader {
+            get {
+                return ResourceManager.GetString("NewExerciseOtherInfoHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Place here an additional info about the exercise....
+        /// </summary>
+        public static string NewExerciseOtherInfoPlaceholder {
+            get {
+                return ResourceManager.GetString("NewExerciseOtherInfoPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of reps.
+        /// </summary>
+        public static string NewExerciseRepsText {
+            get {
+                return ResourceManager.GetString("NewExerciseRepsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of sets.
+        /// </summary>
+        public static string NewExerciseSetsText {
+            get {
+                return ResourceManager.GetString("NewExerciseSetsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeftToRight.
         /// </summary>
         public static string ResourceFlowDirection {

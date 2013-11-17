@@ -181,4 +181,16 @@
   <data name="TypeNameOfExercisePlaceholder" xml:space="preserve">
     <value>Type the name of exercise...</value>
   </data>
+  <data name="NewExerciseOtherInfoHeader" xml:space="preserve">
+    <value>Additional info</value>
+  </data>
+  <data name="NewExerciseOtherInfoPlaceholder" xml:space="preserve">
+    <value>Place here an additional info about the exercise...</value>
+  </data>
+  <data name="NewExerciseRepsText" xml:space="preserve">
+    <value>Number of reps</value>
+  </data>
+  <data name="NewExerciseSetsText" xml:space="preserve">
+    <value>Number of sets</value>
+  </data>
 </root>

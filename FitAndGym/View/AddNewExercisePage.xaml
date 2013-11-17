@@ -13,7 +13,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
     
@@ -54,7 +54,7 @@
                 
                 <!--Name Block-->
                 <TextBlock Text="{Binding Path=LocalizedResources.NewExerciseNameText, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Grid.Row="0" FontSize="25" VerticalAlignment="Center" />
-                <local:AdvTextBox x:Name="NewExName" Grid.Column="1" Grid.Row="0" DefaultText="{Binding Path=LocalizedResources.TypeNameOfExercisePlaceholder, Source={StaticResource LocalizedStrings}}" Text="{Binding Path=LocalizedResources.TypeNameOfExercisePlaceholder, Source={StaticResource LocalizedStrings}}" />
+                <local:AdvTextBox x:Name="NewExName" Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" DefaultText="{Binding Path=LocalizedResources.TypeNameOfExercisePlaceholder, Source={StaticResource LocalizedStrings}}" Text="{Binding Path=LocalizedResources.TypeNameOfExercisePlaceholder, Source={StaticResource LocalizedStrings}}" />
             
                 <!--Intensity Block-->
                 <TextBlock Text="{Binding Path=LocalizedResources.NewExerciseIntensityText, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" FontSize="25" />
@@ -84,14 +84,45 @@
                     <CheckBox x:Name="NewExDurationActiveCheckBox" IsChecked="true" Grid.Column="1" VerticalAlignment="Center" />
                 </Grid>
                 
-                <!--Sets Block-->
-                
-                <!--Reps Block-->
-                
-                <!--Other Block-->
-                
                 <!--Image Block-->
             </Grid>
+            <Rectangle HorizontalAlignment="Stretch" Margin="0 5 0 5" Fill="white" Height="3" />
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--Sets Block-->
+                <TextBlock Text="{Binding Path=LocalizedResources.NewExerciseSetsText, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Grid.Row="0" FontSize="25" VerticalAlignment="Center" />
+                <Button Grid.Column="1" Grid.Row="0" Content="-" />
+                <TextBox Grid.Column="2" Grid.Row="0" TextAlignment="Center" IsReadOnly="True" />
+                <Button Grid.Column="3" Grid.Row="0" Content="+" />
+                <!--CheckBox-->
+                <CheckBox x:Name="NewExSetsActiveCheckBox" IsChecked="true" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" />
+
+                <!--Reps Block-->
+                <TextBlock Text="{Binding Path=LocalizedResources.NewExerciseRepsText, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Grid.Row="1" FontSize="25" VerticalAlignment="Center" />
+                <Button Grid.Column="1" Grid.Row="1" Content="-" />
+                <TextBox Grid.Column="2" Grid.Row="1" TextAlignment="Center" IsReadOnly="True" />
+                <Button Grid.Column="3" Grid.Row="1" Content="+" />
+                <!--CheckBox-->
+                <CheckBox x:Name="NewExDurationRepsCheckBox" IsChecked="true" Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" />
+            </Grid>
+            <Rectangle HorizontalAlignment="Stretch" Margin="0 5 0 5" Fill="white" Height="3" />
+            
+            <!--Other Block-->
+            <TextBlock Margin="0 5 0 0" FontSize="25" Text="{Binding Path=LocalizedResources.NewExerciseOtherInfoHeader, Source={StaticResource LocalizedStrings}}" />
+            <local:AdvTextBox x:Name="txtArea" FontSize="20" AcceptsReturn="True" Height="140" TextWrapping="Wrap" Text="{Binding Path=LocalizedResources.NewExerciseOtherInfoPlaceholder, Source={StaticResource LocalizedStrings}}" DefaultText="{Binding Path=LocalizedResources.NewExerciseOtherInfoPlaceholder, Source={StaticResource LocalizedStrings}}" />
         </StackPanel>
     </Grid>
 
