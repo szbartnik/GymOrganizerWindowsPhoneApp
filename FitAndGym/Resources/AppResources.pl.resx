@@ -119,11 +119,9 @@
   </resheader>
   <data name="ResourceFlowDirection" xml:space="preserve">
     <value>LeftToRight</value>
-    <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
   </data>
   <data name="ResourceLanguage" xml:space="preserve">
     <value>pl</value>
-    <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Fit&amp;Gym</value>
@@ -134,18 +132,26 @@
   <data name="TrainingDaysPivotHeader" xml:space="preserve">
     <value>Treningi</value>
   </data>
-  <data name="AddExerciseButtonText" xml:space="preserve">
+  <data name="AddExerciseAppBar" xml:space="preserve">
     <value>dodaj nowe</value>
     <comment>for ApplicationBar - max 11 lower-case chars</comment>
   </data>
   <data name="AddExercisePageHeader" xml:space="preserve">
     <value>nowe ćwiczenie</value>
   </data>
-  <data name="AddTrainingButtonText" xml:space="preserve">
+  <data name="AddTrainingAppBar" xml:space="preserve">
     <value>dodaj nowy</value>
     <comment>for ApplicationBar - max 11 lower-case chars</comment>
   </data>
   <data name="AddTrainingPageHeader" xml:space="preserve">
     <value>nowy trening</value>
+  </data>
+  <data name="SaveChangesAppBar" xml:space="preserve">
+    <value>zapisz</value>
+    <comment>for ApplicationBar - max 11 lower-case chars</comment>
+  </data>
+  <data name="DiscardChangesAppBar" xml:space="preserve">
+    <value>porzuć</value>
+    <comment>for ApplicationBar - max 11 lower-case chars</comment>
   </data>
 </root>

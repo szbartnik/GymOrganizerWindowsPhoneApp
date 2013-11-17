@@ -77,7 +77,7 @@ namespace FitAndGym
 
             var addNewTrainingButton = new ApplicationBarIconButton(new Uri("/Images/add.png", UriKind.RelativeOrAbsolute));
             addNewTrainingButton.Click += addNewTrainingButton_Click;
-            addNewTrainingButton.Text = AppResources.AddTrainingButtonText;
+            addNewTrainingButton.Text = AppResources.AddTrainingAppBar;
             _trainingsApplicationBar.Buttons.Add(addNewTrainingButton);
 
             //
@@ -87,7 +87,7 @@ namespace FitAndGym
 
             var addNewExerciseButton = new ApplicationBarIconButton(new Uri("/Images/add.png", UriKind.RelativeOrAbsolute));
             addNewExerciseButton.Click += addNewExerciseButton_Click;
-            addNewExerciseButton.Text = AppResources.AddExerciseButtonText;
+            addNewExerciseButton.Text = AppResources.AddExerciseAppBar;
             _exercisesApplicationBar.Buttons.Add(addNewExerciseButton);
         }
 

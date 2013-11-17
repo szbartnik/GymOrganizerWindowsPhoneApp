@@ -63,9 +63,9 @@ namespace FitAndGym.Resources {
         /// <summary>
         ///   Looks up a localized string similar to create new.
         /// </summary>
-        public static string AddExerciseButtonText {
+        public static string AddExerciseAppBar {
             get {
-                return ResourceManager.GetString("AddExerciseButtonText", resourceCulture);
+                return ResourceManager.GetString("AddExerciseAppBar", resourceCulture);
             }
         }
         
@@ -81,9 +81,9 @@ namespace FitAndGym.Resources {
         /// <summary>
         ///   Looks up a localized string similar to create new.
         /// </summary>
-        public static string AddTrainingButtonText {
+        public static string AddTrainingAppBar {
             get {
-                return ResourceManager.GetString("AddTrainingButtonText", resourceCulture);
+                return ResourceManager.GetString("AddTrainingAppBar", resourceCulture);
             }
         }
         
@@ -102,6 +102,15 @@ namespace FitAndGym.Resources {
         public static string ApplicationTitle {
             get {
                 return ResourceManager.GetString("ApplicationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to discard.
+        /// </summary>
+        public static string DiscardChangesAppBar {
+            get {
+                return ResourceManager.GetString("DiscardChangesAppBar", resourceCulture);
             }
         }
         
@@ -129,6 +138,15 @@ namespace FitAndGym.Resources {
         public static string ResourceLanguage {
             get {
                 return ResourceManager.GetString("ResourceLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to save.
+        /// </summary>
+        public static string SaveChangesAppBar {
+            get {
+                return ResourceManager.GetString("SaveChangesAppBar", resourceCulture);
             }
         }
         

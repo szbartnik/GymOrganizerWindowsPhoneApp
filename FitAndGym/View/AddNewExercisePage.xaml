@@ -6,6 +6,8 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -27,9 +29,27 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12 -15 12 0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Text="Name" Grid.Column="0" FontSize="25" VerticalAlignment="Center" />
+                <TextBox Grid.Column="1" />
+            </Grid>
             
-        </Grid>
+            <toolkit:ListPicker ItemsSource="{Binding }">
+                <toolkit:ListPicker.ItemTemplate>
+                    <DataTemplate>
+                        
+                    </DataTemplate>
+                </toolkit:ListPicker.ItemTemplate>
+            </toolkit:ListPicker>
+            
+            <c4f:TimeSpanPicker Value="0:8:0" Min="0:0:10" Max="0:59:59" />
+        </StackPanel>
     </Grid>
 
 </phone:PhoneApplicationPage>
