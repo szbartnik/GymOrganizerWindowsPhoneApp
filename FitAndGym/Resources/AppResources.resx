@@ -134,4 +134,18 @@
   <data name="TrainingDaysPivotHeader" xml:space="preserve">
     <value>Trainings</value>
   </data>
+  <data name="AddExerciseButtonText" xml:space="preserve">
+    <value>create new</value>
+    <comment>for ApplicationBar - max 11 lower-case chars</comment>
+  </data>
+  <data name="AddExercisePageHeader" xml:space="preserve">
+    <value>new exercise</value>
+  </data>
+  <data name="AddTrainingButtonText" xml:space="preserve">
+    <value>create new</value>
+    <comment>for ApplicationBar - max 11 lower-case chars</comment>
+  </data>
+  <data name="AddTrainingPageHeader" xml:space="preserve">
+    <value>new training</value>
+  </data>
 </root>

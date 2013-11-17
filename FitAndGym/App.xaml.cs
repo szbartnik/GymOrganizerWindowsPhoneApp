@@ -66,9 +66,6 @@ namespace FitAndGym
                 if (db.DatabaseExists() == false)
                 {
                     db.CreateDatabase();
-
-                    
-
                     db.SubmitChanges();
                 }
             }
@@ -244,6 +241,11 @@ namespace FitAndGym
 
                 throw;
             }
+        }
+
+        private void AddTrainingButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

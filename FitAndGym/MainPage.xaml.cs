@@ -16,8 +16,12 @@ namespace FitAndGym
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        private ApplicationBar _exercisesApplicationBar = null;
+        private ApplicationBar _trainingsApplicationBar = null;
+
         public MainPage()
         {
+            BuildLocalizedApplicationBar();
             InitializeComponent();
 
             App.FitAndGymViewModel.LoadTrainingDaysCollectionFromDatabase();
@@ -51,5 +55,50 @@ namespace FitAndGym
             }
         }
 
+        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (((Pivot)sender).SelectedIndex)
+            {
+                case 0:
+                    ApplicationBar = _trainingsApplicationBar;
+                    break;
+                case 1:
+                    ApplicationBar = _exercisesApplicationBar;
+                    break;
+            }
+        }
+
+        private void BuildLocalizedApplicationBar()
+        {
+            //
+            // ApplicationBar for Trainings Pivot Item
+
+            _trainingsApplicationBar = new ApplicationBar();
+
+            var addNewTrainingButton = new ApplicationBarIconButton(new Uri("/Images/add.png", UriKind.RelativeOrAbsolute));
+            addNewTrainingButton.Click += addNewTrainingButton_Click;
+            addNewTrainingButton.Text = AppResources.AddTrainingButtonText;
+            _trainingsApplicationBar.Buttons.Add(addNewTrainingButton);
+
+            //
+            // ApplicationBar for Exercises Pivot Item
+
+            _exercisesApplicationBar = new ApplicationBar();
+
+            var addNewExerciseButton = new ApplicationBarIconButton(new Uri("/Images/add.png", UriKind.RelativeOrAbsolute));
+            addNewExerciseButton.Click += addNewExerciseButton_Click;
+            addNewExerciseButton.Text = AppResources.AddExerciseButtonText;
+            _exercisesApplicationBar.Buttons.Add(addNewExerciseButton);
+        }
+
+        void addNewExerciseButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml", UriKind.Relative));
+        }
+
+        void addNewTrainingButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/AddNewTrainingPage.xaml", UriKind.Relative));
+        }
     }
 }

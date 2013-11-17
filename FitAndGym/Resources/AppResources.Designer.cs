@@ -61,6 +61,42 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to create new.
+        /// </summary>
+        public static string AddExerciseButtonText {
+            get {
+                return ResourceManager.GetString("AddExerciseButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to new exercise.
+        /// </summary>
+        public static string AddExercisePageHeader {
+            get {
+                return ResourceManager.GetString("AddExercisePageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to create new.
+        /// </summary>
+        public static string AddTrainingButtonText {
+            get {
+                return ResourceManager.GetString("AddTrainingButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to new training.
+        /// </summary>
+        public static string AddTrainingPageHeader {
+            get {
+                return ResourceManager.GetString("AddTrainingPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fit&amp;Gym.
         /// </summary>
         public static string ApplicationTitle {
