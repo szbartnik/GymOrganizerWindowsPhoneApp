@@ -24,8 +24,6 @@ namespace FitAndGym
             BuildLocalizedApplicationBar();
             InitializeComponent();
 
-            App.FitAndGymViewModel.LoadTrainingDaysCollectionFromDatabase();
-            App.FitAndGymViewModel.LoadExercisesCollectionFromDatabase();
             DataContext = App.FitAndGymViewModel;
         }
 

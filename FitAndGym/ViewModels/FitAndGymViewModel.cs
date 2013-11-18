@@ -66,6 +66,8 @@ namespace FitAndGym.ViewModels
 
         public void AddNewExercise(Exercise exercise)
         {
+            Exercises.Add(exercise);
+
             db.Exercises.InsertOnSubmit(exercise);
             db.SubmitChanges();
         }

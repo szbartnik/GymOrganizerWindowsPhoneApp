@@ -181,6 +181,9 @@
   <data name="TypeNameOfExercisePlaceholder" xml:space="preserve">
     <value>Wpisz nazwę ćwiczenia...</value>
   </data>
+  <data name="ExNamePropertyIsRequiredNotification" xml:space="preserve">
+    <value>Nazwa ćwiczenia jest obowiązkowa!</value>
+  </data>
   <data name="NewExerciseOtherInfoHeader" xml:space="preserve">
     <value>Dodatkowe informacje</value>
   </data>
@@ -192,5 +195,8 @@
   </data>
   <data name="NewExerciseSetsText" xml:space="preserve">
     <value>Liczba serii</value>
+  </data>
+  <data name="ValidationErrorTitle" xml:space="preserve">
+    <value>Błąd walidacji</value>
   </data>
 </root>

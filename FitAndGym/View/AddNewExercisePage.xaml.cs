@@ -27,6 +27,7 @@ namespace FitAndGym.View
             NewExIntensityListPicker.ItemsSource = Enum.GetValues(typeof(Intensity));
 
             _viewModel = new AddNewExercisePageViewModel();
+            _viewModel.ValidationError += _viewModel_ValidationError;
             DataContext = _viewModel;
         }
 
@@ -53,13 +54,17 @@ namespace FitAndGym.View
 
         private void saveChanges_Click(object sender, EventArgs e)
         {
-            // for testing
-            //Dispatcher.BeginInvoke(() => MessageBox.Show(_viewModel.ToString()));
-
             var newExercise = _viewModel.GenerateExerciseModel();
-            App.FitAndGymViewModel.AddNewExercise(newExercise);
+            if (newExercise != null)
+            {
+                App.FitAndGymViewModel.AddNewExercise(newExercise);
+                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
+            }
+        }
 
-            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
+        void _viewModel_ValidationError(object sender, ViewModels.ValidationErrorEventArgs e)
+        {
+            MessageBox.Show(e.ErrorMessage, AppResources.ValidationErrorTitle, MessageBoxButton.OK);
         }
 
         #region Plus-Minus Of Sets&Reps Events

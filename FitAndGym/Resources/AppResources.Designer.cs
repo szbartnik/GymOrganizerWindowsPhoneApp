@@ -124,6 +124,15 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exercise name property is required!.
+        /// </summary>
+        public static string ExNamePropertyIsRequiredNotification {
+            get {
+                return ResourceManager.GetString("ExNamePropertyIsRequiredNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to High.
         /// </summary>
         public static string IntensityHigh {
@@ -273,6 +282,15 @@ namespace FitAndGym.Resources {
         public static string TypeNameOfExercisePlaceholder {
             get {
                 return ResourceManager.GetString("TypeNameOfExercisePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validation Error.
+        /// </summary>
+        public static string ValidationErrorTitle {
+            get {
+                return ResourceManager.GetString("ValidationErrorTitle", resourceCulture);
             }
         }
     }

@@ -10,8 +10,12 @@ using FitAndGym.Resources;
 
 namespace FitAndGym.ViewModels
 {
+    public delegate void ValidationErrorEventHandler(object sender, ValidationErrorEventArgs e);
+
     public class AddNewExercisePageViewModel : INotifyPropertyChanged
     {
+        #region Constants 
+
         private const int MAX_NUM_OF_SETS = 100;
         private const int MAX_NUM_OF_REPS = 500;
         private const int MAX_LENGTH_OF_OTHER_INFO = 400;
@@ -20,6 +24,10 @@ namespace FitAndGym.ViewModels
         private const int INIT_NUM_OF_REPS = 15;
         private const int INIT_DURATION_IN_MIN = 8;
         private const int MIN_COMMON = 1;
+
+        #endregion
+
+        #region Private variables
 
         private string _exName;
         private Intensity _intensity;
@@ -32,6 +40,8 @@ namespace FitAndGym.ViewModels
         private bool _durationActive;
         private bool _numOfSetsActive;
         private bool _numOfRepsActive;
+
+        #endregion
 
         public AddNewExercisePageViewModel()
         {
@@ -46,7 +56,9 @@ namespace FitAndGym.ViewModels
             _duration = TimeSpan.FromMinutes(INIT_DURATION_IN_MIN);
             _intensity = Intensity.Medium;
         }
- 
+
+        #region Properties
+
         public string ExName
         {
             get { return _exName; }
@@ -151,12 +163,20 @@ namespace FitAndGym.ViewModels
             set { _numOfRepsActive = value; }
         }
 
+        #endregion
 
         public Exercise GenerateExerciseModel()
         {
             var exercise = new Exercise();
 
-            exercise.ExerciseName = ExName;
+            if (ExName != AppResources.TypeNameOfExercisePlaceholder)
+                exercise.ExerciseName = ExName;
+            else
+            {
+                exercise = null;
+                NotifyValidationError(new ValidationErrorEventArgs(AppResources.ExNamePropertyIsRequiredNotification));
+                return null;
+            }
             exercise.Intensity = IntensityActive ? Intensity : Intensity.Medium;
             exercise.DurationInMinutes = DurationActive ? (int)Duration.TotalSeconds : (int?)null;
             exercise.AmountOfSets = NumOfSetsActive ? NumOfSets : (int?)null;
@@ -164,6 +184,7 @@ namespace FitAndGym.ViewModels
             exercise.OtherInfo = OtherInfo != AppResources.NewExerciseOtherInfoPlaceholder
                 ? OtherInfo
                 : String.Empty;
+
             return exercise;
         }
 
@@ -178,6 +199,14 @@ namespace FitAndGym.ViewModels
             }
         }
 
+        public event ValidationErrorEventHandler ValidationError;
+        private void NotifyValidationError(ValidationErrorEventArgs eventArgs)
+        {
+            if (ValidationError != null)
+            {
+                ValidationError(this, eventArgs);
+            }
+        }
         #endregion
 
         public override string ToString()

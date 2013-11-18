@@ -69,7 +69,8 @@ namespace FitAndGym
                     db.SubmitChanges();
                 }
             }
-
+            App.FitAndGymViewModel.LoadTrainingDaysCollectionFromDatabase();
+            App.FitAndGymViewModel.LoadExercisesCollectionFromDatabase();
         }
 
         [Conditional("DELBASE")]

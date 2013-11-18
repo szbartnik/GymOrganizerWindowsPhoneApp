@@ -144,6 +144,7 @@
     <Compile Include="Utilities\DebugTextWriter.cs" />
     <Compile Include="ViewModels\AddNewExercisePageViewModel.cs" />
     <Compile Include="ViewModels\FitAndGymViewModel.cs" />
+    <Compile Include="ViewModels\ValidationErrorEventArgs.cs" />
     <Compile Include="View\AddNewExercisePage.xaml.cs">
       <DependentUpon>AddNewExercisePage.xaml</DependentUpon>
     </Compile>
