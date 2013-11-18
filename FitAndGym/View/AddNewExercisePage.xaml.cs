@@ -47,12 +47,17 @@ namespace FitAndGym.View
 
         private void discardChangesButton_Click(object sender, EventArgs e)
         {
+            _viewModel = null;
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void saveChanges_Click(object sender, EventArgs e)
         {
-            Dispatcher.BeginInvoke(() => MessageBox.Show(_viewModel.ToString()));
+            // for testing
+            //Dispatcher.BeginInvoke(() => MessageBox.Show(_viewModel.ToString()));
+
+            var newExercise = _viewModel.GenerateExerciseModel();
+            App.FitAndGymViewModel.AddNewExercise(newExercise);
 
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
         }

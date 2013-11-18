@@ -64,6 +64,12 @@ namespace FitAndGym.ViewModels
             Exercises = new ObservableCollection<Exercise>(exercisesInDB);
         }
 
+        public void AddNewExercise(Exercise exercise)
+        {
+            db.Exercises.InsertOnSubmit(exercise);
+            db.SubmitChanges();
+        }
+
         #region Events Stuff
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using FitAndGym.Models;
+using FitAndGym.Resources;
 
 namespace FitAndGym.ViewModels
 {
@@ -149,7 +150,22 @@ namespace FitAndGym.ViewModels
             get { return _numOfRepsActive; }
             set { _numOfRepsActive = value; }
         }
-        
+
+
+        public Exercise GenerateExerciseModel()
+        {
+            var exercise = new Exercise();
+
+            exercise.ExerciseName = ExName;
+            exercise.Intensity = IntensityActive ? Intensity : Intensity.Medium;
+            exercise.DurationInMinutes = DurationActive ? (int)Duration.TotalSeconds : (int?)null;
+            exercise.AmountOfSets = NumOfSetsActive ? NumOfSets : (int?)null;
+            exercise.AmountOfReps = NumOfRepsActive ? NumOfReps : (int?)null;
+            exercise.OtherInfo = OtherInfo != AppResources.NewExerciseOtherInfoPlaceholder
+                ? OtherInfo
+                : String.Empty;
+            return exercise;
+        }
 
         #region Events Stuff
 
