@@ -16,12 +16,6 @@ namespace FitAndGym.View
 {
     public partial class AddNewExercisePage : PhoneApplicationPage
     {
-        private const int MAX_NUM_OF_SETS = 100;
-        private const int MAX_NUM_OF_REPS = 500;
-        private const int INIT_NUM_OF_SETS = 5;
-        private const int INIT_NUM_OF_REPS = 15;
-        private const int MIN_COMMON = 1;
-
         private AddNewExercisePageViewModel _viewModel;
 
         public AddNewExercisePage()
@@ -33,14 +27,7 @@ namespace FitAndGym.View
             NewExIntensityListPicker.ItemsSource = Enum.GetValues(typeof(Intensity));
 
             _viewModel = new AddNewExercisePageViewModel();
-            ControlsStartValuesInitialization();
             DataContext = _viewModel;
-        }
-
-        private void ControlsStartValuesInitialization()
-        {
-            _viewModel.NumOfSets = INIT_NUM_OF_SETS;
-            _viewModel.NumOfReps = INIT_NUM_OF_REPS;
         }
 
         private void BuildLocalizedApplicationBar()
@@ -65,8 +52,7 @@ namespace FitAndGym.View
 
         private void saveChanges_Click(object sender, EventArgs e)
         {
-            // TODO
-
+            Dispatcher.BeginInvoke(() => MessageBox.Show(_viewModel.ToString()));
 
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
         }
@@ -75,26 +61,22 @@ namespace FitAndGym.View
 
         private void NewExNumOfSetsPlus_Click(object sender, RoutedEventArgs e)
         {
-            if(_viewModel.NumOfSets < MAX_NUM_OF_SETS)
-                ++(_viewModel.NumOfSets);
+            ++(_viewModel.NumOfSets);
         }
 
         private void NewExNumOfSetsMinus_Click(object sender, RoutedEventArgs e)
         {
-            if (_viewModel.NumOfSets > MIN_COMMON)
-                --(_viewModel.NumOfSets);
+            --(_viewModel.NumOfSets);
         }
 
         private void NewExNumOfRepsPlus_Click(object sender, RoutedEventArgs e)
         {
-            if (_viewModel.NumOfReps < MAX_NUM_OF_REPS)
-                ++(_viewModel.NumOfReps);
+            ++(_viewModel.NumOfReps);
         }
 
         private void NewExNumOfRepsMinus_Click(object sender, RoutedEventArgs e)
         {
-            if (_viewModel.NumOfReps > MIN_COMMON)
-                --(_viewModel.NumOfReps);
+            --(_viewModel.NumOfReps);
         }
 
         #endregion
