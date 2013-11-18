@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-using FitAndGym.Infrastructure;
 using FitAndGym.Models;
 using FitAndGym.Resources;
 using FitAndGym.ViewModels;
@@ -16,17 +11,17 @@ namespace FitAndGym.View
 {
     public partial class AddNewExercisePage : PhoneApplicationPage
     {
-        private AddNewExercisePageViewModel _viewModel;
+        private ExercisePageViewModel _viewModel;
 
         public AddNewExercisePage()
         {
             BuildLocalizedApplicationBar();
             InitializeComponent();
 
-            // filling ListPicker
+            // filling ListPicker by enums
             NewExIntensityListPicker.ItemsSource = Enum.GetValues(typeof(Intensity));
 
-            _viewModel = new AddNewExercisePageViewModel();
+            _viewModel = new ExercisePageViewModel();
             _viewModel.ValidationError += _viewModel_ValidationError;
             DataContext = _viewModel;
         }
@@ -54,7 +49,7 @@ namespace FitAndGym.View
 
         private void saveChanges_Click(object sender, EventArgs e)
         {
-            var newExercise = _viewModel.GenerateExerciseModel();
+            var newExercise = _viewModel.GenerateModel();
             if (newExercise != null)
             {
                 App.FitAndGymViewModel.AddNewExercise(newExercise);

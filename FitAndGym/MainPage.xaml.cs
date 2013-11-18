@@ -27,6 +27,31 @@ namespace FitAndGym
             DataContext = App.FitAndGymViewModel;
         }
 
+        private void BuildLocalizedApplicationBar()
+        {
+            //
+            // ApplicationBar for Trainings Pivot Item
+
+            _trainingsApplicationBar = new ApplicationBar();
+
+            var addNewTrainingButton = new ApplicationBarIconButton(new Uri("/Images/add.png", UriKind.RelativeOrAbsolute));
+            addNewTrainingButton.Click += addNewTrainingButton_Click;
+            addNewTrainingButton.Text = AppResources.AddTrainingAppBar;
+            _trainingsApplicationBar.Buttons.Add(addNewTrainingButton);
+
+            //
+            // ApplicationBar for Exercises Pivot Item
+
+            _exercisesApplicationBar = new ApplicationBar();
+
+            var addNewExerciseButton = new ApplicationBarIconButton(new Uri("/Images/add.png", UriKind.RelativeOrAbsolute));
+            addNewExerciseButton.Click += addNewExerciseButton_Click;
+            addNewExerciseButton.Text = AppResources.AddExerciseAppBar;
+            _exercisesApplicationBar.Buttons.Add(addNewExerciseButton);
+        }
+
+        #region Events Stuff
+
         private async void TrainingDaysList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (TrainingDaysList.SelectedItem is TrainingDay)
@@ -66,29 +91,6 @@ namespace FitAndGym
             }
         }
 
-        private void BuildLocalizedApplicationBar()
-        {
-            //
-            // ApplicationBar for Trainings Pivot Item
-
-            _trainingsApplicationBar = new ApplicationBar();
-
-            var addNewTrainingButton = new ApplicationBarIconButton(new Uri("/Images/add.png", UriKind.RelativeOrAbsolute));
-            addNewTrainingButton.Click += addNewTrainingButton_Click;
-            addNewTrainingButton.Text = AppResources.AddTrainingAppBar;
-            _trainingsApplicationBar.Buttons.Add(addNewTrainingButton);
-
-            //
-            // ApplicationBar for Exercises Pivot Item
-
-            _exercisesApplicationBar = new ApplicationBar();
-
-            var addNewExerciseButton = new ApplicationBarIconButton(new Uri("/Images/add.png", UriKind.RelativeOrAbsolute));
-            addNewExerciseButton.Click += addNewExerciseButton_Click;
-            addNewExerciseButton.Text = AppResources.AddExerciseAppBar;
-            _exercisesApplicationBar.Buttons.Add(addNewExerciseButton);
-        }
-
         void addNewExerciseButton_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml", UriKind.Relative));
@@ -98,5 +100,7 @@ namespace FitAndGym
         {
             NavigationService.Navigate(new Uri("/View/AddNewTrainingPage.xaml", UriKind.Relative));
         }
+
+        #endregion
     }
 }

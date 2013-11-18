@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using FitAndGym.Resources;
 
 namespace FitAndGym.Infrastructure

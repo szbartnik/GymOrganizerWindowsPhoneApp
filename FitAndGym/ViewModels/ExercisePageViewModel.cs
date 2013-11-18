@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using FitAndGym.Models;
 using FitAndGym.Resources;
 
 namespace FitAndGym.ViewModels
 {
-    public delegate void ValidationErrorEventHandler(object sender, ValidationErrorEventArgs e);
-
-    public class AddNewExercisePageViewModel : INotifyPropertyChanged
+    public class ExercisePageViewModel : INotifyPropertyChanged, IValidableModel<Exercise>
     {
         #region Constants 
 
@@ -43,7 +36,7 @@ namespace FitAndGym.ViewModels
 
         #endregion
 
-        public AddNewExercisePageViewModel()
+        public ExercisePageViewModel()
         {
             _numOfReps = INIT_NUM_OF_REPS;
             _numOfSets = INIT_NUM_OF_SETS;
@@ -55,6 +48,23 @@ namespace FitAndGym.ViewModels
             _numOfRepsActive = true;
             _duration = TimeSpan.FromMinutes(INIT_DURATION_IN_MIN);
             _intensity = Intensity.Medium;
+        }
+
+        public ExercisePageViewModel(Exercise exercise)
+        {
+            _exName = exercise.ExerciseName;
+            _numOfReps = exercise.AmountOfReps.HasValue ? exercise.AmountOfReps.Value : INIT_NUM_OF_REPS;
+            _numOfSets = exercise.AmountOfSets.HasValue ? exercise.AmountOfSets.Value : INIT_NUM_OF_SETS;
+            _intensity = exercise.Intensity;
+            _otherInfo = exercise.OtherInfo;
+            _duration = exercise.DurationInMinutes.HasValue
+                ? TimeSpan.FromSeconds(exercise.DurationInMinutes.Value)
+                : TimeSpan.FromMinutes(INIT_DURATION_IN_MIN);
+
+            _intensityActive = true;
+            _durationActive = exercise.DurationInMinutes.HasValue;
+            _numOfSetsActive = exercise.AmountOfSets.HasValue;
+            _numOfRepsActive = exercise.AmountOfReps.HasValue;
         }
 
         #region Properties
@@ -165,7 +175,7 @@ namespace FitAndGym.ViewModels
 
         #endregion
 
-        public Exercise GenerateExerciseModel()
+        public Exercise GenerateModel()
         {
             var exercise = new Exercise();
 
@@ -211,7 +221,7 @@ namespace FitAndGym.ViewModels
 
         public override string ToString()
         {
-            var str = new StringBuilder();
+            var str = new System.Text.StringBuilder();
 
             str.AppendLine(String.Format("Exercise Name: {0}", _exName));
             str.AppendLine(String.Format("Intensity: {0}, Active: {1}", _intensity, _intensityActive));

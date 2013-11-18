@@ -194,7 +194,7 @@
     <value>Number of sets</value>
   </data>
   <data name="ExNamePropertyIsRequiredNotification" xml:space="preserve">
-    <value>Exercise name property is required!</value>
+    <value>Name property is required!</value>
   </data>
   <data name="ValidationErrorTitle" xml:space="preserve">
     <value>Validation Error</value>

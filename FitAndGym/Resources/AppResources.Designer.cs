@@ -124,7 +124,7 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exercise name property is required!.
+        ///   Looks up a localized string similar to Name property is required!.
         /// </summary>
         public static string ExNamePropertyIsRequiredNotification {
             get {
