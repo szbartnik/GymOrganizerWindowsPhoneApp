@@ -22,8 +22,9 @@ namespace FitAndGym.ViewModels
 
         #region Private variables
 
+        private string _pageTitle;
         private bool _isEditingModeActive;
-        private int _id;
+        private int _exerciseId;
         private string _exName;
         private Intensity _intensity;
         private TimeSpan _duration;
@@ -40,6 +41,7 @@ namespace FitAndGym.ViewModels
 
         public ExercisePageViewModel()
         {
+            _pageTitle = AppResources.ExercisePageTitleNewMode;
             _isEditingModeActive = false;
             _numOfReps = INIT_NUM_OF_REPS;
             _numOfSets = INIT_NUM_OF_SETS;
@@ -55,8 +57,9 @@ namespace FitAndGym.ViewModels
 
         public ExercisePageViewModel(Exercise exercise)
         {
+            _pageTitle = AppResources.ExercisePageTitleEditMode;
             _isEditingModeActive = true;
-            _id = exercise.ExerciseId;
+            _exerciseId = exercise.ExerciseId;
             _exName = exercise.ExerciseName;
             _numOfReps = exercise.AmountOfReps.HasValue ? exercise.AmountOfReps.Value : INIT_NUM_OF_REPS;
             _numOfSets = exercise.AmountOfSets.HasValue ? exercise.AmountOfSets.Value : INIT_NUM_OF_SETS;
@@ -73,6 +76,18 @@ namespace FitAndGym.ViewModels
         }
 
         #region Properties
+
+        public string PageTitle
+        {
+            get { return _pageTitle; }
+            private set { }
+        }
+
+        public int ExerciseId
+        {
+            get { return _exerciseId; }
+            private set { }
+        }
 
         public string ExName
         {
@@ -157,25 +172,53 @@ namespace FitAndGym.ViewModels
         public bool IntensityActive
         {
             get { return _intensityActive; }
-            set { _intensityActive = value; }
+            set
+            {
+                if (value != _intensityActive)
+                {
+                    _intensityActive = value;
+                    NotifyPropertyChanged("IntensityActive");
+                }
+            }
         }
 
         public bool DurationActive
         {
             get { return _durationActive; }
-            set { _durationActive = value; }
+            set
+            {
+                if (value != _durationActive)
+                {
+                    _durationActive = value;
+                    NotifyPropertyChanged("DurationActive");
+                }
+            }
         }
 
         public bool NumOfSetsActive
         {
             get { return _numOfSetsActive; }
-            set { _numOfSetsActive = value; }
+            set
+            {
+                if (value != _numOfSetsActive)
+                {
+                    _numOfSetsActive = value;
+                    NotifyPropertyChanged("NumOfSetsActive");
+                }
+            }
         }
 
         public bool NumOfRepsActive
         {
             get { return _numOfRepsActive; }
-            set { _numOfRepsActive = value; }
+            set
+            {
+                if (value != _numOfRepsActive)
+                {
+                    _numOfRepsActive = value;
+                    NotifyPropertyChanged("NumOfRepsActive");
+                }
+            }
         }
 
         #endregion
@@ -184,9 +227,9 @@ namespace FitAndGym.ViewModels
         {
             var exercise = new Exercise();
 
-            exercise.ExerciseId = _isEditingModeActive ? _id : default(int);
+            exercise.ExerciseId = _isEditingModeActive ? _exerciseId : default(int);
 
-            if (ExName != AppResources.TypeNameOfExercisePlaceholder)
+            if (ExName != AppResources.TypeNameOfExercisePlaceholder && ExName != String.Empty)
                 exercise.ExerciseName = ExName;
             else
             {

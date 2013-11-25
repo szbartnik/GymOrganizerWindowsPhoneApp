@@ -3,6 +3,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.ComponentModel;
 using FitAndGym.Models;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace FitAndGym.ViewModels
 {
@@ -67,6 +69,21 @@ namespace FitAndGym.ViewModels
             Exercises.Add(exercise);
 
             db.Exercises.InsertOnSubmit(exercise);
+            db.SubmitChanges();
+        }
+
+        public void UpdateExercise(Exercise exerciseToUpdate)
+        {
+            Exercise exToUpdate = db.Exercises.FirstOrDefault(ex => ex.ExerciseId == exerciseToUpdate.ExerciseId);
+
+            exToUpdate.AmountOfReps = exerciseToUpdate.AmountOfReps;
+            exToUpdate.AmountOfSets = exerciseToUpdate.AmountOfSets;
+            exToUpdate.DurationInMinutes = exerciseToUpdate.DurationInMinutes;
+            exToUpdate.ExerciseName = exerciseToUpdate.ExerciseName;
+            exToUpdate.ImageUri = exerciseToUpdate.ImageUri;
+            exToUpdate.Intensity = exerciseToUpdate.Intensity;
+            exToUpdate.OtherInfo = exerciseToUpdate.OtherInfo;
+
             db.SubmitChanges();
         }
 

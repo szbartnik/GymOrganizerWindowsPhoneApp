@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using FitAndGym.Models;
 using FitAndGym.Resources;
 using FitAndGym.ViewModels;
@@ -15,7 +16,6 @@ namespace FitAndGym.View
 
         public AddNewExercisePage()
         {
-            BuildLocalizedApplicationBar();
             InitializeComponent();
 
             // filling ListPicker by enums
@@ -25,16 +25,45 @@ namespace FitAndGym.View
         private void BuildLocalizedApplicationBar()
         {
             ApplicationBar = new ApplicationBar();
-
             var saveChangesButton = new ApplicationBarIconButton(new Uri("/Images/save.png", UriKind.RelativeOrAbsolute));
-            saveChangesButton.Click += saveChanges_Click;
-            saveChangesButton.Text = AppResources.SaveChangesAppBar;
-            ApplicationBar.Buttons.Add(saveChangesButton);
-
             var discardChangesButton = new ApplicationBarIconButton(new Uri("/Images/cancel.png", UriKind.RelativeOrAbsolute));
-            discardChangesButton.Click += discardChangesButton_Click;
-            discardChangesButton.Text = AppResources.DiscardChangesAppBar;
-            ApplicationBar.Buttons.Add(discardChangesButton);
+
+            string action;
+
+            if (NavigationContext.QueryString.TryGetValue("action", out action))
+            {
+                if (action == "edit")
+                {
+                    saveChangesButton.Click += updateChanges_Click;
+                    saveChangesButton.Text = AppResources.UpdateChangesAppBar;
+                    discardChangesButton.Click += discardChangesButton_Click;
+                    discardChangesButton.Text = AppResources.DiscardChangesAppBar;
+                }
+                else if (action == "add")
+                {
+                    saveChangesButton.Click += saveChanges_Click;
+                    saveChangesButton.Text = AppResources.SaveChangesAppBar;
+                    discardChangesButton.Click += discardChangesButton_Click;
+                    discardChangesButton.Text = AppResources.DiscardChangesAppBar;
+                }
+                else
+                    throw new Exception(String.Format("Unknown action: '{0}' in ExercisePage", action));
+
+                ApplicationBar.Buttons.Add(saveChangesButton);
+                ApplicationBar.Buttons.Add(discardChangesButton);
+                return;
+            }
+            throw new Exception("Lack of action in NavigationContext.QueryString in ExercisePage");
+        }
+
+        private void updateChanges_Click(object sender, EventArgs e)
+        {
+            var exerciseToUpdate = _viewModel.GenerateModel();
+            if (exerciseToUpdate != null)
+            {
+                App.FitAndGymViewModel.UpdateExercise(exerciseToUpdate);
+                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedExercise", UriKind.RelativeOrAbsolute));
+            }
         }
 
         private void discardChangesButton_Click(object sender, EventArgs e)
@@ -49,12 +78,17 @@ namespace FitAndGym.View
             if (newExercise != null)
             {
                 App.FitAndGymViewModel.AddNewExercise(newExercise);
-                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
+                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedNewExercise", UriKind.RelativeOrAbsolute));
             }
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            // I have to commemorate guy who saved me - http://samondotnet.blogspot.com/2011/12/onnavigatedto-will-be-called-after.html
+            // Line of rescue:
+            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back) return;
+
+            BuildLocalizedApplicationBar();
             CheckIfEditOrAddActionRequired();
         }
 
@@ -81,9 +115,7 @@ namespace FitAndGym.View
                         throw new Exception("Wrong NavigationContext.QueryString 'exId' in ExercisePage");
                 }
                 else if (action == "add")
-                {
                     _viewModel = new ExercisePageViewModel();
-                }
                 else
                     throw new Exception(String.Format("Wrong NavigationContext.QueryString (action) in ExercisePage. Action = '{0}'", action));
 
@@ -121,56 +153,11 @@ namespace FitAndGym.View
 
         #endregion
 
-        #region CheckBox's Activation Events
-
-        private void NewExIntensityActiveCheckBox_Click(object sender, RoutedEventArgs e)
+        private void NewExName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if ((sender as CheckBox).IsChecked.Value)
-                NewExIntensityListPicker.IsEnabled = true;
-            else
-                NewExIntensityListPicker.IsEnabled = false;
+            TextBox txtbox = sender as TextBox;
+            BindingExpression bindingExpression = txtbox.GetBindingExpression(TextBox.TextProperty);
+            bindingExpression.UpdateSource();
         }
-
-        private void NewExDurationActiveCheckBox_Click(object sender, RoutedEventArgs e)
-        {
-            if ((sender as CheckBox).IsChecked.Value)
-                NewExDurationTimeSpanPicker.IsEnabled = true;
-            else
-                NewExDurationTimeSpanPicker.IsEnabled = false;
-        }
-
-        private void NewExSetsActiveCheckBox_Click(object sender, RoutedEventArgs e)
-        {
-            if ((sender as CheckBox).IsChecked.Value)
-            {
-                NewExNumOfSetsTextBox.IsEnabled = true;
-                NewExNumOfSetsPlus.IsEnabled = true;
-                NewExNumOfSetsMinus.IsEnabled = true;
-            }
-            else
-            {
-                NewExNumOfSetsTextBox.IsEnabled = false;
-                NewExNumOfSetsPlus.IsEnabled = false;
-                NewExNumOfSetsMinus.IsEnabled = false;
-            }
-        }
-
-        private void NewExDurationRepsCheckBox_Click(object sender, RoutedEventArgs e)
-        {
-            if ((sender as CheckBox).IsChecked.Value)
-            {
-                NewExNumOfRepsTextBox.IsEnabled = true;
-                NewExNumOfRepsPlus.IsEnabled = true;
-                NewExNumOfRepsMinus.IsEnabled = true;
-            }
-            else
-            {
-                NewExNumOfRepsTextBox.IsEnabled = false;
-                NewExNumOfRepsPlus.IsEnabled = false;
-                NewExNumOfRepsMinus.IsEnabled = false;
-            }
-        }
-
-        #endregion
     }
 }

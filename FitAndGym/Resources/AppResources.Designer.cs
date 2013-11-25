@@ -70,15 +70,6 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to new exercise.
-        /// </summary>
-        public static string AddExercisePageHeader {
-            get {
-                return ResourceManager.GetString("AddExercisePageHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to create new.
         /// </summary>
         public static string AddTrainingAppBar {
@@ -111,6 +102,24 @@ namespace FitAndGym.Resources {
         public static string DiscardChangesAppBar {
             get {
                 return ResourceManager.GetString("DiscardChangesAppBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to edit exercise.
+        /// </summary>
+        public static string ExercisePageTitleEditMode {
+            get {
+                return ResourceManager.GetString("ExercisePageTitleEditMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to new exercise.
+        /// </summary>
+        public static string ExercisePageTitleNewMode {
+            get {
+                return ResourceManager.GetString("ExercisePageTitleNewMode", resourceCulture);
             }
         }
         
@@ -282,6 +291,15 @@ namespace FitAndGym.Resources {
         public static string TypeNameOfExercisePlaceholder {
             get {
                 return ResourceManager.GetString("TypeNameOfExercisePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to update.
+        /// </summary>
+        public static string UpdateChangesAppBar {
+            get {
+                return ResourceManager.GetString("UpdateChangesAppBar", resourceCulture);
             }
         }
         

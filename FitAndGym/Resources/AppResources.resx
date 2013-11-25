@@ -136,7 +136,7 @@
     <value>create new</value>
     <comment>for ApplicationBar - max 11 lower-case chars</comment>
   </data>
-  <data name="AddExercisePageHeader" xml:space="preserve">
+  <data name="ExercisePageTitleNewMode" xml:space="preserve">
     <value>new exercise</value>
   </data>
   <data name="AddTrainingAppBar" xml:space="preserve">
@@ -198,5 +198,12 @@
   </data>
   <data name="ValidationErrorTitle" xml:space="preserve">
     <value>Validation Error</value>
+  </data>
+  <data name="ExercisePageTitleEditMode" xml:space="preserve">
+    <value>edit exercise</value>
+  </data>
+  <data name="UpdateChangesAppBar" xml:space="preserve">
+    <value>update</value>
+    <comment>for ApplicationBar - max 11 lower-case chars</comment>
   </data>
 </root>

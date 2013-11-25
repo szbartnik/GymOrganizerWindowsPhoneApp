@@ -16,7 +16,7 @@
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
-    
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.Resources>
@@ -27,7 +27,7 @@
                 </Grid>
             </DataTemplate>
         </Grid.Resources>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -36,7 +36,7 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-            <TextBlock Text="{Binding Path=LocalizedResources.AddExercisePageHeader, Source={StaticResource LocalizedStrings}}" Margin="9,-14,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="{Binding PageTitle}" Margin="9,-14,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -50,7 +50,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-            
+
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -61,25 +61,26 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                
+
                     <!--Name Block-->
                     <TextBlock Text="{Binding Path=LocalizedResources.NewExerciseNameText, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Grid.Row="0" FontSize="25" VerticalAlignment="Center" />
-                    <local:AdvTextBox x:Name="NewExName" Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" DefaultText="{Binding Path=LocalizedResources.TypeNameOfExercisePlaceholder, Source={StaticResource LocalizedStrings}}" Text="{Binding ExName, Mode=TwoWay}" />
-            
+                    <local:AdvTextBox x:Name="NewExName" Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" DefaultText="{Binding Path=LocalizedResources.TypeNameOfExercisePlaceholder, Source={StaticResource LocalizedStrings}}" TextChanged="NewExName_TextChanged" Text="{Binding ExName, UpdateSourceTrigger=Explicit, Mode=TwoWay}" />
+
                     <!--Intensity Block-->
                     <TextBlock Text="{Binding Path=LocalizedResources.NewExerciseIntensityText, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" FontSize="25" />
                     <Grid Grid.Row="1" Grid.Column="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="116*" />
+                            <ColumnDefinition Width="175*"/>
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                    
+
                         <!--Control-->
-                        <toolkit:ListPicker SelectedItem="{Binding Intensity, Mode=TwoWay}" x:Name="NewExIntensityListPicker" Grid.Column="0" ItemTemplate="{StaticResource ListPickerDataTemplate}" />
+                        <toolkit:ListPicker SelectedItem="{Binding Intensity, Mode=TwoWay}" IsEnabled="{Binding IntensityActive, Mode=TwoWay}" x:Name="NewExIntensityListPicker" Grid.Column="0" ItemTemplate="{StaticResource ListPickerDataTemplate}" Grid.ColumnSpan="2" />
                         <!--CheckBox-->
-                        <CheckBox IsChecked="{Binding IntensityActive, Mode=TwoWay}" x:Name="NewExIntensityActiveCheckBox" Grid.Column="1" VerticalAlignment="Center" Click="NewExIntensityActiveCheckBox_Click" />
+                        <CheckBox IsChecked="{Binding IntensityActive, Mode=TwoWay}" x:Name="NewExIntensityActiveCheckBox" Grid.Column="2" VerticalAlignment="Center" Margin="0,6" />
                     </Grid>
-                
+
                     <!--Duration Block-->
                     <TextBlock Text="{Binding Path=LocalizedResources.NewExerciseDurationText, Source={StaticResource LocalizedStrings}}" Grid.Row="2" FontSize="25" VerticalAlignment="Center" Grid.Column="0" />
                     <Grid Grid.Row="2" Grid.Column="1">
@@ -87,24 +88,24 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                    
+
                         <!--Control-->
-                        <c4f:TimeSpanPicker x:Name="NewExDurationTimeSpanPicker" Value="{Binding Duration, Mode=TwoWay}" Min="0:0:10" Max="0:59:59" Grid.Column="0" />
+                        <c4f:TimeSpanPicker x:Name="NewExDurationTimeSpanPicker" IsEnabled="{Binding DurationActive}" Value="{Binding Duration, Mode=TwoWay}" Min="0:0:10" Max="0:59:59" Grid.Column="0" />
                         <!--CheckBox-->
-                        <CheckBox x:Name="NewExDurationActiveCheckBox" IsChecked="{Binding DurationActive, Mode=TwoWay}" Grid.Column="1" VerticalAlignment="Center" Click="NewExDurationActiveCheckBox_Click" />
+                        <CheckBox x:Name="NewExDurationActiveCheckBox" IsChecked="{Binding DurationActive, Mode=TwoWay}" Grid.Column="1" VerticalAlignment="Center" />
                     </Grid>
-                
+
                     <!--Image Block-->
                 </Grid>
                 <Rectangle Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 5 0 5" Fill="white" Height="3" />
-            
+
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="70" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="37*" />
                         <ColumnDefinition Width="70" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="34*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -114,22 +115,22 @@
 
                     <!--Sets Block-->
                     <TextBlock Text="{Binding Path=LocalizedResources.NewExerciseSetsText, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Grid.Row="0" FontSize="25" VerticalAlignment="Center" />
-                    <Button Grid.Column="1" Grid.Row="0" x:Name="NewExNumOfSetsMinus" Content="-" Click="NewExNumOfSetsMinus_Click" />
-                    <TextBox Grid.Column="2" Text="{Binding NumOfSets}" Grid.Row="0" x:Name="NewExNumOfSetsTextBox" TextAlignment="Center" IsReadOnly="True" />
-                    <Button Grid.Column="3" Grid.Row="0" x:Name="NewExNumOfSetsPlus" Content="+" Click="NewExNumOfSetsPlus_Click" />
+                    <Button Grid.Column="1" IsEnabled="{Binding NumOfSetsActive}" Grid.Row="0" x:Name="NewExNumOfSetsMinus" Content="-" Click="NewExNumOfSetsMinus_Click" />
+                    <TextBox Grid.Column="2" IsEnabled="{Binding NumOfSetsActive}" Text="{Binding NumOfSets}" Grid.Row="0" x:Name="NewExNumOfSetsTextBox" TextAlignment="Center" IsReadOnly="True" />
+                    <Button Grid.Column="3" IsEnabled="{Binding NumOfSetsActive}" Grid.Row="0" x:Name="NewExNumOfSetsPlus" Content="+" Click="NewExNumOfSetsPlus_Click" />
                     <!--CheckBox-->
-                    <CheckBox x:Name="NewExSetsActiveCheckBox" IsChecked="{Binding NumOfSetsActive, Mode=TwoWay}" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" Click="NewExSetsActiveCheckBox_Click" />
+                    <CheckBox x:Name="NewExSetsActiveCheckBox" IsChecked="{Binding NumOfSetsActive, Mode=TwoWay}" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" />
 
                     <!--Reps Block-->
                     <TextBlock Text="{Binding Path=LocalizedResources.NewExerciseRepsText, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Grid.Row="1" FontSize="25" VerticalAlignment="Center" />
-                    <Button Grid.Column="1" Grid.Row="1" x:Name="NewExNumOfRepsMinus" Content="-" Click="NewExNumOfRepsMinus_Click" />
-                    <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding NumOfReps}" x:Name="NewExNumOfRepsTextBox" TextAlignment="Center" IsReadOnly="True" />
-                    <Button Grid.Column="3" x:Name="NewExNumOfRepsPlus" Grid.Row="1" Content="+" Click="NewExNumOfRepsPlus_Click" />
+                    <Button Grid.Column="1" IsEnabled="{Binding NumOfRepsActive}" Grid.Row="1" x:Name="NewExNumOfRepsMinus" Content="-" Click="NewExNumOfRepsMinus_Click" />
+                    <TextBox Grid.Column="2" IsEnabled="{Binding NumOfRepsActive}" Grid.Row="1" Text="{Binding NumOfReps}" x:Name="NewExNumOfRepsTextBox" TextAlignment="Center" IsReadOnly="True" />
+                    <Button Grid.Column="3" IsEnabled="{Binding NumOfRepsActive}" x:Name="NewExNumOfRepsPlus" Grid.Row="1" Content="+" Click="NewExNumOfRepsPlus_Click" />
                     <!--CheckBox-->
-                    <CheckBox x:Name="NewExDurationRepsCheckBox" IsChecked="{Binding NumOfRepsActive, Mode=TwoWay}" Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" Click="NewExDurationRepsCheckBox_Click" />
+                    <CheckBox x:Name="NewExDurationRepsCheckBox" IsChecked="{Binding NumOfRepsActive, Mode=TwoWay}" Grid.Row="1" Grid.Column="4" VerticalAlignment="Center"/>
                 </Grid>
                 <Rectangle Grid.Row="3" HorizontalAlignment="Stretch" Margin="0 5 0 5" Fill="white" Height="3" />
-            
+
                 <!--Other Block-->
                 <TextBlock Grid.Row="4" Margin="0 5 0 0" FontSize="25" Text="{Binding Path=LocalizedResources.NewExerciseOtherInfoHeader, Source={StaticResource LocalizedStrings}}" />
                 <local:AdvTextBox Margin="20 0 0 0" Grid.Row="5" x:Name="NewExOthersTextBox" FontSize="20" AcceptsReturn="True" Height="120" TextWrapping="Wrap" Text="{Binding OtherInfo, Mode=TwoWay}" DefaultText="{Binding Path=LocalizedResources.NewExerciseOtherInfoPlaceholder, Source={StaticResource LocalizedStrings}}" />

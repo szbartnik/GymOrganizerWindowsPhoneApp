@@ -136,8 +136,8 @@
     <value>dodaj nowe</value>
     <comment>for ApplicationBar - max 11 lower-case chars</comment>
   </data>
-  <data name="AddExercisePageHeader" xml:space="preserve">
-    <value>nowe ćwiczenie</value>
+  <data name="ExercisePageTitleNewMode" xml:space="preserve">
+    <value>nowe ćwicz.</value>
   </data>
   <data name="AddTrainingAppBar" xml:space="preserve">
     <value>dodaj nowy</value>
@@ -198,5 +198,12 @@
   </data>
   <data name="ValidationErrorTitle" xml:space="preserve">
     <value>Błąd walidacji</value>
+  </data>
+  <data name="ExercisePageTitleEditMode" xml:space="preserve">
+    <value>edytuj ćwicz.</value>
+  </data>
+  <data name="UpdateChangesAppBar" xml:space="preserve">
+    <value>aktualizuj</value>
+    <comment>for ApplicationBar - max 11 lower-case chars</comment>
   </data>
 </root>
