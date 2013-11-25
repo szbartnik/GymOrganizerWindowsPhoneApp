@@ -20,10 +20,6 @@ namespace FitAndGym.View
 
             // filling ListPicker by enums
             NewExIntensityListPicker.ItemsSource = Enum.GetValues(typeof(Intensity));
-
-            _viewModel = new ExercisePageViewModel();
-            _viewModel.ValidationError += _viewModel_ValidationError;
-            DataContext = _viewModel;
         }
 
         private void BuildLocalizedApplicationBar()
@@ -55,6 +51,26 @@ namespace FitAndGym.View
                 App.FitAndGymViewModel.AddNewExercise(newExercise);
                 NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
             }
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            string exIdStr;
+            int exId;
+
+            if (NavigationContext.QueryString.TryGetValue("exId", out exIdStr) && Int32.TryParse(exIdStr, out exId))
+            {
+                Exercise exToEdit = App.FitAndGymViewModel.GetExerciseById(exId);
+                if (exToEdit != null)
+                    _viewModel = new ExercisePageViewModel(App.FitAndGymViewModel.GetExerciseById(exId));
+                else
+                    Dispatcher.BeginInvoke(() => MessageBox.Show("error"));
+            }
+            else
+                _viewModel = new ExercisePageViewModel();
+
+            _viewModel.ValidationError += _viewModel_ValidationError;
+            DataContext = _viewModel;
         }
 
         void _viewModel_ValidationError(object sender, ViewModels.ValidationErrorEventArgs e)

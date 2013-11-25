@@ -70,6 +70,11 @@ namespace FitAndGym.ViewModels
             db.SubmitChanges();
         }
 
+        public Exercise GetExerciseById(int exId)
+        {
+            return db.Exercises.FirstOrDefault(ex => ex.ExerciseId == exId);
+        }
+
         #region Events Stuff
 
         public event PropertyChangedEventHandler PropertyChanged;

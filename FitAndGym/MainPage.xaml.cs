@@ -67,14 +67,19 @@ namespace FitAndGym
 
         private async void ExercisesList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            //if (ExercisesList.SelectedItem is Exercise)
+            //{
+            //    var selectedExercise = ExercisesList.SelectedItem as Exercise;
+
+            //    var str = new StringBuilder();
+
+            //    await Task.Run(() => selectedExercise.ExConns.ToList().ForEach(x => str.AppendLine(x.TrainingDay.TrainingDayName)));
+            //    Dispatcher.BeginInvoke(() => MessageBox.Show(str.ToString()));
+            //}
             if (ExercisesList.SelectedItem is Exercise)
             {
-                var selectedExercise = ExercisesList.SelectedItem as Exercise;
-
-                var str = new StringBuilder();
-
-                await Task.Run(() => selectedExercise.ExConns.ToList().ForEach(x => str.AppendLine(x.TrainingDay.TrainingDayName)));
-                Dispatcher.BeginInvoke(() => MessageBox.Show(str.ToString()));
+                var exerciseToEdit = ExercisesList.SelectedItem as Exercise;
+                NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml?exId=" + exerciseToEdit.ExerciseId.ToString(), UriKind.RelativeOrAbsolute));
             }
         }
 
@@ -99,6 +104,15 @@ namespace FitAndGym
         void addNewTrainingButton_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/View/AddNewTrainingPage.xaml", UriKind.Relative));
+        }
+
+        private void ExercisesList_Hold(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (ExercisesList.SelectedItem is Exercise)
+            {
+                var exerciseToEdit = ExercisesList.SelectedItem as Exercise;
+                NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml?exId=" + exerciseToEdit.ExerciseId.ToString(), UriKind.RelativeOrAbsolute));
+            }
         }
 
         #endregion

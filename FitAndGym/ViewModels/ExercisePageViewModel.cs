@@ -22,6 +22,8 @@ namespace FitAndGym.ViewModels
 
         #region Private variables
 
+        private bool _isEditingModeActive;
+        private int _id;
         private string _exName;
         private Intensity _intensity;
         private TimeSpan _duration;
@@ -38,6 +40,7 @@ namespace FitAndGym.ViewModels
 
         public ExercisePageViewModel()
         {
+            _isEditingModeActive = false;
             _numOfReps = INIT_NUM_OF_REPS;
             _numOfSets = INIT_NUM_OF_SETS;
             _exName = String.Empty;
@@ -52,6 +55,8 @@ namespace FitAndGym.ViewModels
 
         public ExercisePageViewModel(Exercise exercise)
         {
+            _isEditingModeActive = true;
+            _id = exercise.ExerciseId;
             _exName = exercise.ExerciseName;
             _numOfReps = exercise.AmountOfReps.HasValue ? exercise.AmountOfReps.Value : INIT_NUM_OF_REPS;
             _numOfSets = exercise.AmountOfSets.HasValue ? exercise.AmountOfSets.Value : INIT_NUM_OF_SETS;
@@ -178,6 +183,8 @@ namespace FitAndGym.ViewModels
         public Exercise GenerateModel()
         {
             var exercise = new Exercise();
+
+            exercise.ExerciseId = _isEditingModeActive ? _id : default(int);
 
             if (ExName != AppResources.TypeNameOfExercisePlaceholder)
                 exercise.ExerciseName = ExName;

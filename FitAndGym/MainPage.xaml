@@ -43,7 +43,7 @@
                 </phone:PivotItem>
 
                 <phone:PivotItem Header="{Binding Path=LocalizedResources.ExercisesPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
-                    <phone:LongListSelector x:Name="ExercisesList" Tap="ExercisesList_Tap" ItemsSource="{Binding Exercises}">
+                    <phone:LongListSelector x:Name="ExercisesList" Tap="ExercisesList_Tap" ItemsSource="{Binding Exercises}" Hold="ExercisesList_Hold">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="0 0 0 10" Background="DimGray">
