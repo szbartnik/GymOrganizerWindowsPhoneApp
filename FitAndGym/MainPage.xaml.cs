@@ -79,7 +79,7 @@ namespace FitAndGym
             if (ExercisesList.SelectedItem is Exercise)
             {
                 var exerciseToEdit = ExercisesList.SelectedItem as Exercise;
-                NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml?exId=" + exerciseToEdit.ExerciseId.ToString(), UriKind.RelativeOrAbsolute));
+                NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml?action=edit&exId=" + exerciseToEdit.ExerciseId.ToString(), UriKind.RelativeOrAbsolute));
             }
         }
 
@@ -98,12 +98,12 @@ namespace FitAndGym
 
         void addNewExerciseButton_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml?action=add", UriKind.Relative));
         }
 
         void addNewTrainingButton_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/View/AddNewTrainingPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/View/AddNewTrainingPage.xaml?action=add", UriKind.Relative));
         }
 
         private void ExercisesList_Hold(object sender, System.Windows.Input.GestureEventArgs e)
@@ -111,7 +111,7 @@ namespace FitAndGym
             if (ExercisesList.SelectedItem is Exercise)
             {
                 var exerciseToEdit = ExercisesList.SelectedItem as Exercise;
-                NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml?exId=" + exerciseToEdit.ExerciseId.ToString(), UriKind.RelativeOrAbsolute));
+                NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml?action=edit&exId=" + exerciseToEdit.ExerciseId.ToString(), UriKind.RelativeOrAbsolute));
             }
         }
 

@@ -55,22 +55,41 @@ namespace FitAndGym.View
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            string exIdStr;
-            int exId;
+            CheckIfEditOrAddActionRequired();
+        }
 
-            if (NavigationContext.QueryString.TryGetValue("exId", out exIdStr) && Int32.TryParse(exIdStr, out exId))
+        private void CheckIfEditOrAddActionRequired()
+        {
+            string action;
+
+            if (NavigationContext.QueryString.TryGetValue("action", out action))
             {
-                Exercise exToEdit = App.FitAndGymViewModel.GetExerciseById(exId);
-                if (exToEdit != null)
-                    _viewModel = new ExercisePageViewModel(App.FitAndGymViewModel.GetExerciseById(exId));
-                else
-                    Dispatcher.BeginInvoke(() => MessageBox.Show("error"));
-            }
-            else
-                _viewModel = new ExercisePageViewModel();
+                if (action == "edit")
+                {
+                    string exIdStr;
+                    int exId;
 
-            _viewModel.ValidationError += _viewModel_ValidationError;
-            DataContext = _viewModel;
+                    if (NavigationContext.QueryString.TryGetValue("exId", out exIdStr) && Int32.TryParse(exIdStr, out exId))
+                    {
+                        Exercise exToEdit = App.FitAndGymViewModel.GetExerciseById(exId);
+                        if (exToEdit != null)
+                            _viewModel = new ExercisePageViewModel(App.FitAndGymViewModel.GetExerciseById(exId));
+                        else
+                            throw new Exception(String.Format("Not found Exercise with id = {0} in database invoked from ExercisePage!", exId));
+                    }
+                    else
+                        throw new Exception("Wrong NavigationContext.QueryString 'exId' in ExercisePage");
+                }
+                else if (action == "add")
+                {
+                    _viewModel = new ExercisePageViewModel();
+                }
+                else
+                    throw new Exception(String.Format("Wrong NavigationContext.QueryString (action) in ExercisePage. Action = '{0}'", action));
+
+                _viewModel.ValidationError += _viewModel_ValidationError;
+                DataContext = _viewModel;
+            }         
         }
 
         void _viewModel_ValidationError(object sender, ViewModels.ValidationErrorEventArgs e)
