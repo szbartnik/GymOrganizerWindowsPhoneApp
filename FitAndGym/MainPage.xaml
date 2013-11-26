@@ -1,11 +1,13 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="FitAndGym.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:AdvControls="clr-namespace:AdvControls;assembly=AdvControls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    x:Class="FitAndGym.MainPage"
     mc:Ignorable="d"
     d:DataContext="{d:DesignData SampleData/FitAndGymViewModelSampleData.xaml}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -13,53 +15,69 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
-    
+
     <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.Resources>
+            <DataTemplate x:Key="TrainingsListTemplate">
+                <StackPanel Margin="0 0 0 10" Background="DimGray" Orientation="Vertical">
+                    <TextBlock Text="{Binding TrainingDayName}" />
+                    <TextBlock Text="{Binding StartTime}" />
+                    <TextBlock Text="{Binding DurationInMinutes}" />
+                    <TextBlock Text="{Binding Hydration}" />
+                    <TextBlock Text="{Binding OtherInfo}" />
+                    <toolkit:ContextMenuService.ContextMenu>
+                        <toolkit:ContextMenu>
+                            <toolkit:MenuItem x:Name="EditTrainingContextMenuItem" Click="EditTrainingContextMenuItem_Click"  Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:MenuItem x:Name="DeleteTrainingContextMenuItem" Click="DeleteTrainingContextMenuItem_Click" Header="{Binding LocalizedResources.DeleteWord, Source={StaticResource LocalizedStrings}}" />  
+                        </toolkit:ContextMenu>
+                    </toolkit:ContextMenuService.ContextMenu>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate x:Key="ExercisesListTemplate">
+                <StackPanel Margin="0 0 0 10" Background="DimGray" Orientation="Vertical">
+                    <TextBlock Text="{Binding ExerciseName}" />
+                    <TextBlock Text="{Binding Intensity}" />
+                    <TextBlock Text="{Binding DurationInMinutes}" />
+                    <TextBlock Text="{Binding AmountOfSets}" />
+                    <TextBlock Text="{Binding AmountOfReps}" />
+                    <TextBlock Text="{Binding OtherInfo}" />
+                    <toolkit:ContextMenuService.ContextMenu>
+                        <toolkit:ContextMenu>
+                            <toolkit:MenuItem x:Name="EditExerciseContextMenuItem" Click="EditExerciseContextMenuItem_Click"  Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:MenuItem x:Name="DeleteExerciseContextMenuItem" Click="DeleteExerciseContextMenuItem_Click" Header="{Binding LocalizedResources.DeleteWord, Source={StaticResource LocalizedStrings}}" />
+                        </toolkit:ContextMenu>
+                    </toolkit:ContextMenuService.ContextMenu>
+                </StackPanel>
+            </DataTemplate>
+        </Grid.Resources>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12 17 0 0">
-            <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+            <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
         </StackPanel>
-        
+
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12 0 12 0">
-            <phone:Pivot Margin="0 -22 0 0" SelectionChanged="Pivot_SelectionChanged">                
-                <phone:PivotItem Header="{Binding Path=LocalizedResources.TrainingDaysPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
-                    <phone:LongListSelector x:Name="TrainingDaysList" Tap="TrainingDaysList_Tap" ItemsSource="{Binding TrainingDays}" >
-                        <phone:LongListSelector.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="0 0 0 10" Background="DimGray">
-                                    <TextBlock Text="{Binding TrainingDayName}" />
-                                    <TextBlock Text="{Binding StartTime}" />
-                                    <TextBlock Text="{Binding DurationInMinutes}" />
-                                    <TextBlock Text="{Binding Hydration}" />
-                                    <TextBlock Text="{Binding OtherInfo}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </phone:LongListSelector.ItemTemplate>
-                    </phone:LongListSelector>
+            <phone:Pivot Margin="0 -22 0 0" SelectionChanged="Pivot_SelectionChanged">
+                <phone:PivotItem Header="{Binding LocalizedResources.TrainingDaysPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
+                    <ListBox x:Name="TrainingDaysList"
+						Tap="TrainingDaysList_Tap"
+						ItemsSource="{Binding TrainingDays}"
+						ItemTemplate="{StaticResource TrainingsListTemplate}" />
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="{Binding Path=LocalizedResources.ExercisesPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
-                    <phone:LongListSelector x:Name="ExercisesList" Tap="ExercisesList_Tap" ItemsSource="{Binding Exercises}" Hold="ExercisesList_Hold">
-                        <phone:LongListSelector.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="0 0 0 10" Background="DimGray">
-                                    <TextBlock Text="{Binding ExerciseName}" />
-                                    <TextBlock Text="{Binding Intensity}" />
-                                    <TextBlock Text="{Binding DurationInMinutes}" />
-                                    <TextBlock Text="{Binding AmountOfSets}" />
-                                    <TextBlock Text="{Binding AmountOfReps}" />
-                                    <TextBlock Text="{Binding OtherInfo}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </phone:LongListSelector.ItemTemplate>
-                    </phone:LongListSelector>
+                <phone:PivotItem Header="{Binding LocalizedResources.ExercisesPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
+                    <phone:LongListSelector x:Name="ExercisesList"
+						Tap="ExercisesList_Tap"
+						ItemsSource="{Binding Exercises}"
+						ItemTemplate="{StaticResource ExercisesListTemplate}" />
                 </phone:PivotItem>
             </phone:Pivot>
         </Grid>
+        <AdvControls:AdvTextBox HorizontalAlignment="Left" Margin="500,-146,-120,0" TextWrapping="Wrap" Text="AdvTextBox" VerticalAlignment="Top" Width="100"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

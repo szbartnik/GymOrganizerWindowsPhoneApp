@@ -97,11 +97,29 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteWord {
+            get {
+                return ResourceManager.GetString("DeleteWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to discard.
         /// </summary>
         public static string DiscardChangesAppBar {
             get {
                 return ResourceManager.GetString("DiscardChangesAppBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string EditWord {
+            get {
+                return ResourceManager.GetString("EditWord", resourceCulture);
             }
         }
         

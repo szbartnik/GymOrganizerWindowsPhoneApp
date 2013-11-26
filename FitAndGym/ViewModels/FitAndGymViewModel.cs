@@ -76,6 +76,8 @@ namespace FitAndGym.ViewModels
         {
             Exercise exToUpdate = db.Exercises.FirstOrDefault(ex => ex.ExerciseId == exerciseToUpdate.ExerciseId);
 
+            if (exToUpdate == null) throw new Exception("Exercise to edit not found - from UpdateExercise");
+
             exToUpdate.AmountOfReps = exerciseToUpdate.AmountOfReps;
             exToUpdate.AmountOfSets = exerciseToUpdate.AmountOfSets;
             exToUpdate.DurationInMinutes = exerciseToUpdate.DurationInMinutes;
@@ -92,6 +94,31 @@ namespace FitAndGym.ViewModels
             return db.Exercises.FirstOrDefault(ex => ex.ExerciseId == exId);
         }
 
+        public TrainingDay GetTrainingeById(int trId)
+        {
+            return db.TrainingDays.FirstOrDefault(tr => tr.TrainingDayId == trId);
+        }
+
+        public void DeleteExercise(Exercise exerciseToDelete)
+        {
+            Exercise exToDelete = GetExerciseById(exerciseToDelete.ExerciseId);
+            if (exToDelete == null) throw new Exception("Exercise to delete not found - from DeleteExercise");
+
+            Exercises.Remove(exToDelete);
+            db.Exercises.DeleteOnSubmit(exToDelete);
+            db.SubmitChanges();
+        }
+
+        public void DeleteTraining(TrainingDay trainingToDelete)
+        {
+            TrainingDay trToDelete = GetTrainingeById(trainingToDelete.TrainingDayId);
+            if (trToDelete == null) throw new Exception("Training to delete not found - from DeleteTraining");
+
+            TrainingDays.Remove(trainingToDelete);
+            db.TrainingDays.DeleteOnSubmit(trToDelete);
+            db.SubmitChanges();
+        }
+
         #region Events Stuff
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -104,5 +131,7 @@ namespace FitAndGym.ViewModels
         }
 
         #endregion
+
+        
     }
 }

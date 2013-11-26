@@ -206,4 +206,10 @@
     <value>aktualizuj</value>
     <comment>for ApplicationBar - max 11 lower-case chars</comment>
   </data>
+  <data name="DeleteWord" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="EditWord" xml:space="preserve">
+    <value>Edytuj</value>
+  </data>
 </root>

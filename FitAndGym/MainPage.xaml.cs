@@ -52,35 +52,34 @@ namespace FitAndGym
 
         #region Events Stuff
 
-        private async void TrainingDaysList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void TrainingDaysList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (TrainingDaysList.SelectedItem is TrainingDay)
             {
-                var selectedTrainingDay = TrainingDaysList.SelectedItem as TrainingDay;
-                
-                var str = new StringBuilder();
-
-                await Task.Run(() => selectedTrainingDay.ExConns.ToList().ForEach(x => str.AppendLine(x.Exercise.ExerciseName)));
-                Dispatcher.BeginInvoke(() => MessageBox.Show(str.ToString()));
+                var trainingToEdit = TrainingDaysList.SelectedItem as TrainingDay;
+                NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml?action=edit&trId=" + trainingToEdit.TrainingDayId.ToString(), UriKind.RelativeOrAbsolute));
             }
         }
 
-        private async void ExercisesList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void EditTrainingContextMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            //if (ExercisesList.SelectedItem is Exercise)
-            //{
-            //    var selectedExercise = ExercisesList.SelectedItem as Exercise;
+            var trainingToEdit = (sender as MenuItem).DataContext as TrainingDay;
+            NavigationService.Navigate(new Uri("/View/AddNewTrainingPage.xaml?action=edit&trId=" + trainingToEdit.TrainingDayId.ToString(), UriKind.RelativeOrAbsolute));
+        }
 
-            //    var str = new StringBuilder();
-
-            //    await Task.Run(() => selectedExercise.ExConns.ToList().ForEach(x => str.AppendLine(x.TrainingDay.TrainingDayName)));
-            //    Dispatcher.BeginInvoke(() => MessageBox.Show(str.ToString()));
-            //}
+        private void ExercisesList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
             if (ExercisesList.SelectedItem is Exercise)
             {
-                var exerciseToEdit = ExercisesList.SelectedItem as Exercise;
-                NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml?action=edit&exId=" + exerciseToEdit.ExerciseId.ToString(), UriKind.RelativeOrAbsolute));
+                var exerciseToShow = ExercisesList.SelectedItem as Exercise;
+                Dispatcher.BeginInvoke(() => MessageBox.Show(exerciseToShow.ToString()));
             }
+        }
+
+        private void EditExerciseContextMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var exerciseToEdit = (sender as MenuItem).DataContext as Exercise;
+            NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml?action=edit&exId=" + exerciseToEdit.ExerciseId.ToString(), UriKind.RelativeOrAbsolute));
         }
 
         private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -106,15 +105,17 @@ namespace FitAndGym
             NavigationService.Navigate(new Uri("/View/AddNewTrainingPage.xaml?action=add", UriKind.Relative));
         }
 
-        private void ExercisesList_Hold(object sender, System.Windows.Input.GestureEventArgs e)
+        private void DeleteTrainingContextMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            if (ExercisesList.SelectedItem is Exercise)
-            {
-                var exerciseToEdit = ExercisesList.SelectedItem as Exercise;
-                NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml?action=edit&exId=" + exerciseToEdit.ExerciseId.ToString(), UriKind.RelativeOrAbsolute));
-            }
+            var trainingToDelete = (sender as MenuItem).DataContext as TrainingDay;
+            App.FitAndGymViewModel.DeleteTraining(trainingToDelete);
         }
 
+        private void DeleteExerciseContextMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var exerciseToDelete = (sender as MenuItem).DataContext as Exercise;
+            App.FitAndGymViewModel.DeleteExercise(exerciseToDelete);
+        }
         #endregion
     }
 }
