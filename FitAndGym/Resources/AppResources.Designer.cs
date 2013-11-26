@@ -268,6 +268,15 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string NewTrainingeNameText {
+            get {
+                return ResourceManager.GetString("NewTrainingeNameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeftToRight.
         /// </summary>
         public static string ResourceFlowDirection {
@@ -309,6 +318,15 @@ namespace FitAndGym.Resources {
         public static string TypeNameOfExercisePlaceholder {
             get {
                 return ResourceManager.GetString("TypeNameOfExercisePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type the name of training....
+        /// </summary>
+        public static string TypeNameOfTrainingPlaceholder {
+            get {
+                return ResourceManager.GetString("TypeNameOfTrainingPlaceholder", resourceCulture);
             }
         }
         

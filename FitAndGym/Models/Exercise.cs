@@ -204,10 +204,10 @@ namespace FitAndGym.Models
 
             str.AppendLine(String.Format("ID: {0}", ExerciseId));
             str.AppendLine(String.Format("Exercise Name: {0}", _exerciseName));
-            str.AppendLine(String.Format("Intensity: {0}, Active: {1}", _intensity));
-            str.AppendLine(String.Format("Duration: {0}, Active: {1}", _durationInMinutes));
+            str.AppendLine(String.Format("Intensity: {0}", _intensity));
+            str.AppendLine(String.Format("Duration: {0}", _durationInMinutes));
             str.AppendLine(String.Format("Num of sets: {0}", _amountOfSets));
-            str.AppendLine(String.Format("Num of reps: {0}, Active: {1}", _amountOfReps));
+            str.AppendLine(String.Format("Num of reps: {0}", _amountOfReps));
             str.AppendLine(String.Format("Other info: {0}", _otherInfo));
 
             return str.ToString();

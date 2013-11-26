@@ -5,31 +5,104 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+    xmlns:local="clr-namespace:AdvControls;assembly=AdvControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
+    d:DataContext="{d:DesignData /SampleData/TrainingManageViewModelSampleData.xaml}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <DataTemplate x:Key="ExerciseToSelectTemplate">
+                <StackPanel Background="{StaticResource PhoneAccentBrush}" >
+                    <TextBlock Text="{Binding ExerciseName}" />
+                    <TextBlock Text="{Binding Intensity}" />
+                    <TextBlock Text="{Binding DurationInMinutes}" />
+                    <TextBlock Text="{Binding AmountOfReps}" />
+                    <TextBlock Text="{Binding AmountOfSets}" />
+                    <TextBlock Text="{Binding OtherInfo}" />
+                </StackPanel>
+            </DataTemplate>
+        </Grid.Resources>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-            <TextBlock Text="{Binding Path=LocalizedResources.AddTrainingPageHeader, Source={StaticResource LocalizedStrings}}" Margin="9,-14,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+        <phone:Panorama>
+            <phone:Panorama.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Grid.Row="0" Margin="12 17 0 0">
+                        <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+                        <TextBlock Text="{Binding Path=LocalizedResources.AddTrainingPageHeader, Source={StaticResource LocalizedStrings}}" Margin="9,-14,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </phone:Panorama.HeaderTemplate>
 
-        <!--ContentPanel - place additional content here-->
-        <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12 -15 12 0">
-            
-        </StackPanel>
+            <!--Panorama item one-->
+            <phone:PanoramaItem Header="first item">
+                <Grid x:Name="ContentPanel" Margin="0 -30 -20 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--Name Block-->
+                        <TextBlock Text="{Binding Path=LocalizedResources.NewTrainingeNameText, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Grid.Row="0" FontSize="25" VerticalAlignment="Center" />
+                        <local:AdvTextBox x:Name="NewTrName" Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" DefaultText="{Binding Path=LocalizedResources.TypeNameOfTrainingPlaceholder, Source={StaticResource LocalizedStrings}}" TextChanged="NewTrName_TextChanged"  Text="{Binding TrName, UpdateSourceTrigger=Explicit, Mode=TwoWay}" />
+
+                        <!--Duration Block-->
+                        <TextBlock Text="{Binding Path=LocalizedResources.NewExerciseDurationText, Source={StaticResource LocalizedStrings}}" Grid.Row="2" FontSize="25" VerticalAlignment="Center" Grid.Column="0" />
+                        <Grid Grid.Row="2" Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--Control-->
+                            <c4f:TimeSpanPicker x:Name="NewExDurationTimeSpanPicker" Min="0:0:10" Max="0:59:59" Grid.Column="0" />
+                            <!--CheckBox-->
+                            <CheckBox x:Name="NewExDurationActiveCheckBox" Grid.Column="1" VerticalAlignment="Center" />
+                        </Grid>
+
+                        <!--Image Block-->
+                    </Grid>
+                    <Rectangle Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 5 0 5" Fill="white" Height="3" />
+                </Grid>
+            </phone:PanoramaItem>
+
+            <!--Panorama item two-->
+            <phone:PanoramaItem Header="third item" Orientation="Horizontal" Width="1000">
+                <!--Double wide Panorama with large image placeholders-->
+                <Grid Margin="10 -30 0 0">
+                    <toolkit:LongListMultiSelector LayoutMode="Grid"
+                                                   ItemsSource="{Binding Exercises}"
+                                                   GridCellSize="255,190"
+                                                   toolkit:TiltEffect.IsTiltEnabled="True"
+                                                   EnforceIsSelectionEnabled="True"
+												   ItemTemplate="{StaticResource ExerciseToSelectTemplate}"
+                                                   Margin="10 0 0 0" />
+                </Grid>
+            </phone:PanoramaItem>
+        </phone:Panorama>
     </Grid>
 
 </phone:PhoneApplicationPage>

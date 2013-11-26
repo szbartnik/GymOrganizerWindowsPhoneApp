@@ -11,6 +11,8 @@ namespace FitAndGym.View
         {
             BuildLocalizedApplicationBar();
             InitializeComponent();
+
+            DataContext = App.FitAndGymViewModel;
         }
 
         private void BuildLocalizedApplicationBar()
@@ -36,6 +38,11 @@ namespace FitAndGym.View
         private void saveChanges_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException();
+        }
+
+        private void NewTrName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
         }
     }
 }

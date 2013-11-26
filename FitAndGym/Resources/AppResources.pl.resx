@@ -212,4 +212,10 @@
   <data name="EditWord" xml:space="preserve">
     <value>Edytuj</value>
   </data>
+  <data name="NewTrainingeNameText" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="TypeNameOfTrainingPlaceholder" xml:space="preserve">
+    <value>Wpisz nazwę treningu...</value>
+  </data>
 </root>

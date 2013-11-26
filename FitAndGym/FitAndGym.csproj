@@ -142,6 +142,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\DebugTextWriter.cs" />
+    <Compile Include="ViewModels\TrainingPageViewModel.cs" />
     <Compile Include="ViewModels\ExercisePageViewModel.cs" />
     <Compile Include="ViewModels\FitAndGymViewModel.cs" />
     <Compile Include="ViewModels\IValidableModel.cs" />
@@ -160,6 +161,11 @@
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SampleData\TrainingManageViewModelSampleData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Page>
     <Page Include="SampleData\FitAndGymViewModelSampleData.xaml">
       <SubType>Designer</SubType>
