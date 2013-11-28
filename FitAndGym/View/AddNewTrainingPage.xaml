@@ -220,7 +220,7 @@
         </Style>
 
         <ControlTemplate x:Key="LongListMultiSelectorControlTemplate1" TargetType="toolkit:LongListMultiSelector">
-            <phone:LongListSelector x:Name="InnerSelector"
+                <phone:LongListSelector x:Name="InnerSelector"
 				GridCellSize="{TemplateBinding GridCellSize}"
 				GroupFooterTemplate="{TemplateBinding GroupFooterTemplate}"
 				GroupHeaderTemplate="{TemplateBinding GroupHeaderTemplate}"
@@ -233,8 +233,8 @@
 				ListHeader="{TemplateBinding ListHeader}"
 				ListHeaderTemplate="{TemplateBinding ListHeaderTemplate}"
                     >
-                <phone:LongListSelector.ItemTemplate>
-                    <DataTemplate>
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
                         <toolkit:LongListMultiSelectorItem Margin="15 0 0 15"
 							x:Name="LLSItem"
 							HorizontalContentAlignment="Stretch"
@@ -243,8 +243,8 @@
                             Style="{StaticResource ContrTemp}"
                             Background="{StaticResource PhoneAccentBrush}" />
                     </DataTemplate>
-                </phone:LongListSelector.ItemTemplate>
-            </phone:LongListSelector>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
         </ControlTemplate>
     </phone:PhoneApplicationPage.Resources>
 
@@ -332,14 +332,16 @@
             <!--Panorama item two-->
             <phone:PanoramaItem Header="third item" Orientation="Horizontal">
                 <!--Double wide Panorama with large image placeholders-->
-                <Grid Margin="10 -30 0 0" Width="1140">
+                <Grid Margin="10 -30 0 0" Name="ExercisesListGrid">
                     <toolkit:LongListMultiSelector LayoutMode="Grid"
 						ItemsSource="{Binding Exercises}"
 						GridCellSize="255,190"
 						toolkit:TiltEffect.IsTiltEnabled="True"
 						EnforceIsSelectionEnabled="True"
 						ItemTemplate="{StaticResource ExerciseToSelectTemplate}"
-						Margin="0" Template="{StaticResource LongListMultiSelectorControlTemplate1}" />
+						Margin="0"
+                        Template="{StaticResource LongListMultiSelectorControlTemplate1}"                                                 
+                    />
                 </Grid>
             </phone:PanoramaItem>
         </phone:Panorama>

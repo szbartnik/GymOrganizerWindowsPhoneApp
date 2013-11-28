@@ -12,7 +12,13 @@ namespace FitAndGym.View
             BuildLocalizedApplicationBar();
             InitializeComponent();
 
+            SetWidthOfGridWithExercisesDependingOnQuantityOfItems();
             DataContext = App.FitAndGymViewModel;
+        }
+
+        private void SetWidthOfGridWithExercisesDependingOnQuantityOfItems()
+        {
+            ExercisesListGrid.Width = ((App.FitAndGymViewModel.Exercises.Count / 3) + 1) * 270;
         }
 
         private void BuildLocalizedApplicationBar()
