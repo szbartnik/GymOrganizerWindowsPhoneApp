@@ -277,6 +277,15 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Place here an additional info about the training....
+        /// </summary>
+        public static string NewTrainingOtherInfoPlaceholder {
+            get {
+                return ResourceManager.GetString("NewTrainingOtherInfoPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeftToRight.
         /// </summary>
         public static string ResourceFlowDirection {
@@ -309,6 +318,24 @@ namespace FitAndGym.Resources {
         public static string TrainingDaysPivotHeader {
             get {
                 return ResourceManager.GetString("TrainingDaysPivotHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to edit training.
+        /// </summary>
+        public static string TrainingPageTitleEditMode {
+            get {
+                return ResourceManager.GetString("TrainingPageTitleEditMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to new training.
+        /// </summary>
+        public static string TrainingPageTitleNewMode {
+            get {
+                return ResourceManager.GetString("TrainingPageTitleNewMode", resourceCulture);
             }
         }
         

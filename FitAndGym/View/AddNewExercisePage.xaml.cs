@@ -107,7 +107,7 @@ namespace FitAndGym.View
                     {
                         Exercise exToEdit = App.FitAndGymViewModel.GetExerciseById(exId);
                         if (exToEdit != null)
-                            _viewModel = new ExercisePageViewModel(App.FitAndGymViewModel.GetExerciseById(exId));
+                            _viewModel = new ExercisePageViewModel(exToEdit);
                         else
                             throw new Exception(String.Format("Not found Exercise with id = {0} in database invoked from ExercisePage!", exId));
                     }

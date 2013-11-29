@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using FitAndGym.Models;
 using FitAndGym.Resources;
@@ -22,25 +23,47 @@ namespace FitAndGym.ViewModels
         private bool _isEditingModeActive;
         private int _trainingId;
         private string _trName;
+        private DateTime _startTime;
+        private int? _durationInMinutes;
+        private  decimal _hydration;
         private string _otherInfo;
+        public ObservableCollection<Exercise> _selectedExercises;
 
         #endregion
 
+        public ObservableCollection<Exercise> Exercises
+        {
+            get { return App.FitAndGymViewModel.Exercises; }
+        }
+
+        public ObservableCollection<Exercise> SelectedExercises
+        {
+            get { return _selectedExercises; }
+            set
+            {
+                if (value != _selectedExercises)
+                {
+                    value = _selectedExercises;
+                    NotifyPropertyChanged("SelectedExercises");
+                }
+            }
+        }
+
         public TrainingPageViewModel()
         {
-            _pageTitle = AppResources.ExercisePageTitleNewMode;
+            _pageTitle = AppResources.TrainingPageTitleNewMode;
             _isEditingModeActive = false;
             _trName = String.Empty;
             _otherInfo = String.Empty;
         }
 
-        public TrainingPageViewModel(Exercise exercise)
+        public TrainingPageViewModel(TrainingDay training)
         {
-            _pageTitle = AppResources.ExercisePageTitleEditMode;
+            _pageTitle = AppResources.TrainingPageTitleEditMode;
             _isEditingModeActive = true;
-            _trainingId = exercise.ExerciseId;
-            _trName = exercise.ExerciseName;
-            _otherInfo = exercise.OtherInfo;
+            _trainingId = training.TrainingDayId;
+            _trName = training.TrainingDayName;
+            _otherInfo = training.OtherInfo;
         }
 
         #region Properties
@@ -72,6 +95,16 @@ namespace FitAndGym.ViewModels
             }
         }
 
+        public DateTime StartTime
+        {
+            get { return _startTime; }
+            set
+            {
+                if (value != _startTime)
+                    _startTime = value;
+            }
+        }
+
         public string OtherInfo
         {
             get { return _otherInfo; }
@@ -90,6 +123,26 @@ namespace FitAndGym.ViewModels
             }
         }
 
+        public int? DurationInMinutes
+        {
+            get { return _durationInMinutes; }
+            set
+            {
+                if (value != _durationInMinutes)
+                    _durationInMinutes = value;
+            }
+        }
+
+        public decimal Hydration
+        {
+            get { return _hydration; }
+            set
+            {
+                if (value != _hydration)
+                    _hydration = value;
+            }
+        }
+
         #endregion
 
         public TrainingDay GenerateModel()
@@ -102,7 +155,7 @@ namespace FitAndGym.ViewModels
                 training.TrainingDayName = TrName;
             else
                 training.TrainingDayName = String.Empty;
-            training.OtherInfo = OtherInfo != AppResources.NewExerciseOtherInfoPlaceholder
+            training.OtherInfo = OtherInfo != AppResources.NewTrainingOtherInfoPlaceholder
                 ? OtherInfo
                 : String.Empty;
 

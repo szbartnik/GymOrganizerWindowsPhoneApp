@@ -94,7 +94,7 @@ namespace FitAndGym.ViewModels
             return db.Exercises.FirstOrDefault(ex => ex.ExerciseId == exId);
         }
 
-        public TrainingDay GetTrainingeById(int trId)
+        public TrainingDay GetTrainingById(int trId)
         {
             return db.TrainingDays.FirstOrDefault(tr => tr.TrainingDayId == trId);
         }
@@ -111,7 +111,7 @@ namespace FitAndGym.ViewModels
 
         public void DeleteTraining(TrainingDay trainingToDelete)
         {
-            TrainingDay trToDelete = GetTrainingeById(trainingToDelete.TrainingDayId);
+            TrainingDay trToDelete = GetTrainingById(trainingToDelete.TrainingDayId);
             if (trToDelete == null) throw new Exception("Training to delete not found - from DeleteTraining");
 
             TrainingDays.Remove(trainingToDelete);
@@ -132,6 +132,14 @@ namespace FitAndGym.ViewModels
 
         #endregion
 
-        
+        internal void UpdateTraining(TrainingDay trainingToUpdate)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void AddNewTraining(TrainingDay newTraining)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -340,8 +340,10 @@
 						EnforceIsSelectionEnabled="True"
 						ItemTemplate="{StaticResource ExerciseToSelectTemplate}"
 						Margin="0"
-                        Template="{StaticResource LongListMultiSelectorControlTemplate1}"                                                 
+                        Template="{StaticResource LongListMultiSelectorControlTemplate1}"
+                        
                     />
+                    
                 </Grid>
             </phone:PanoramaItem>
         </phone:Panorama>

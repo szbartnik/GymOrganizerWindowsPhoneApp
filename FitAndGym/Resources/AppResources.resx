@@ -218,4 +218,13 @@
   <data name="TypeNameOfTrainingPlaceholder" xml:space="preserve">
     <value>Type the name of training...</value>
   </data>
+  <data name="NewTrainingOtherInfoPlaceholder" xml:space="preserve">
+    <value>Place here an additional info about the training...</value>
+  </data>
+  <data name="TrainingPageTitleEditMode" xml:space="preserve">
+    <value>edit training</value>
+  </data>
+  <data name="TrainingPageTitleNewMode" xml:space="preserve">
+    <value>new training</value>
+  </data>
 </root>
