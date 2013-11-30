@@ -165,6 +165,7 @@ namespace FitAndGym.Models
         public Exercise()
         {
             _exConns = new EntitySet<ExTrDayConn>();
+            //System.Diagnostics.Debug.WriteLine("wywolano konstruktor exercise");
         }
 
         [Association(Storage = "_exConns", OtherKey = "_exerciseId", ThisKey = "ExerciseId")]

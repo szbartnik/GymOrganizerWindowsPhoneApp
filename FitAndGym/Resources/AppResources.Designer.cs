@@ -313,6 +313,24 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string StartTimeCaption {
+            get {
+                return ResourceManager.GetString("StartTimeCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of training property is required!.
+        /// </summary>
+        public static string StartTimeOfTrainingPropertyIsRequiredNotification {
+            get {
+                return ResourceManager.GetString("StartTimeOfTrainingPropertyIsRequiredNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Trainings.
         /// </summary>
         public static string TrainingDaysPivotHeader {

@@ -221,6 +221,12 @@
   <data name="NewTrainingOtherInfoPlaceholder" xml:space="preserve">
     <value>Place here an additional info about the training...</value>
   </data>
+  <data name="StartTimeCaption" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="StartTimeOfTrainingPropertyIsRequiredNotification" xml:space="preserve">
+    <value>Date of training property is required!</value>
+  </data>
   <data name="TrainingPageTitleEditMode" xml:space="preserve">
     <value>edit training</value>
   </data>

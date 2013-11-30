@@ -150,5 +150,18 @@ namespace FitAndGym.Models
         }
 
         #endregion
+
+        public override string ToString()
+        {
+            var str = new System.Text.StringBuilder();
+
+            str.AppendLine(String.Format("Training Name: {0}", _trainingDayName));
+            str.AppendLine(String.Format("Start time: {0}", _startTime.ToShortDateString()));
+            str.AppendLine(String.Format("Duration: {0}", _durationInMinutes));
+            str.AppendLine(String.Format("Hydration: {0}", _hydration.ToString()));
+            str.AppendLine(String.Format("Other info: {0}", _otherInfo));
+
+            return str.ToString();
+        }
     }
 }

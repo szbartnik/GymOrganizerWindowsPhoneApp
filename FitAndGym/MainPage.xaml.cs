@@ -56,8 +56,8 @@ namespace FitAndGym
         {
             if (TrainingDaysList.SelectedItem is TrainingDay)
             {
-                var trainingToEdit = TrainingDaysList.SelectedItem as TrainingDay;
-                NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml?action=edit&trId=" + trainingToEdit.TrainingDayId.ToString(), UriKind.RelativeOrAbsolute));
+                var trainingToShow = TrainingDaysList.SelectedItem as TrainingDay;
+                Dispatcher.BeginInvoke(() => MessageBox.Show(trainingToShow.ToString()));
             }
         }
 

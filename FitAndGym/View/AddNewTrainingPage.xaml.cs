@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -46,11 +47,20 @@ namespace FitAndGym.View
                     string trIdStr;
                     int trId;
 
-                    if (NavigationContext.QueryString.TryGetValue("exId", out trIdStr) && Int32.TryParse(trIdStr, out trId))
+                    if (NavigationContext.QueryString.TryGetValue("trId", out trIdStr) && Int32.TryParse(trIdStr, out trId))
                     {
                         TrainingDay trToEdit = App.FitAndGymViewModel.GetTrainingById(trId);
                         if (trToEdit != null)
+                        {
                             _viewModel = new TrainingPageViewModel(trToEdit);
+
+                            // adding exercises list to the control
+                            ListOfExercises.SelectedItems.Clear();
+                            ICollection<Exercise> items = _viewModel.Exercises;
+
+                            foreach (object item in items)
+                                ListOfExercises.SelectedItems.Add(item);
+                        }
                         else
                             throw new Exception(String.Format("Not found Training with id = {0} in database invoked from TrainingPage!", trId));
                     }
@@ -136,6 +146,20 @@ namespace FitAndGym.View
             TextBox txtbox = sender as TextBox;
             BindingExpression bindingExpression = txtbox.GetBindingExpression(TextBox.TextProperty);
             bindingExpression.UpdateSource();
+        }
+
+        private void ListOfExercises_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                var selectedExercise = e.AddedItems[0] as Exercise;
+                _viewModel.SelectedExercises.Add(selectedExercise);
+            }
+            else if (e.RemovedItems.Count > 0)
+            {
+                var unselectedExercise = e.RemovedItems[0] as Exercise;
+                _viewModel.SelectedExercises.Remove(unselectedExercise);
+            }
         }
     }
 }

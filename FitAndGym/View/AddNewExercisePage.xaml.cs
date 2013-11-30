@@ -111,8 +111,7 @@ namespace FitAndGym.View
                         else
                             throw new Exception(String.Format("Not found Exercise with id = {0} in database invoked from ExercisePage!", exId));
                     }
-                    else
-                        throw new Exception("Wrong NavigationContext.QueryString 'exId' in ExercisePage");
+                    else throw new Exception("Wrong NavigationContext.QueryString 'exId' in ExercisePage");
                 }
                 else if (action == "add")
                     _viewModel = new ExercisePageViewModel();

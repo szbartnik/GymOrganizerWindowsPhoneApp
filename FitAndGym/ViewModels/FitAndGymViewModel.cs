@@ -134,12 +134,25 @@ namespace FitAndGym.ViewModels
 
         internal void UpdateTraining(TrainingDay trainingToUpdate)
         {
-            throw new NotImplementedException();
+            TrainingDay trToUpdate = db.TrainingDays.FirstOrDefault(tr => tr.TrainingDayId == trainingToUpdate.TrainingDayId);
+
+            if (trToUpdate == null) throw new Exception("Training to edit not found - from UpdateTraining");
+
+            trToUpdate.StartTime = trainingToUpdate.StartTime;
+            trToUpdate.Hydration = trainingToUpdate.Hydration;
+            trToUpdate.DurationInMinutes = trainingToUpdate.DurationInMinutes;
+            trToUpdate.TrainingDayName = trainingToUpdate.TrainingDayName;
+            trToUpdate.OtherInfo = trainingToUpdate.OtherInfo;
+
+            db.SubmitChanges();
         }
 
         internal void AddNewTraining(TrainingDay newTraining)
         {
-            throw new NotImplementedException();
+            TrainingDays.Add(newTraining);
+
+            db.TrainingDays.InsertOnSubmit(newTraining);
+            db.SubmitChanges();
         }
     }
 }

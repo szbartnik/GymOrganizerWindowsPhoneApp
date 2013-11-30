@@ -12,8 +12,9 @@ namespace FitAndGym.ViewModels
 
         private const int MAX_LENGTH_OF_OTHER_INFO = 400;
         private const int MAX_LENGTH_OF_TRNAME = 60;
-        private const int INIT_DURATION_IN_MIN = 8;
+        private const int INIT_DURATION_IN_MIN = 30;
         private const int MIN_COMMON = 1;
+        private const decimal INIT_HYDRATION = 1.5M;
 
         #endregion
 
@@ -24,9 +25,13 @@ namespace FitAndGym.ViewModels
         private int _trainingId;
         private string _trName;
         private DateTime _startTime;
-        private int? _durationInMinutes;
-        private  decimal _hydration;
+        private TimeSpan _duration;
+        private decimal _hydration;
         private string _otherInfo;
+
+        private bool _hydrationActive;
+        private bool _durationActive;
+
         public ObservableCollection<Exercise> _selectedExercises;
 
         #endregion
@@ -51,14 +56,33 @@ namespace FitAndGym.ViewModels
 
         public TrainingPageViewModel()
         {
+            _selectedExercises = new ObservableCollection<Exercise>();
             _pageTitle = AppResources.TrainingPageTitleNewMode;
+            _startTime = DateTime.Now + TimeSpan.FromHours(1);
             _isEditingModeActive = false;
+            _hydrationActive = true;
+            _durationActive = true;
             _trName = String.Empty;
+            _duration = TimeSpan.FromMinutes(INIT_DURATION_IN_MIN);
+            _hydration = INIT_HYDRATION;
             _otherInfo = String.Empty;
         }
 
         public TrainingPageViewModel(TrainingDay training)
         {
+            _selectedExercises = new ObservableCollection<Exercise>();
+            foreach (ExTrDayConn conn in training.ExConns)
+                _selectedExercises.Add(conn.Exercise);
+
+            _hydrationActive = training.Hydration.HasValue;
+            _durationActive = training.DurationInMinutes.HasValue;
+            _startTime = training.StartTime;
+
+            _duration = training.DurationInMinutes.HasValue
+               ? TimeSpan.FromSeconds(training.DurationInMinutes.Value)
+               : TimeSpan.FromMinutes(INIT_DURATION_IN_MIN);
+
+            _hydration = training.Hydration.HasValue ? training.Hydration.Value : INIT_HYDRATION;
             _pageTitle = AppResources.TrainingPageTitleEditMode;
             _isEditingModeActive = true;
             _trainingId = training.TrainingDayId;
@@ -105,6 +129,26 @@ namespace FitAndGym.ViewModels
             }
         }
 
+        public TimeSpan Duration
+        {
+            get { return _duration; }
+            set
+            {
+                if (value != _duration)
+                    _duration = value;
+            }
+        }
+
+        public decimal Hydration
+        {
+            get { return _hydration; }
+            set
+            {
+                if (value != _hydration)
+                    _hydration = value;
+            }
+        }
+
         public string OtherInfo
         {
             get { return _otherInfo; }
@@ -123,23 +167,29 @@ namespace FitAndGym.ViewModels
             }
         }
 
-        public int? DurationInMinutes
+        public bool HydrationActive
         {
-            get { return _durationInMinutes; }
+            get { return _hydrationActive; }
             set
             {
-                if (value != _durationInMinutes)
-                    _durationInMinutes = value;
+                if (value != _hydrationActive)
+                {
+                    _hydrationActive = value;
+                    NotifyPropertyChanged("HydrationActive");
+                }
             }
         }
 
-        public decimal Hydration
+        public bool DurationActive
         {
-            get { return _hydration; }
+            get { return _durationActive; }
             set
             {
-                if (value != _hydration)
-                    _hydration = value;
+                if (value != _durationActive)
+                {
+                    _durationActive = value;
+                    NotifyPropertyChanged("DurationActive");
+                }
             }
         }
 
@@ -149,12 +199,24 @@ namespace FitAndGym.ViewModels
         {
             var training = new TrainingDay();
 
+            training.Hydration = HydrationActive ? (decimal)Hydration : (decimal?)null;
+            training.DurationInMinutes = DurationActive ? (int)Duration.TotalSeconds : (int?)null;
             training.TrainingDayId = _isEditingModeActive ? _trainingId : default(int);
+
+            if (StartTime != null)
+                training.StartTime = StartTime;
+            else
+            {
+                training = null;
+                NotifyValidationError(new ValidationErrorEventArgs(AppResources.StartTimeOfTrainingPropertyIsRequiredNotification));
+                return null;
+            }
 
             if (TrName != AppResources.TypeNameOfTrainingPlaceholder && TrName != String.Empty)
                 training.TrainingDayName = TrName;
             else
                 training.TrainingDayName = String.Empty;
+
             training.OtherInfo = OtherInfo != AppResources.NewTrainingOtherInfoPlaceholder
                 ? OtherInfo
                 : String.Empty;
@@ -188,6 +250,9 @@ namespace FitAndGym.ViewModels
             var str = new System.Text.StringBuilder();
 
             str.AppendLine(String.Format("Training Name: {0}", _trName));
+            str.AppendLine(String.Format("Start time: {0}", _startTime.ToShortDateString()));
+            str.AppendLine(String.Format("Duration: {0}", _duration));
+            str.AppendLine(String.Format("Hydration: {0}", _hydration.ToString()));
             str.AppendLine(String.Format("Other info: {0}", _otherInfo));
 
             return str.ToString();
