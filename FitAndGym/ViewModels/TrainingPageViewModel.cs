@@ -15,6 +15,8 @@ namespace FitAndGym.ViewModels
         private const int INIT_DURATION_IN_MIN = 30;
         private const int MIN_COMMON = 1;
         private const decimal INIT_HYDRATION = 1.5M;
+        private const decimal MIN_HYDRATION = 0.1M;
+        private const decimal MAX_HYDRATION = 10;
 
         #endregion
 
@@ -25,6 +27,7 @@ namespace FitAndGym.ViewModels
         private int _trainingId;
         private string _trName;
         private DateTime _startTime;
+        private DateTime _startDate;
         private TimeSpan _duration;
         private decimal _hydration;
         private string _otherInfo;
@@ -58,7 +61,8 @@ namespace FitAndGym.ViewModels
         {
             _selectedExercises = new ObservableCollection<Exercise>();
             _pageTitle = AppResources.TrainingPageTitleNewMode;
-            _startTime = DateTime.Now + TimeSpan.FromHours(1);
+            _startTime = DateTime.Now;
+            _startDate = DateTime.Today;
             _isEditingModeActive = false;
             _hydrationActive = true;
             _durationActive = true;
@@ -77,6 +81,7 @@ namespace FitAndGym.ViewModels
             _hydrationActive = training.Hydration.HasValue;
             _durationActive = training.DurationInMinutes.HasValue;
             _startTime = training.StartTime;
+            _startDate = training.StartTime;
 
             _duration = training.DurationInMinutes.HasValue
                ? TimeSpan.FromSeconds(training.DurationInMinutes.Value)
@@ -129,6 +134,16 @@ namespace FitAndGym.ViewModels
             }
         }
 
+        public DateTime StartDate
+        {
+            get { return _startDate; }
+            set
+            {
+                if (value != _startDate)
+                    _startDate = value;
+            }
+        }
+
         public TimeSpan Duration
         {
             get { return _duration; }
@@ -144,8 +159,11 @@ namespace FitAndGym.ViewModels
             get { return _hydration; }
             set
             {
-                if (value != _hydration)
+                if (value >= MIN_HYDRATION && value <= MAX_HYDRATION)
+                {
                     _hydration = value;
+                    NotifyPropertyChanged("Hydration");
+                }
             }
         }
 

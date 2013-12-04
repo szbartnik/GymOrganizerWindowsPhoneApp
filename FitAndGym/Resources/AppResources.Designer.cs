@@ -268,11 +268,38 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        public static string NewTrainingDurationText {
+            get {
+                return ResourceManager.GetString("NewTrainingDurationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string NewTrainingeNameText {
             get {
                 return ResourceManager.GetString("NewTrainingeNameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hydration.
+        /// </summary>
+        public static string NewTrainingHydrationText {
+            get {
+                return ResourceManager.GetString("NewTrainingHydrationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additional info.
+        /// </summary>
+        public static string NewTrainingOtherInfoHeader {
+            get {
+                return ResourceManager.GetString("NewTrainingOtherInfoHeader", resourceCulture);
             }
         }
         

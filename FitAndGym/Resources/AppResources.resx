@@ -233,4 +233,13 @@
   <data name="TrainingPageTitleNewMode" xml:space="preserve">
     <value>new training</value>
   </data>
+  <data name="NewTrainingHydrationText" xml:space="preserve">
+    <value>Hydration</value>
+  </data>
+  <data name="NewTrainingOtherInfoHeader" xml:space="preserve">
+    <value>Additional info</value>
+  </data>
+  <data name="NewTrainingDurationText" xml:space="preserve">
+    <value>Duration</value>
+  </data>
 </root>

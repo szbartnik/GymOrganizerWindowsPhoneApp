@@ -222,7 +222,7 @@
     <value>Wpisz tutaj dodatkowe informacje nt. treningu...</value>
   </data>
   <data name="StartTimeCaption" xml:space="preserve">
-    <value>Data treningu</value>
+    <value>Data</value>
   </data>
   <data name="StartTimeOfTrainingPropertyIsRequiredNotification" xml:space="preserve">
     <value>Data treningu jest obowiązkowa!</value>
@@ -232,5 +232,14 @@
   </data>
   <data name="TrainingPageTitleNewMode" xml:space="preserve">
     <value>nowy trening</value>
+  </data>
+  <data name="NewTrainingHydrationText" xml:space="preserve">
+    <value>Nawodnienie</value>
+  </data>
+  <data name="NewTrainingOtherInfoHeader" xml:space="preserve">
+    <value>Dodatkowe informacje</value>
+  </data>
+  <data name="NewTrainingDurationText" xml:space="preserve">
+    <value>Cz.trwania</value>
   </data>
 </root>

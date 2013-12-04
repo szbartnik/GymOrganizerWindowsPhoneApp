@@ -161,5 +161,15 @@ namespace FitAndGym.View
                 _viewModel.SelectedExercises.Remove(unselectedExercise);
             }
         }
+
+        private void NewTrHydrationPlus_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.Hydration += 0.1M;
+        }
+
+        private void NewTrHydrationMinus_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.Hydration -= 0.1M;
+        }
     }
 }
