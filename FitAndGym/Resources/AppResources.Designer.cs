@@ -88,11 +88,38 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have to bind 1 exercise at least to the training!.
+        /// </summary>
+        public static string AnyExercisesAreRequiredNotification {
+            get {
+                return ResourceManager.GetString("AnyExercisesAreRequiredNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fit&amp;Gym.
         /// </summary>
         public static string ApplicationTitle {
             get {
                 return ResourceManager.GetString("ApplicationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to exit the application?.
+        /// </summary>
+        public static string ConfirmationExitActionAlertContent {
+            get {
+                return ResourceManager.GetString("ConfirmationExitActionAlertContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirmation alert.
+        /// </summary>
+        public static string ConfirmationExitActionAlertHeader {
+            get {
+                return ResourceManager.GetString("ConfirmationExitActionAlertHeader", resourceCulture);
             }
         }
         

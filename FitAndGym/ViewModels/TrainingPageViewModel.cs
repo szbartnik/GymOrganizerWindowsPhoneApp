@@ -35,7 +35,7 @@ namespace FitAndGym.ViewModels
         private bool _hydrationActive;
         private bool _durationActive;
 
-        public ObservableCollection<Exercise> _selectedExercises;
+        private ObservableCollection<Exercise> _selectedExercises;
 
         #endregion
 
@@ -75,9 +75,6 @@ namespace FitAndGym.ViewModels
         public TrainingPageViewModel(TrainingDay training)
         {
             _selectedExercises = new ObservableCollection<Exercise>();
-            foreach (ExTrDayConn conn in training.ExConns)
-                _selectedExercises.Add(conn.Exercise);
-
             _hydrationActive = training.Hydration.HasValue;
             _durationActive = training.DurationInMinutes.HasValue;
             _startTime = training.StartTime;
@@ -217,12 +214,22 @@ namespace FitAndGym.ViewModels
         {
             var training = new TrainingDay();
 
+            // selectedExercises
+            if (_selectedExercises.Count < 1)
+            {
+                training = null;
+                NotifyValidationError(new ValidationErrorEventArgs(AppResources.AnyExercisesAreRequiredNotification));
+                return null;
+            }
 
+            foreach (Exercise ex in SelectedExercises)
+                training.ExConns.Add(new ExTrDayConn() { Exercise = ex, TrainingDay = training });
 
             training.Hydration = HydrationActive ? (decimal)Hydration : (decimal?)null;
             training.DurationInMinutes = DurationActive ? (int)Duration.TotalSeconds : (int?)null;
             training.TrainingDayId = _isEditingModeActive ? _trainingId : default(int);
 
+            // training.StartTime
             if (StartTime != null)
                 training.StartTime = StartTime;
             else
@@ -232,6 +239,7 @@ namespace FitAndGym.ViewModels
                 return null;
             }
 
+            // training.TrainingDayName
             if (TrName != AppResources.TypeNameOfTrainingPlaceholder && TrName != String.Empty)
                 training.TrainingDayName = TrName;
             else
@@ -268,12 +276,16 @@ namespace FitAndGym.ViewModels
         public override string ToString()
         {
             var str = new System.Text.StringBuilder();
+            int i = 0;
 
             str.AppendLine(String.Format("Training Name: {0}", _trName));
             str.AppendLine(String.Format("Start time: {0}", _startTime.ToShortDateString()));
             str.AppendLine(String.Format("Duration: {0}", _duration));
             str.AppendLine(String.Format("Hydration: {0}", _hydration.ToString()));
             str.AppendLine(String.Format("Other info: {0}", _otherInfo));
+
+            foreach (Exercise ex in SelectedExercises)
+                str.AppendLine(String.Format("Ex{0}: {1} - {2}", ++i, ex.ExerciseId, ex.ExerciseName));
 
             return str.ToString();
         }

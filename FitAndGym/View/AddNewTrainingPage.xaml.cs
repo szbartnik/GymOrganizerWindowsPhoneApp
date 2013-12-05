@@ -14,16 +14,11 @@ namespace FitAndGym.View
     public partial class AddNewTrainingPage : PhoneApplicationPage
     {
         private TrainingPageViewModel _viewModel;
+        private TrainingDay _trToEdit;
 
         public AddNewTrainingPage()
         {
             InitializeComponent();
-            SetWidthOfGridWithExercisesDependingOnQuantityOfItems();
-        }
-
-        private void SetWidthOfGridWithExercisesDependingOnQuantityOfItems()
-        {
-            ExercisesListGrid.Width = ((App.FitAndGymViewModel.Exercises.Count / 3) + 1) * 270;
         }
 
         private void CheckIfEditOrAddActionRequired()
@@ -39,17 +34,12 @@ namespace FitAndGym.View
 
                     if (NavigationContext.QueryString.TryGetValue("trId", out trIdStr) && Int32.TryParse(trIdStr, out trId))
                     {
-                        TrainingDay trToEdit = App.FitAndGymViewModel.GetTrainingById(trId);
-                        if (trToEdit != null)
+                        _trToEdit = App.FitAndGymViewModel.GetTrainingById(trId);
+                        if (_trToEdit != null)
                         {
-                            _viewModel = new TrainingPageViewModel(trToEdit);
+                            _viewModel = new TrainingPageViewModel(_trToEdit);
+                            DataContext = _viewModel;
 
-                            // adding exercises list to the control
-                            ListOfExercises.SelectedItems.Clear();
-                            ICollection<Exercise> items = _viewModel.Exercises;
-
-                            foreach (object item in items)
-                                ListOfExercises.SelectedItems.Add(item);
                         }
                         else
                             throw new Exception(String.Format("Not found Training with id = {0} in database invoked from TrainingPage!", trId));
@@ -58,12 +48,14 @@ namespace FitAndGym.View
                         throw new Exception("Wrong NavigationContext.QueryString 'trId' in TrainingPage");
                 }
                 else if (action == "add")
+                {
                     _viewModel = new TrainingPageViewModel();
+                    DataContext = _viewModel;
+                }
                 else
                     throw new Exception(String.Format("Wrong NavigationContext.QueryString (action) in TrainingPage. Action = '{0}'", action));
 
                 _viewModel.ValidationError += _viewModel_ValidationError;
-                DataContext = _viewModel;
             }
         }
 
@@ -184,5 +176,14 @@ namespace FitAndGym.View
         }
 
         #endregion
+
+        private void Root_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (_trToEdit != null)
+            {
+                foreach (ExTrDayConn conn in _trToEdit.ExConns)
+                    ListOfExercises.SelectedItems.Add(conn.Exercise);
+            }
+        }
     }
 }

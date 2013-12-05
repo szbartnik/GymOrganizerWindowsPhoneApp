@@ -252,4 +252,16 @@
   <data name="NewTrainingDurationText" xml:space="preserve">
     <value>Cz.trwania</value>
   </data>
+  <data name="AnyExercisesAreRequiredNotification" xml:space="preserve">
+    <value>Musisz powiązać przynajmniej 1 ćwiczenie z tworzonym treningiem!</value>
+  </data>
+  <data name="ConfirmationExitActionAlertContent" xml:space="preserve">
+    <value>Czy jesteś pewien, że chcesz zakończyć pracę z programem?</value>
+  </data>
+  <data name="ConfirmationExitActionAlertHeader" xml:space="preserve">
+    <value>Potwierdzenie wyjścia</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
 </root>

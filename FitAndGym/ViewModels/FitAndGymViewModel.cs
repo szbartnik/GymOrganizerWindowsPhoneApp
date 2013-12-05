@@ -106,6 +106,11 @@ namespace FitAndGym.ViewModels
 
             Exercises.Remove(exToDelete);
             db.Exercises.DeleteOnSubmit(exToDelete);
+
+            db.ExTrDayConnectors.DeleteAllOnSubmit(
+                db.ExTrDayConnectors.Where(x =>
+                    x._exerciseId == exerciseToDelete.ExerciseId));
+
             db.SubmitChanges();
         }
 
@@ -114,8 +119,13 @@ namespace FitAndGym.ViewModels
             TrainingDay trToDelete = GetTrainingById(trainingToDelete.TrainingDayId);
             if (trToDelete == null) throw new Exception("Training to delete not found - from DeleteTraining");
 
-            TrainingDays.Remove(trainingToDelete);
+            TrainingDays.Remove(trToDelete);
             db.TrainingDays.DeleteOnSubmit(trToDelete);
+
+            db.ExTrDayConnectors.DeleteAllOnSubmit(
+                db.ExTrDayConnectors.Where(x =>
+                    x._trainingDayId == trainingToDelete.TrainingDayId));
+
             db.SubmitChanges();
         }
 
@@ -134,15 +144,19 @@ namespace FitAndGym.ViewModels
 
         internal void UpdateTraining(TrainingDay trainingToUpdate)
         {
-            TrainingDay trToUpdate = db.TrainingDays.FirstOrDefault(tr => tr.TrainingDayId == trainingToUpdate.TrainingDayId);
-
+            TrainingDay trToUpdate = GetTrainingById(trainingToUpdate.TrainingDayId);
             if (trToUpdate == null) throw new Exception("Training to edit not found - from UpdateTraining");
 
-            trToUpdate.StartTime = trainingToUpdate.StartTime;
-            trToUpdate.Hydration = trainingToUpdate.Hydration;
-            trToUpdate.DurationInMinutes = trainingToUpdate.DurationInMinutes;
-            trToUpdate.TrainingDayName = trainingToUpdate.TrainingDayName;
-            trToUpdate.OtherInfo = trainingToUpdate.OtherInfo;
+            TrainingDays.Remove(trToUpdate);
+            db.TrainingDays.DeleteOnSubmit(trToUpdate);
+
+            db.ExTrDayConnectors.DeleteAllOnSubmit(
+                db.ExTrDayConnectors.Where(x =>
+                    x._trainingDayId == trainingToUpdate.TrainingDayId));
+
+            TrainingDays.Add(trainingToUpdate);
+            trainingToUpdate.TrainingDayId = 0;
+            db.TrainingDays.InsertOnSubmit(trainingToUpdate);
 
             db.SubmitChanges();
         }

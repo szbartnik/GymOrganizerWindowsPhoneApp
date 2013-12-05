@@ -252,4 +252,13 @@
   <data name="NewTrainingDurationText" xml:space="preserve">
     <value>Duration</value>
   </data>
+  <data name="AnyExercisesAreRequiredNotification" xml:space="preserve">
+    <value>You have to bind 1 exercise at least to the training!</value>
+  </data>
+  <data name="ConfirmationExitActionAlertContent" xml:space="preserve">
+    <value>Are you sure you want to exit the application?</value>
+  </data>
+  <data name="ConfirmationExitActionAlertHeader" xml:space="preserve">
+    <value>Confirmation alert</value>
+  </data>
 </root>

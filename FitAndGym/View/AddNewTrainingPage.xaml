@@ -15,7 +15,7 @@
     d:DataContext="{d:DesignData /SampleData/TrainingManageViewModelSampleData.xaml}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
-    Name="Root">
+    Name="Root" Loaded="Root_Loaded">
 
     <phone:PhoneApplicationPage.Resources>
         <Style x:Key="ContrTemp" TargetType="toolkit:LongListMultiSelectorItem">
@@ -237,7 +237,7 @@
                     >
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
-                        <toolkit:LongListMultiSelectorItem Margin="15 0 0 15"
+                        <toolkit:LongListMultiSelectorItem Margin="10 0 0 10"
         					x:Name="LLSItem"
         					HorizontalContentAlignment="Stretch"
         					VerticalAlignment="Stretch"
@@ -286,7 +286,7 @@
 
             <!--Panorama item one-->
             <phone:PanoramaItem Header="first item">
-                <ScrollViewer Grid.Row="1" Margin="0 -30 -20 0">
+                <ScrollViewer Grid.Row="1" Margin="10 -30 0 0">
                     <Grid x:Name="ContentPanel">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -374,20 +374,18 @@
             </phone:PanoramaItem>
 
             <!--Panorama item two-->
-            <phone:PanoramaItem Header="third item" Orientation="Horizontal" x:Name="ExercisesListGrid">
+            <phone:PanoramaItem Header="third item" x:Name="ExercisesListGrid">
                 <!--Double wide Panorama with large image placeholders-->
-                <Grid Margin="10 -30 0 0">
                     <toolkit:LongListMultiSelector LayoutMode="Grid"
+                        Margin="0 -30 -20 0"
                         x:Name="ListOfExercises"
 						ItemsSource="{Binding Exercises}"
-						GridCellSize="255,190"
+						GridCellSize="210,186"
 						toolkit:TiltEffect.IsTiltEnabled="True"
 						EnforceIsSelectionEnabled="True"
 						ItemTemplate="{StaticResource ExerciseToSelectTemplate}"
-						Margin="0"
                         SelectionChanged="ListOfExercises_SelectionChanged"
 						Template="{StaticResource LongListMultiSelectorControlTemplate1}" />
-                </Grid>
             </phone:PanoramaItem>
         </phone:Panorama>
     </Grid>

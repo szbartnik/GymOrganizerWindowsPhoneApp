@@ -116,6 +116,21 @@ namespace FitAndGym
             var exerciseToDelete = (sender as MenuItem).DataContext as Exercise;
             App.FitAndGymViewModel.DeleteExercise(exerciseToDelete);
         }
+        
+        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (MessageBox.Show(
+                    AppResources.ConfirmationExitActionAlertContent,
+                    AppResources.ConfirmationExitActionAlertHeader,
+                    MessageBoxButton.OKCancel) == MessageBoxResult.OK
+                   )
+                        Application.Current.Terminate();
+            });
+            e.Cancel = true;
+        }
+
         #endregion
     }
 }
