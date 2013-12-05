@@ -56,42 +56,6 @@ namespace FitAndGym.View
             throw new Exception("Lack of action in NavigationContext.QueryString in ExercisePage");
         }
 
-        private void updateChanges_Click(object sender, EventArgs e)
-        {
-            var exerciseToUpdate = _viewModel.GenerateModel();
-            if (exerciseToUpdate != null)
-            {
-                App.FitAndGymViewModel.UpdateExercise(exerciseToUpdate);
-                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedExercise", UriKind.RelativeOrAbsolute));
-            }
-        }
-
-        private void discardChangesButton_Click(object sender, EventArgs e)
-        {
-            _viewModel = null;
-            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
-        }
-
-        private void saveChanges_Click(object sender, EventArgs e)
-        {
-            var newExercise = _viewModel.GenerateModel();
-            if (newExercise != null)
-            {
-                App.FitAndGymViewModel.AddNewExercise(newExercise);
-                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedNewExercise", UriKind.RelativeOrAbsolute));
-            }
-        }
-
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            // I have to commemorate guy who saved me - http://samondotnet.blogspot.com/2011/12/onnavigatedto-will-be-called-after.html
-            // Line of rescue:
-            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back) return;
-
-            BuildLocalizedApplicationBar();
-            CheckIfEditOrAddActionRequired();
-        }
-
         private void CheckIfEditOrAddActionRequired()
         {
             string action;
@@ -123,12 +87,55 @@ namespace FitAndGym.View
             }         
         }
 
+        #region Events stuff
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            // I have to commemorate guy who saved me - http://samondotnet.blogspot.com/2011/12/onnavigatedto-will-be-called-after.html
+            // Line of rescue:
+            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back) return;
+
+            BuildLocalizedApplicationBar();
+            CheckIfEditOrAddActionRequired();
+        }
+
+        private void updateChanges_Click(object sender, EventArgs e)
+        {
+            var exerciseToUpdate = _viewModel.GenerateModel();
+            if (exerciseToUpdate != null)
+            {
+                App.FitAndGymViewModel.UpdateExercise(exerciseToUpdate);
+                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedExercise", UriKind.RelativeOrAbsolute));
+            }
+        }
+
+        private void discardChangesButton_Click(object sender, EventArgs e)
+        {
+            _viewModel = null;
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void saveChanges_Click(object sender, EventArgs e)
+        {
+            var newExercise = _viewModel.GenerateModel();
+            if (newExercise != null)
+            {
+                App.FitAndGymViewModel.AddNewExercise(newExercise);
+                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedNewExercise", UriKind.RelativeOrAbsolute));
+            }
+        }
+
+        private void NewExName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox txtbox = sender as TextBox;
+            BindingExpression bindingExpression = txtbox.GetBindingExpression(TextBox.TextProperty);
+            bindingExpression.UpdateSource();
+        }
+
         void _viewModel_ValidationError(object sender, ViewModels.ValidationErrorEventArgs e)
         {
             MessageBox.Show(e.ErrorMessage, AppResources.ValidationErrorTitle, MessageBoxButton.OK);
         }
-
-        #region Plus-Minus Of Sets&Reps Events
 
         private void NewExNumOfSetsPlus_Click(object sender, RoutedEventArgs e)
         {
@@ -151,12 +158,5 @@ namespace FitAndGym.View
         }
 
         #endregion
-
-        private void NewExName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox txtbox = sender as TextBox;
-            BindingExpression bindingExpression = txtbox.GetBindingExpression(TextBox.TextProperty);
-            bindingExpression.UpdateSource();
-        }
     }
 }

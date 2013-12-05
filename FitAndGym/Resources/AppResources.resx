@@ -239,6 +239,16 @@
   <data name="NewTrainingOtherInfoHeader" xml:space="preserve">
     <value>Additional info</value>
   </data>
+  <data name="HelpContentInManageTraining" xml:space="preserve">
+    <value>In the next step you will be able to set repeats for your new trening.</value>
+  </data>
+  <data name="HelpHeaderInManageTraining" xml:space="preserve">
+    <value>Help &amp; Info</value>
+  </data>
+  <data name="HelpInTrainingPageAppBar" xml:space="preserve">
+    <value>help</value>
+    <comment>for ApplicationBar - max 11 lower-case chars</comment>
+  </data>
   <data name="NewTrainingDurationText" xml:space="preserve">
     <value>Duration</value>
   </data>

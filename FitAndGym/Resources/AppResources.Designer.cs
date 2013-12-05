@@ -160,6 +160,33 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In the next step you will be able to set repeats for your new trening..
+        /// </summary>
+        public static string HelpContentInManageTraining {
+            get {
+                return ResourceManager.GetString("HelpContentInManageTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help &amp; Info.
+        /// </summary>
+        public static string HelpHeaderInManageTraining {
+            get {
+                return ResourceManager.GetString("HelpHeaderInManageTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to help.
+        /// </summary>
+        public static string HelpInTrainingPageAppBar {
+            get {
+                return ResourceManager.GetString("HelpInTrainingPageAppBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to High.
         /// </summary>
         public static string IntensityHigh {

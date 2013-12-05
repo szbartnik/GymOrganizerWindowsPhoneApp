@@ -26,16 +26,6 @@ namespace FitAndGym.View
             ExercisesListGrid.Width = ((App.FitAndGymViewModel.Exercises.Count / 3) + 1) * 270;
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            // I have to commemorate guy who saved me - http://samondotnet.blogspot.com/2011/12/onnavigatedto-will-be-called-after.html
-            // Line of rescue:
-            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back) return;
-
-            BuildLocalizedApplicationBar();
-            CheckIfEditOrAddActionRequired();
-        }
-
         private void CheckIfEditOrAddActionRequired()
         {
             string action;
@@ -77,16 +67,12 @@ namespace FitAndGym.View
             }
         }
 
-        private void _viewModel_ValidationError(object sender, ViewModels.ValidationErrorEventArgs e)
-        {
-            MessageBox.Show(e.ErrorMessage, AppResources.ValidationErrorTitle, MessageBoxButton.OK);
-        }
-
         private void BuildLocalizedApplicationBar()
         {
             ApplicationBar = new ApplicationBar();
             var saveChangesButton = new ApplicationBarIconButton(new Uri("/Images/save.png", UriKind.RelativeOrAbsolute));
             var discardChangesButton = new ApplicationBarIconButton(new Uri("/Images/cancel.png", UriKind.RelativeOrAbsolute));
+            var helpButton = new ApplicationBarIconButton(new Uri("/Images/questionmark.png", UriKind.RelativeOrAbsolute));
 
             string action;
 
@@ -96,25 +82,30 @@ namespace FitAndGym.View
                 {
                     saveChangesButton.Click += updateChanges_Click;
                     saveChangesButton.Text = AppResources.UpdateChangesAppBar;
-                    discardChangesButton.Click += discardChangesButton_Click;
-                    discardChangesButton.Text = AppResources.DiscardChangesAppBar;
                 }
                 else if (action == "add")
                 {
                     saveChangesButton.Click += saveChanges_Click;
                     saveChangesButton.Text = AppResources.SaveChangesAppBar;
-                    discardChangesButton.Click += discardChangesButton_Click;
-                    discardChangesButton.Text = AppResources.DiscardChangesAppBar;
                 }
                 else
                     throw new Exception(String.Format("Unknown action: '{0}' in TrainingPage", action));
 
+                discardChangesButton.Click += discardChangesButton_Click;
+                discardChangesButton.Text = AppResources.DiscardChangesAppBar;
+
+                helpButton.Click += helpButton_Click;
+                helpButton.Text = AppResources.HelpInTrainingPageAppBar;
+
                 ApplicationBar.Buttons.Add(saveChangesButton);
+                ApplicationBar.Buttons.Add(helpButton);
                 ApplicationBar.Buttons.Add(discardChangesButton);
                 return;
             }
             throw new Exception("Lack of action in NavigationContext.QueryString in TrainingPage");
         }
+
+        #region Events Stuff
 
         private void updateChanges_Click(object sender, EventArgs e)
         {
@@ -141,11 +132,19 @@ namespace FitAndGym.View
             }
         }
 
-        private void NewTrName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        void helpButton_Click(object sender, EventArgs e)
         {
-            TextBox txtbox = sender as TextBox;
-            BindingExpression bindingExpression = txtbox.GetBindingExpression(TextBox.TextProperty);
-            bindingExpression.UpdateSource();
+            Dispatcher.BeginInvoke(() => MessageBox.Show(AppResources.HelpContentInManageTraining, AppResources.HelpHeaderInManageTraining, MessageBoxButton.OK));
+        }
+
+        private void NewTrHydrationPlus_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.Hydration += 0.1M;
+        }
+
+        private void NewTrHydrationMinus_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.Hydration -= 0.1M;
         }
 
         private void ListOfExercises_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -162,14 +161,28 @@ namespace FitAndGym.View
             }
         }
 
-        private void NewTrHydrationPlus_Click(object sender, RoutedEventArgs e)
+        private void _viewModel_ValidationError(object sender, ViewModels.ValidationErrorEventArgs e)
         {
-            _viewModel.Hydration += 0.1M;
+            MessageBox.Show(e.ErrorMessage, AppResources.ValidationErrorTitle, MessageBoxButton.OK);
         }
 
-        private void NewTrHydrationMinus_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            _viewModel.Hydration -= 0.1M;
+            // I have to commemorate guy who saved me - http://samondotnet.blogspot.com/2011/12/onnavigatedto-will-be-called-after.html
+            // Line of rescue:
+            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back) return;
+
+            BuildLocalizedApplicationBar();
+            CheckIfEditOrAddActionRequired();
         }
+
+        private void NewTrName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            TextBox txtbox = sender as TextBox;
+            BindingExpression bindingExpression = txtbox.GetBindingExpression(TextBox.TextProperty);
+            bindingExpression.UpdateSource();
+        }
+
+        #endregion
     }
 }

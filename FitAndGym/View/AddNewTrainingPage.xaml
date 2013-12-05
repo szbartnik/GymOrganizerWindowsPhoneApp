@@ -318,6 +318,7 @@
                             <!--Start time block -->
                             <TextBlock Grid.Column="0"  Text="{Binding LocalizedResources.StartTimeCaption, Source={StaticResource LocalizedStrings}}" Grid.Row="1" FontSize="25" VerticalAlignment="Center" />
                             <toolkit:DatePicker Grid.Row="1" Grid.Column="1" Value="{Binding StartDate}"  />
+
                             <toolkit:TimePicker Grid.Row="2" Grid.Column="1" Value="{Binding StartTime}" Margin="0 -15 0 0"/>
 
                             <!--Image Block-->

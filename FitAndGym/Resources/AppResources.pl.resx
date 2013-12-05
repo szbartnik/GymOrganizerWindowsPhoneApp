@@ -239,6 +239,16 @@
   <data name="NewTrainingOtherInfoHeader" xml:space="preserve">
     <value>Dodatkowe informacje</value>
   </data>
+  <data name="HelpContentInManageTraining" xml:space="preserve">
+    <value>W nastepnym kroku będziesz mógł ustawić powtórzenia Twojego nowego treningu.</value>
+  </data>
+  <data name="HelpHeaderInManageTraining" xml:space="preserve">
+    <value>Pomoc i informacje</value>
+  </data>
+  <data name="HelpInTrainingPageAppBar" xml:space="preserve">
+    <value>pomoc</value>
+    <comment>for ApplicationBar - max 11 lower-case chars</comment>
+  </data>
   <data name="NewTrainingDurationText" xml:space="preserve">
     <value>Cz.trwania</value>
   </data>

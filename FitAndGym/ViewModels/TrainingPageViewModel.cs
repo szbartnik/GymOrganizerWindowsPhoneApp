@@ -217,6 +217,8 @@ namespace FitAndGym.ViewModels
         {
             var training = new TrainingDay();
 
+
+
             training.Hydration = HydrationActive ? (decimal)Hydration : (decimal?)null;
             training.DurationInMinutes = DurationActive ? (int)Duration.TotalSeconds : (int?)null;
             training.TrainingDayId = _isEditingModeActive ? _trainingId : default(int);

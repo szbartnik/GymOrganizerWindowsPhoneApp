@@ -243,6 +243,9 @@
     <Content Include="Images\next.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\questionmark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\refresh.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
