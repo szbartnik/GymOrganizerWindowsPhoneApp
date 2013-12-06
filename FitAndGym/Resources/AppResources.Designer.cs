@@ -106,6 +106,15 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to exercises.
+        /// </summary>
+        public static string AttachExercisesHeaderText {
+            get {
+                return ResourceManager.GetString("AttachExercisesHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to exit the application?.
         /// </summary>
         public static string ConfirmationExitActionAlertContent {
@@ -138,6 +147,16 @@ namespace FitAndGym.Resources {
         public static string DiscardChangesAppBar {
             get {
                 return ResourceManager.GetString("DiscardChangesAppBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration
+        ///(minutes).
+        /// </summary>
+        public static string DurationCaptionOnTheMainPage {
+            get {
+                return ResourceManager.GetString("DurationCaptionOnTheMainPage", resourceCulture);
             }
         }
         
@@ -340,7 +359,7 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hydration.
+        ///   Looks up a localized string similar to Water (liters).
         /// </summary>
         public static string NewTrainingHydrationText {
             get {
@@ -363,6 +382,25 @@ namespace FitAndGym.Resources {
         public static string NewTrainingOtherInfoPlaceholder {
             get {
                 return ResourceManager.GetString("NewTrainingOtherInfoPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NO.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other
+        ///info.
+        /// </summary>
+        public static string OtherInfoCaptionOnTheMainPage {
+            get {
+                return ResourceManager.GetString("OtherInfoCaptionOnTheMainPage", resourceCulture);
             }
         }
         
@@ -471,6 +509,25 @@ namespace FitAndGym.Resources {
         public static string ValidationErrorTitle {
             get {
                 return ResourceManager.GetString("ValidationErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Water
+        ///(liters).
+        /// </summary>
+        public static string WaterCaptionOnTheMainPage {
+            get {
+                return ResourceManager.GetString("WaterCaptionOnTheMainPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to YES.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

@@ -9,6 +9,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     x:Class="FitAndGym.MainPage"
     mc:Ignorable="d"
+    xmlns:converters="clr-namespace:FitAndGym.Converters"
     d:DataContext="{d:DesignData SampleData/FitAndGymViewModelSampleData.xaml}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -18,20 +19,37 @@
 
     <Grid x:Name="LayoutRoot">
         <Grid.Resources>
+            <converters:OtherInfoExistanceConverter x:Name="OtherInfoExistanceConverter" />
+            <toolkit:FullViewDateTimeConverter x:Key="DailyDateTimeConverter"/>
+            
             <DataTemplate x:Key="TrainingsListTemplate">
-                <StackPanel Margin="0 0 0 10" Background="{StaticResource PhoneAccentBrush}" Orientation="Vertical">
-                    <Grid>
+                <StackPanel Margin="10 0 0 10" Background="{StaticResource PhoneAccentBrush}" Orientation="Vertical">
+                    <TextBlock Height="80" Margin="5" Text="{Binding TrainingDayName}" TextWrapping="Wrap" />
+                    <Rectangle Height="3" Fill="{StaticResource PhoneForegroundBrush}" />
+                    <TextBlock Margin="5 0 5 0" Text="{Binding StartTime, Converter={StaticResource DailyDateTimeConverter}}" TextAlignment="Center" />
+                    <Rectangle Height="3" Fill="{StaticResource PhoneForegroundBrush}" />
+                    <Grid Margin="5 3 5 5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30" />
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding TrainingDayId}" Grid.Column="0" />
-                        <TextBlock Text="{Binding TrainingDayName}" Grid.Column="1" />
+
+                        <TextBlock Text="{Binding LocalizedResources.WaterCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" TextAlignment="Center"  Grid.Row="0" Grid.Column="0" />
+                        <TextBlock Text="{Binding LocalizedResources.DurationCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" TextAlignment="Center"  Grid.Row="0" Grid.Column="1" />
+                        <TextBlock Text="{Binding LocalizedResources.OtherInfoCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" FontSize="15" TextAlignment="Center"  Grid.Row="0" Grid.Column="2" />
+                        
+                        <TextBlock Text="{Binding Hydration}" TextAlignment="Center" FontSize="17" FontWeight="Bold" Grid.Row="1" Grid.Column="0" />
+                        <TextBlock Text="{Binding DurationInMinutes}" TextAlignment="Center" FontSize="17" FontWeight="Bold" Grid.Row="1" Grid.Column="1" />
+                        <TextBlock Text="{Binding OtherInfo, Converter={StaticResource OtherInfoExistanceConverter}}" TextAlignment="Center" FontSize="17" FontWeight="Bold" Grid.Row="1" Grid.Column="2" />
                     </Grid>
-                    <TextBlock Text="{Binding StartTime}" />
-                    <TextBlock Text="{Binding DurationInMinutes}" />
+                    <!--<TextBlock Text="{Binding DurationInMinutes}" />
                     <TextBlock Text="{Binding Hydration}" />
-                    <TextBlock Text="{Binding OtherInfo}" />
+                    <TextBlock Text="{Binding OtherInfo}" />-->
                     <toolkit:ContextMenuService.ContextMenu>
                         <toolkit:ContextMenu>
                             <toolkit:MenuItem x:Name="EditTrainingContextMenuItem" Click="EditTrainingContextMenuItem_Click"  Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
@@ -41,13 +59,13 @@
                 </StackPanel>
             </DataTemplate>
             <DataTemplate x:Key="ExercisesListTemplate">
-                <StackPanel Margin="0 0 0 10" Background="{StaticResource PhoneAccentBrush}" Orientation="Vertical">
+                <StackPanel Margin="10 0 0 10" Background="{StaticResource PhoneAccentBrush}" Orientation="Vertical">
                     <TextBlock Text="{Binding ExerciseName}" />
                     <TextBlock Text="{Binding Intensity}" />
                     <TextBlock Text="{Binding DurationInMinutes}" />
                     <TextBlock Text="{Binding AmountOfSets}" />
                     <TextBlock Text="{Binding AmountOfReps}" />
-                    <TextBlock Text="{Binding OtherInfo}" />
+                    <TextBlock Text="{Binding OtherInfo, Converter={StaticResource OtherInfoExistanceConverter}}" />
                     <toolkit:ContextMenuService.ContextMenu>
                         <toolkit:ContextMenu>
                             <toolkit:MenuItem x:Name="EditExerciseContextMenuItem" Click="EditExerciseContextMenuItem_Click"  Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
@@ -67,21 +85,25 @@
             <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
         </StackPanel>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12 0 12 0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10 0 10 0">
             <phone:Pivot Margin="0 -22 0 0" SelectionChanged="Pivot_SelectionChanged">
                 <phone:PivotItem Header="{Binding LocalizedResources.TrainingDaysPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
                     <phone:LongListSelector x:Name="TrainingDaysList"
                         LayoutMode="Grid"
 						Tap="TrainingDaysList_Tap"
 						ItemsSource="{Binding TrainingDays}"
-                        Background="{StaticResource PhoneAccentBrush}"
-                        GridCellSize="200 200" />
+                        GridCellSize="210 200"
+                        toolkit:TiltEffect.IsTiltEnabled="True"
+                        ItemTemplate="{StaticResource TrainingsListTemplate}" />
                 </phone:PivotItem>
 
                 <phone:PivotItem Header="{Binding LocalizedResources.ExercisesPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
                     <phone:LongListSelector x:Name="ExercisesList"
+                        LayoutMode="Grid"
 						Tap="ExercisesList_Tap"
 						ItemsSource="{Binding Exercises}"
+                        GridCellSize="210 200"
+                        toolkit:TiltEffect.IsTiltEnabled="True"
 						ItemTemplate="{StaticResource ExercisesListTemplate}" />
                 </phone:PivotItem>
             </phone:Pivot>

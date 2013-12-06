@@ -84,7 +84,11 @@ namespace FitAndGym.Models
         [Column(CanBeNull = true)]
         public decimal? Hydration
         {
-            get { return _hydration; }
+            get
+            {
+                if (_hydration == null) return null;
+                return Decimal.Round(_hydration.Value, 1);
+            }
             set
             {
                 if (_hydration != value)

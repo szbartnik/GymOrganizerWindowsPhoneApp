@@ -273,37 +273,30 @@
                 </StackPanel>
             </DataTemplate>
         </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-        <phone:Panorama>
-            <phone:Panorama.HeaderTemplate>
-                <DataTemplate>
-                    <StackPanel Grid.Row="0" Margin="12 17 0 0">
-                        <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-                        <TextBlock Text="{Binding LocalizedResources.TrainingPageTitleNewMode , Source={StaticResource LocalizedStrings}}" Margin="9,-14,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </phone:Panorama.HeaderTemplate>
+        <StackPanel Grid.Row="0" Margin="12 17 0 0">
+            <TextBlock Grid.Row="0" Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+        </StackPanel>
 
+        <phone:Panorama Grid.Row="1">
             <!--Panorama item one-->
-            <phone:PanoramaItem Header="first item">
-                <ScrollViewer Grid.Row="1" Margin="10 -30 0 0">
-                    <Grid x:Name="ContentPanel">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+            <phone:PanoramaItem Margin="0 -40 0 0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="{Binding PageTitle}" Margin="9,-14,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+                    <ScrollViewer Grid.Row="1" Margin="10 0 0 0">
+                        <Grid x:Name="ContentPanel">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -311,81 +304,102 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <!--Name Block-->
-                            <TextBlock Text="{Binding LocalizedResources.NewTrainingeNameText, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Grid.Row="0" FontSize="25" VerticalAlignment="Center" />
-                            <local:AdvTextBox x:Name="NewTrName" Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" DefaultText="{Binding LocalizedResources.TypeNameOfTrainingPlaceholder, Source={StaticResource LocalizedStrings}}" TextChanged="NewTrName_TextChanged"  Text="{Binding TrName, Mode=TwoWay, UpdateSourceTrigger=Explicit}" />
-
-                            <!--Start time block -->
-                            <TextBlock Grid.Column="0"  Text="{Binding LocalizedResources.StartTimeCaption, Source={StaticResource LocalizedStrings}}" Grid.Row="1" FontSize="25" VerticalAlignment="Center" />
-                            <toolkit:DatePicker Grid.Row="1" Grid.Column="1" Value="{Binding StartDate}"  />
-
-                            <toolkit:TimePicker Grid.Row="2" Grid.Column="1" Value="{Binding StartTime}" Margin="0 -15 0 0"/>
-
-                            <!--Image Block-->
-
-                        </Grid>
-                        <Rectangle Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 5 0 5" Fill="white" Height="3" />
-
-                        <Grid Grid.Row="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-
-                            <!--Duration Block-->
-                            <TextBlock Text="{Binding Path=LocalizedResources.NewTrainingDurationText, Source={StaticResource LocalizedStrings}}" Grid.Row="0" FontSize="25" VerticalAlignment="Center" Grid.Column="0" />
-
-                            <!--Control-->
-                            <c4f:TimeSpanPicker x:Name="NewTrDurationTimeSpanPicker" IsEnabled="{Binding DurationActive}" Value="{Binding Duration, Mode=TwoWay}" Min="0:0:10" Max="12:00:00" Grid.Column="1" Grid.Row="0" />
-                            <!--CheckBox-->
-                            <CheckBox x:Name="NewTrDurationActiveCheckBox" Grid.Row="0" IsChecked="{Binding DurationActive, Mode=TwoWay}" Grid.Column="2" VerticalAlignment="Center" />
-
-                            <TextBlock Text="{Binding Path=LocalizedResources.NewTrainingHydrationText, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Grid.Row="1" FontSize="25" VerticalAlignment="Center" />
-                            <Grid Grid.Row="1" Grid.Column="1">
+                            <Grid Grid.Row="0">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="70" />
+                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="70" />
                                 </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
-                                <Button Grid.Column="0" IsEnabled="{Binding HydrationActive}" x:Name="NewTrHydrationMinus" Content="-" Click="NewTrHydrationMinus_Click" />
-                                <TextBox Grid.Column="1" IsEnabled="{Binding HydrationActive}" Text="{Binding Hydration}" x:Name="NewTrHydrationTextBox" TextAlignment="Center" IsReadOnly="True" />
-                                <Button Grid.Column="2" IsEnabled="{Binding HydrationActive}"  x:Name="NewTrHydrationPlus" Content="+" Click="NewTrHydrationPlus_Click" />
+                                <!--Name Block-->
+                                <TextBlock Text="{Binding LocalizedResources.NewTrainingeNameText, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Grid.Row="0" FontSize="25" VerticalAlignment="Center" />
+                                <local:AdvTextBox x:Name="NewTrName" Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" DefaultText="{Binding LocalizedResources.TypeNameOfTrainingPlaceholder, Source={StaticResource LocalizedStrings}}" TextChanged="NewTrName_TextChanged"  Text="{Binding TrName, Mode=TwoWay, UpdateSourceTrigger=Explicit}" />
+
+                                <!--Start time block -->
+                                <TextBlock Grid.Column="0"  Text="{Binding LocalizedResources.StartTimeCaption, Source={StaticResource LocalizedStrings}}" Grid.Row="1" FontSize="25" VerticalAlignment="Center" />
+                                <toolkit:DatePicker Grid.Row="1" Grid.Column="1" Value="{Binding StartDate, Mode=TwoWay}"  />
+
+                                <toolkit:TimePicker Grid.Row="2" Grid.Column="1" Value="{Binding StartTime, Mode=TwoWay}" Margin="0 -15 0 0"/>
+
+                                <!--Image Block-->
+
+                            </Grid>
+                            <Rectangle Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 5 0 5" Fill="{StaticResource PhoneForegroundBrush}" Height="3" />
+
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <!--Duration Block-->
+                                <TextBlock Text="{Binding Path=LocalizedResources.NewTrainingDurationText, Source={StaticResource LocalizedStrings}}" Grid.Row="0" FontSize="25" VerticalAlignment="Center" Grid.Column="0" />
+
+                                <!--Control-->
+                                <c4f:TimeSpanPicker x:Name="NewTrDurationTimeSpanPicker" IsEnabled="{Binding DurationActive}" Value="{Binding Duration, Mode=TwoWay}" Min="0:0:10" Max="12:00:00" Grid.Column="1" Grid.Row="0" />
+                                <!--CheckBox-->
+                                <CheckBox x:Name="NewTrDurationActiveCheckBox" Grid.Row="0" IsChecked="{Binding DurationActive, Mode=TwoWay}" Grid.Column="2" VerticalAlignment="Center" />
+
+                                <TextBlock Text="{Binding Path=LocalizedResources.NewTrainingHydrationText, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Grid.Row="1" FontSize="25" VerticalAlignment="Center" />
+                                <Grid Grid.Row="1" Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="70" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Grid.Column="0" IsEnabled="{Binding HydrationActive}" x:Name="NewTrHydrationMinus" Content="-" Click="NewTrHydrationMinus_Click" />
+                                    <TextBox Margin="-10 0 -10 0" Grid.Column="1" IsEnabled="{Binding HydrationActive}" Text="{Binding Hydration}" x:Name="NewTrHydrationTextBox" TextAlignment="Center" IsReadOnly="True" />
+                                    <Button Grid.Column="2" IsEnabled="{Binding HydrationActive}"  x:Name="NewTrHydrationPlus" Content="+" Click="NewTrHydrationPlus_Click" />
+                                </Grid>
+
+                                <!--CheckBox-->
+                                <CheckBox x:Name="NewExSetsActiveCheckBox" IsChecked="{Binding HydrationActive, Mode=TwoWay}" Grid.Column="2" VerticalAlignment="Center" Grid.Row="1" />
                             </Grid>
 
-                            <!--CheckBox-->
-                            <CheckBox x:Name="NewExSetsActiveCheckBox" IsChecked="{Binding HydrationActive, Mode=TwoWay}" Grid.Column="2" VerticalAlignment="Center" Grid.Row="1" />
+
+
+                            <Rectangle Grid.Row="4" HorizontalAlignment="Stretch" Margin="0 5 0 5" Fill="{StaticResource PhoneForegroundBrush}" Height="3" />
+
+                            <!--Other Block-->
+                            <TextBlock Grid.Row="5" Margin="0 5 0 0" FontSize="25" Text="{Binding Path=LocalizedResources.NewTrainingOtherInfoHeader, Source={StaticResource LocalizedStrings}}" />
+                            <local:AdvTextBox Margin="20 0 0 0" Grid.Row="6" x:Name="NewTrOthersTextBox" FontSize="20" AcceptsReturn="True" Height="120" TextWrapping="Wrap" TextChanged="NewTrOthersTextBox_TextChanged"  Text="{Binding OtherInfo, Mode=TwoWay, UpdateSourceTrigger=Explicit}" DefaultText="{Binding Path=LocalizedResources.NewTrainingOtherInfoPlaceholder, Source={StaticResource LocalizedStrings}}" />
                         </Grid>
-
-                        
-
-                        <Rectangle Grid.Row="4" HorizontalAlignment="Stretch" Margin="0 5 0 5" Fill="white" Height="3" />
-
-                        <!--Other Block-->
-                        <TextBlock Grid.Row="5" Margin="0 5 0 0" FontSize="25" Text="{Binding Path=LocalizedResources.NewTrainingOtherInfoHeader, Source={StaticResource LocalizedStrings}}" />
-                        <local:AdvTextBox Margin="20 0 0 0" Grid.Row="6" x:Name="NewTrOthersTextBox" FontSize="20" AcceptsReturn="True" Height="120" TextWrapping="Wrap" Text="{Binding OtherInfo, Mode=TwoWay}" DefaultText="{Binding Path=LocalizedResources.NewTrainingOtherInfoPlaceholder, Source={StaticResource LocalizedStrings}}" />
-                    </Grid>
-                </ScrollViewer>
+                    </ScrollViewer>
+                </Grid>
             </phone:PanoramaItem>
 
             <!--Panorama item two-->
-            <phone:PanoramaItem Header="third item" x:Name="ExercisesListGrid">
+            <phone:PanoramaItem x:Name="ExercisesListGrid" Margin="0 -40 0 150">
                 <!--Double wide Panorama with large image placeholders-->
-                    <toolkit:LongListMultiSelector LayoutMode="Grid"
-                        Margin="0 -30 -20 0"
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="{Binding Path=LocalizedResources.AttachExercisesHeaderText, Source={StaticResource LocalizedStrings}}" Margin="9,-14,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+                    <toolkit:LongListMultiSelector LayoutMode="Grid" Grid.Row="1"
+                        Margin="0 13 -20 0"
                         x:Name="ListOfExercises"
 						ItemsSource="{Binding Exercises}"
-						GridCellSize="210,186"
+						GridCellSize="210,200"
 						toolkit:TiltEffect.IsTiltEnabled="True"
 						EnforceIsSelectionEnabled="True"
 						ItemTemplate="{StaticResource ExerciseToSelectTemplate}"
                         SelectionChanged="ListOfExercises_SelectionChanged"
 						Template="{StaticResource LongListMultiSelectorControlTemplate1}" />
+                </Grid>
             </phone:PanoramaItem>
         </phone:Panorama>
     </Grid>

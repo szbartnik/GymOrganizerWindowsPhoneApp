@@ -157,6 +157,13 @@ namespace FitAndGym.View
             --(_viewModel.NumOfReps);
         }
 
+        private void NewExOthersTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            AdvControls.AdvTextBox txtbox = sender as AdvControls.AdvTextBox;
+            BindingExpression bindingExpression = txtbox.GetBindingExpression(TextBox.TextProperty);
+            bindingExpression.UpdateSource();
+        }
+
         #endregion
     }
 }

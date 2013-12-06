@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -175,8 +177,6 @@ namespace FitAndGym.View
             bindingExpression.UpdateSource();
         }
 
-        #endregion
-
         private void Root_Loaded(object sender, RoutedEventArgs e)
         {
             if (_trToEdit != null)
@@ -185,5 +185,14 @@ namespace FitAndGym.View
                     ListOfExercises.SelectedItems.Add(conn.Exercise);
             }
         }
+
+        private void NewTrOthersTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            AdvControls.AdvTextBox txtbox = sender as AdvControls.AdvTextBox;
+            BindingExpression bindingExpression = txtbox.GetBindingExpression(TextBox.TextProperty);
+            bindingExpression.UpdateSource();
+        }
+
+        #endregion
     }
 }

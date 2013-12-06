@@ -16,7 +16,7 @@ namespace FitAndGym.ViewModels
         private const int MIN_COMMON = 1;
         private const decimal INIT_HYDRATION = 1.5M;
         private const decimal MIN_HYDRATION = 0.1M;
-        private const decimal MAX_HYDRATION = 10;
+        private const decimal MAX_HYDRATION = 9.9M;
 
         #endregion
 
@@ -153,7 +153,7 @@ namespace FitAndGym.ViewModels
 
         public decimal Hydration
         {
-            get { return _hydration; }
+            get { return Decimal.Round(_hydration,1); }
             set
             {
                 if (value >= MIN_HYDRATION && value <= MAX_HYDRATION)
@@ -230,14 +230,7 @@ namespace FitAndGym.ViewModels
             training.TrainingDayId = _isEditingModeActive ? _trainingId : default(int);
 
             // training.StartTime
-            if (StartTime != null)
-                training.StartTime = StartTime;
-            else
-            {
-                training = null;
-                NotifyValidationError(new ValidationErrorEventArgs(AppResources.StartTimeOfTrainingPropertyIsRequiredNotification));
-                return null;
-            }
+            training.StartTime = StartDate.Date + StartTime.TimeOfDay;
 
             // training.TrainingDayName
             if (TrName != AppResources.TypeNameOfTrainingPlaceholder && TrName != String.Empty)
