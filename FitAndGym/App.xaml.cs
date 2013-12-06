@@ -10,6 +10,7 @@ using FitAndGym.Resources;
 using FitAndGym.Models;
 using System.IO.IsolatedStorage;
 using FitAndGym.ViewModels;
+using System.Threading.Tasks;
 
 namespace FitAndGym
 {
@@ -20,6 +21,7 @@ namespace FitAndGym
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
+        private readonly Task _initializingTask;
         private const string DBConnectionString = "Data Source=isostore:/Base.sdf";
         private const string DbName = "Base.sdf";
 
@@ -59,7 +61,11 @@ namespace FitAndGym
                 Application.Current.Host.Settings.EnableFrameRateCounter = true;
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
+            _initializingTask = Init();
+        }
 
+        private async Task Init()
+        {
             using (var db = new FitAndGymDataContext(DBConnectionString))
             {
                 db.Log = new Utilities.DebugTextWriter();
@@ -69,8 +75,8 @@ namespace FitAndGym
                     db.SubmitChanges();
                 }
             }
-            App.FitAndGymViewModel.LoadTrainingDaysCollectionFromDatabase();
-            App.FitAndGymViewModel.LoadExercisesCollectionFromDatabase();
+            await App.FitAndGymViewModel.LoadTrainingDaysCollectionFromDatabase();
+            await App.FitAndGymViewModel.LoadExercisesCollectionFromDatabase();
         }
 
         [Conditional("DELBASE")]

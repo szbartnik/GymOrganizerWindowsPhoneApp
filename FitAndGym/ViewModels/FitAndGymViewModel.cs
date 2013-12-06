@@ -46,24 +46,30 @@ namespace FitAndGym.ViewModels
 
         #endregion
 
-        public void LoadTrainingDaysCollectionFromDatabase()
+        public async Task LoadTrainingDaysCollectionFromDatabase()
         {
-            var trainingDaysInDB = from TrainingDay trDay
-                                   in db.TrainingDays
-                                   select trDay;
+            await Task.Factory.StartNew(() =>
+            {
+                var trainingDaysInDB = from TrainingDay trDay
+                                       in db.TrainingDays
+                                       select trDay;
 
-            TrainingDays = new ObservableCollection<TrainingDay>(trainingDaysInDB);
+                TrainingDays = new ObservableCollection<TrainingDay>(trainingDaysInDB);
+            });
         }
 
-        public void LoadExercisesCollectionFromDatabase()
+        public async Task LoadExercisesCollectionFromDatabase()
         {
-            var exercisesInDB = from Exercise ex
-                                in db.Exercises
-                                select ex;
+            await Task.Factory.StartNew(() =>
+            {
+                var exercisesInDB = from Exercise ex
+                                    in db.Exercises
+                                    select ex;
 
-            Exercises = new ObservableCollection<Exercise>(exercisesInDB);
+                Exercises = new ObservableCollection<Exercise>(exercisesInDB);
+            });
         }
-
+        
         public void AddNewExercise(Exercise exercise)
         {
             Exercises.Add(exercise);
