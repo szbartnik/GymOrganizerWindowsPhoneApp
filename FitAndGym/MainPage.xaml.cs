@@ -106,7 +106,7 @@ namespace FitAndGym
                     ItemsSource = listOfExercises,
                     GridCellSize = new Size(210, 200),
                     ItemTemplate = (DataTemplate)this.LayoutRoot.Resources["ExercisesListTemplate"],
-                    Height = 600,
+                    Height = 500,
                 };
                 longListSelector.Tap += ExercisesList_Tap;
                 
@@ -121,6 +121,7 @@ namespace FitAndGym
                     Content = scroll,
                     DataContext = listOfExercises,
                     LeftButtonContent = "OK",
+                    IsFullScreen = false
                 };
                 messageBox.Show();
             }
@@ -155,7 +156,7 @@ namespace FitAndGym
         {
             if ((sender as LongListSelector).SelectedItem is Exercise)
             {
-                var exerciseToShow = ExercisesList.SelectedItem as Exercise;
+                var exerciseToShow = (sender as LongListSelector).SelectedItem as Exercise;
                 if(exerciseToShow.OtherInfo != String.Empty)
                     Dispatcher.BeginInvoke(() => MessageBox.Show(exerciseToShow.OtherInfo, AppResources.OtherInfo2CaptionOnTheMainPage, MessageBoxButton.OK));
             }

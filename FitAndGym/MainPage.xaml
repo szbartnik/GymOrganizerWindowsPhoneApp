@@ -26,11 +26,11 @@
             
             <DataTemplate x:Key="TrainingsListTemplate">
                 <StackPanel Margin="10 0 0 10" Background="{StaticResource PhoneAccentBrush}" Orientation="Vertical">
-                    <TextBlock Height="80" Margin="5" Text="{Binding TrainingDayName}" TextWrapping="Wrap" />
+                    <TextBlock Height="82" Margin="5 1 5 0" Text="{Binding TrainingDayName}" TextWrapping="Wrap" />
                     <Rectangle Height="3" Fill="{StaticResource PhoneForegroundBrush}" />
                     <TextBlock Margin="5 0 5 0" Text="{Binding StartTime, Converter={StaticResource DailyDateTimeConverter}}" TextAlignment="Center" />
                     <Rectangle Height="3" Fill="{StaticResource PhoneForegroundBrush}" />
-                    <Grid Margin="5 3 5 5">
+                    <Grid Margin="5 5 5 0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="2*" />
                             <RowDefinition Height="2*" />
@@ -59,7 +59,7 @@
             </DataTemplate>
             <DataTemplate x:Key="ExercisesListTemplate">
                 <StackPanel Margin="10 0 0 10" Background="{StaticResource PhoneAccentBrush}" Orientation="Vertical">
-                    <TextBlock Text="{Binding ExerciseName}" Height="75" Margin="5" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding ExerciseName}" Height="83" Margin="5 1 5 0" TextWrapping="Wrap" />
                     <Rectangle Height="3" Fill="{StaticResource PhoneForegroundBrush}" />
                     <Grid Margin="5 0 5 0" Height="100">
                         <Grid.RowDefinitions>

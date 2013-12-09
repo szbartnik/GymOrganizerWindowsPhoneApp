@@ -57,7 +57,7 @@ namespace FitAndGym.View
             throw new Exception("Lack of action in NavigationContext.QueryString in ExercisePage");
         }
 
-        private async Task CheckIfEditOrAddActionRequiredAsync()
+        private void CheckIfEditOrAddActionRequiredAsync()
         {
             string action;
 
@@ -72,14 +72,14 @@ namespace FitAndGym.View
                     {
                         Exercise exToEdit = App.FitAndGymViewModel.GetExerciseById(exId);
                         if (exToEdit != null)
-                            await Task.Factory.StartNew(() => _viewModel = new ExercisePageViewModel(exToEdit));
+                            _viewModel = new ExercisePageViewModel(exToEdit);
                         else
                             throw new Exception(String.Format("Not found Exercise with id = {0} in database invoked from ExercisePage!", exId));
                     }
                     else throw new Exception("Wrong NavigationContext.QueryString 'exId' in ExercisePage");
                 }
                 else if (action == "add")
-                    await Task.Factory.StartNew(() => _viewModel = new ExercisePageViewModel());
+                    _viewModel = new ExercisePageViewModel();
                 else
                     throw new Exception(String.Format("Wrong NavigationContext.QueryString (action) in ExercisePage. Action = '{0}'", action));
 
@@ -90,14 +90,14 @@ namespace FitAndGym.View
 
         #region Events stuff
 
-        protected override async void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             // I have to commemorate guy who saved me - http://samondotnet.blogspot.com/2011/12/onnavigatedto-will-be-called-after.html
             // Line of rescue:
             if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back) return;
 
             BuildLocalizedApplicationBar();
-            await CheckIfEditOrAddActionRequiredAsync();
+            CheckIfEditOrAddActionRequiredAsync();
         }
 
         private void updateChanges_Click(object sender, EventArgs e)

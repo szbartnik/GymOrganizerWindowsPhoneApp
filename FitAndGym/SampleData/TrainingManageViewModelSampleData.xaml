@@ -5,7 +5,7 @@
     xmlns:m="clr-namespace:FitAndGym.Models">
 
     <vm:FitAndGymViewModel.Exercises>
-        <m:Exercise ExerciseId="1" ExerciseName="Pierwsze ćwiczenie" Intensity="High" DurationInMinutes="5" AmountOfReps="5" AmountOfSets="12" OtherInfo="Nic tu nie ma" />
+        <m:Exercise ExerciseId="1" ExerciseName="Pierwsze ćwiczenf asdf dsf asdf asdf dsaf dasf asdfd fasdf sdfie" Intensity="High" DurationInMinutes="5" AmountOfReps="5" AmountOfSets="12" OtherInfo="Nic tu nie ma" />
         <m:Exercise ExerciseId="2" ExerciseName="Drugie ćwiczenie" Intensity="Medium" DurationInMinutes="6" AmountOfReps="5" AmountOfSets="9" OtherInfo="Info" />
         <m:Exercise ExerciseId="3" ExerciseName="Trzecie ćwiczenie" Intensity="Low" DurationInMinutes="4" AmountOfReps="8" AmountOfSets="15" OtherInfo="Nic tu nie ma" />
         <m:Exercise ExerciseId="4" ExerciseName="Czwarte ćwiczenie" Intensity="VeryHigh" DurationInMinutes="5" AmountOfReps="2" AmountOfSets="13" OtherInfo="Info" />

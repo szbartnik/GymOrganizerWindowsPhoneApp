@@ -10,6 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:converters="clr-namespace:FitAndGym.Converters"
     x:Class="FitAndGym.View.AddNewTrainingPage"
     mc:Ignorable="d"
     d:DataContext="{d:DesignData /SampleData/TrainingManageViewModelSampleData.xaml}"
@@ -248,6 +249,42 @@
                 </phone:LongListSelector.ItemTemplate>
             </phone:LongListSelector>
         </ControlTemplate>
+
+        <converters:EnumToStringConverter x:Name="EnumToStringConverter" />
+        <converters:OtherInfoExistanceConverter x:Name="OtherInfoExistanceConverter" />
+        <converters:SecondsToMinutesConverter x:Name="SecondsToMinutesConverter" />
+
+        <DataTemplate x:Key="ExercisesListTemplate">
+            <StackPanel Background="{StaticResource PhoneAccentBrush}" Orientation="Vertical">
+                <TextBlock Text="{Binding ExerciseName}" Height="78" Margin="0 -2 0 5" TextWrapping="Wrap" />
+                <Rectangle Height="3" Fill="{StaticResource PhoneForegroundBrush}" />
+                <Grid Height="100">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding LocalizedResources.AmountOfSetsCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15"  Grid.Row="0" Grid.Column="0" />
+                    <TextBlock Text="{Binding LocalizedResources.AmountOfRepsCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" Grid.Row="1" Grid.Column="0" />
+                    <TextBlock Text="{Binding LocalizedResources.IntensityCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" Grid.Row="2" Grid.Column="0" />
+                    <TextBlock Text="{Binding LocalizedResources.Duration2CaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" Grid.Row="3" Grid.Column="0" />
+                    <TextBlock Text="{Binding LocalizedResources.OtherInfo2CaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" Grid.Row="4" Grid.Column="0" />
+
+                    <TextBlock Text="{Binding AmountOfSets}"  FontSize="15" FontWeight="Bold" Grid.Row="0" Grid.Column="1" />
+                    <TextBlock Text="{Binding AmountOfReps}"  FontSize="15" FontWeight="Bold" Grid.Row="1" Grid.Column="1" />
+                    <TextBlock Text="{Binding Intensity, Converter={StaticResource EnumToStringConverter}}" FontSize="15" FontWeight="Bold" Grid.Row="2" Grid.Column="1" />
+                    <TextBlock Text="{Binding DurationInMinutes, Converter={StaticResource SecondsToMinutesConverter}}" FontSize="15" FontWeight="Bold" Grid.Row="3" Grid.Column="1" />
+                    <TextBlock Text="{Binding OtherInfo, Converter={StaticResource OtherInfoExistanceConverter}}" FontSize="15" FontWeight="Bold" Grid.Row="4" Grid.Column="1" />
+                </Grid>
+            </StackPanel>
+        </DataTemplate>
+
     </phone:PhoneApplicationPage.Resources>
 
     <phone:PhoneApplicationPage.FontFamily>
@@ -396,7 +433,7 @@
 						GridCellSize="210,200"
 						toolkit:TiltEffect.IsTiltEnabled="True"
 						EnforceIsSelectionEnabled="True"
-						ItemTemplate="{StaticResource ExerciseToSelectTemplate}"
+						ItemTemplate="{StaticResource ExercisesListTemplate}"
                         SelectionChanged="ListOfExercises_SelectionChanged"
 						Template="{StaticResource LongListMultiSelectorControlTemplate1}" />
                 </Grid>

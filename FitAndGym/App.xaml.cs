@@ -61,6 +61,7 @@ namespace FitAndGym
                 Application.Current.Host.Settings.EnableFrameRateCounter = true;
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
+
             _initializingTask = Init();
         }
 

@@ -24,7 +24,7 @@ namespace FitAndGym.View
             InitializeComponent();
         }
 
-        private async Task CheckIfEditOrAddActionRequiredAsync()
+        private void CheckIfEditOrAddActionRequiredAsync()
         {
             string action;
 
@@ -40,7 +40,7 @@ namespace FitAndGym.View
                         _trToEdit = App.FitAndGymViewModel.GetTrainingById(trId);
                         if (_trToEdit != null)
                         {
-                            await Task.Factory.StartNew(() => _viewModel = new TrainingPageViewModel(_trToEdit));
+                            _viewModel = new TrainingPageViewModel(_trToEdit);
                             DataContext = _viewModel;
 
                         }
@@ -52,7 +52,7 @@ namespace FitAndGym.View
                 }
                 else if (action == "add")
                 {
-                    await Task.Factory.StartNew(() => _viewModel = new TrainingPageViewModel());
+                    _viewModel = new TrainingPageViewModel();
                     DataContext = _viewModel;
                 }
                 else
@@ -161,14 +161,14 @@ namespace FitAndGym.View
             MessageBox.Show(e.ErrorMessage, AppResources.ValidationErrorTitle, MessageBoxButton.OK);
         }
 
-        protected override async void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             // I have to commemorate guy who saved me - http://samondotnet.blogspot.com/2011/12/onnavigatedto-will-be-called-after.html
             // Line of rescue:
             if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back) return;
 
             BuildLocalizedApplicationBar();
-            await CheckIfEditOrAddActionRequiredAsync();
+            CheckIfEditOrAddActionRequiredAsync();
         }
 
         private void NewTrName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
