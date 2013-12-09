@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -56,7 +57,7 @@ namespace FitAndGym.View
             throw new Exception("Lack of action in NavigationContext.QueryString in ExercisePage");
         }
 
-        private void CheckIfEditOrAddActionRequired()
+        private async Task CheckIfEditOrAddActionRequiredAsync()
         {
             string action;
 
@@ -71,14 +72,14 @@ namespace FitAndGym.View
                     {
                         Exercise exToEdit = App.FitAndGymViewModel.GetExerciseById(exId);
                         if (exToEdit != null)
-                            _viewModel = new ExercisePageViewModel(exToEdit);
+                            await Task.Factory.StartNew(() => _viewModel = new ExercisePageViewModel(exToEdit));
                         else
                             throw new Exception(String.Format("Not found Exercise with id = {0} in database invoked from ExercisePage!", exId));
                     }
                     else throw new Exception("Wrong NavigationContext.QueryString 'exId' in ExercisePage");
                 }
                 else if (action == "add")
-                    _viewModel = new ExercisePageViewModel();
+                    await Task.Factory.StartNew(() => _viewModel = new ExercisePageViewModel());
                 else
                     throw new Exception(String.Format("Wrong NavigationContext.QueryString (action) in ExercisePage. Action = '{0}'", action));
 
@@ -89,14 +90,14 @@ namespace FitAndGym.View
 
         #region Events stuff
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        protected override async void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             // I have to commemorate guy who saved me - http://samondotnet.blogspot.com/2011/12/onnavigatedto-will-be-called-after.html
             // Line of rescue:
             if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back) return;
 
             BuildLocalizedApplicationBar();
-            CheckIfEditOrAddActionRequired();
+            await CheckIfEditOrAddActionRequiredAsync();
         }
 
         private void updateChanges_Click(object sender, EventArgs e)
@@ -105,14 +106,14 @@ namespace FitAndGym.View
             if (exerciseToUpdate != null)
             {
                 App.FitAndGymViewModel.UpdateExercise(exerciseToUpdate);
-                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedExercise", UriKind.RelativeOrAbsolute));
+                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedExercise&PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
             }
         }
 
         private void discardChangesButton_Click(object sender, EventArgs e)
         {
             _viewModel = null;
-            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
+            if (NavigationService.CanGoBack) NavigationService.GoBack();
         }
 
         private void saveChanges_Click(object sender, EventArgs e)
@@ -121,7 +122,7 @@ namespace FitAndGym.View
             if (newExercise != null)
             {
                 App.FitAndGymViewModel.AddNewExercise(newExercise);
-                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedNewExercise", UriKind.RelativeOrAbsolute));
+                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedExercise&PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
             }
         }
 

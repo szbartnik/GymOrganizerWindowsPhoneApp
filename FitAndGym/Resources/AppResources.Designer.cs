@@ -88,6 +88,24 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reps.
+        /// </summary>
+        public static string AmountOfRepsCaptionOnTheMainPage {
+            get {
+                return ResourceManager.GetString("AmountOfRepsCaptionOnTheMainPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sets.
+        /// </summary>
+        public static string AmountOfSetsCaptionOnTheMainPage {
+            get {
+                return ResourceManager.GetString("AmountOfSetsCaptionOnTheMainPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You have to bind 1 exercise at least to the training!.
         /// </summary>
         public static string AnyExercisesAreRequiredNotification {
@@ -147,6 +165,15 @@ namespace FitAndGym.Resources {
         public static string DiscardChangesAppBar {
             get {
                 return ResourceManager.GetString("DiscardChangesAppBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration (min.).
+        /// </summary>
+        public static string Duration2CaptionOnTheMainPage {
+            get {
+                return ResourceManager.GetString("Duration2CaptionOnTheMainPage", resourceCulture);
             }
         }
         
@@ -229,6 +256,15 @@ namespace FitAndGym.Resources {
         public static string HelpInTrainingPageAppBar {
             get {
                 return ResourceManager.GetString("HelpInTrainingPageAppBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intensity.
+        /// </summary>
+        public static string IntensityCaptionOnTheMainPage {
+            get {
+                return ResourceManager.GetString("IntensityCaptionOnTheMainPage", resourceCulture);
             }
         }
         
@@ -391,6 +427,15 @@ namespace FitAndGym.Resources {
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other info.
+        /// </summary>
+        public static string OtherInfo2CaptionOnTheMainPage {
+            get {
+                return ResourceManager.GetString("OtherInfo2CaptionOnTheMainPage", resourceCulture);
             }
         }
         

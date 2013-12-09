@@ -5,6 +5,7 @@ using System.ComponentModel;
 using FitAndGym.Models;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FitAndGym.ViewModels
 {
@@ -50,11 +51,15 @@ namespace FitAndGym.ViewModels
         {
             await Task.Factory.StartNew(() =>
             {
-                var trainingDaysInDB = from TrainingDay trDay
-                                       in db.TrainingDays
-                                       select trDay;
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    var trainingDaysInDB = from TrainingDay trDay
+                                           in db.TrainingDays
+                                           orderby trDay.StartTime
+                                           select trDay;
 
-                TrainingDays = new ObservableCollection<TrainingDay>(trainingDaysInDB);
+                    TrainingDays = new ObservableCollection<TrainingDay>(trainingDaysInDB);
+                });
             });
         }
 
@@ -62,27 +67,55 @@ namespace FitAndGym.ViewModels
         {
             await Task.Factory.StartNew(() =>
             {
-                var exercisesInDB = from Exercise ex
-                                    in db.Exercises
-                                    select ex;
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    var exercisesInDB = from Exercise ex
+                                        in db.Exercises
+                                        orderby ex.ExerciseName
+                                        select ex;
 
-                Exercises = new ObservableCollection<Exercise>(exercisesInDB);
+                    Exercises = new ObservableCollection<Exercise>(exercisesInDB);
+                });
             });
         }
         
-        public void AddNewExercise(Exercise exercise)
+        public void AddNewExercise(Exercise newExercise)
         {
-            Exercises.Add(exercise);
+            int index = 0;
 
-            db.Exercises.InsertOnSubmit(exercise);
-            db.SubmitChanges();
+            foreach (Exercise exercise in Exercises.ToList())
+            {
+                if (newExercise.ExerciseName.CompareTo(exercise.ExerciseName) <= 0) break;
+
+                ++index;
+            }
+
+            Exercises.Insert(index, newExercise);
+
+            db.Exercises.InsertOnSubmit(newExercise);
+            Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
         }
 
         public void UpdateExercise(Exercise exerciseToUpdate)
         {
             Exercise exToUpdate = db.Exercises.FirstOrDefault(ex => ex.ExerciseId == exerciseToUpdate.ExerciseId);
-
             if (exToUpdate == null) throw new Exception("Exercise to edit not found - from UpdateExercise");
+
+            if (exToUpdate.ExerciseName != exerciseToUpdate.ExerciseName)
+            {
+                Exercises.Remove(exToUpdate);
+
+                int index = 0;
+
+                foreach (Exercise exercise in Exercises.ToList())
+                {
+                    if (exerciseToUpdate.ExerciseName.CompareTo(exercise.ExerciseName) <= 0) break;
+
+                    ++index;
+                }
+
+                Exercises.Insert(index, exToUpdate);
+            }
 
             exToUpdate.AmountOfReps = exerciseToUpdate.AmountOfReps;
             exToUpdate.AmountOfSets = exerciseToUpdate.AmountOfSets;
@@ -92,7 +125,7 @@ namespace FitAndGym.ViewModels
             exToUpdate.Intensity = exerciseToUpdate.Intensity;
             exToUpdate.OtherInfo = exerciseToUpdate.OtherInfo;
 
-            db.SubmitChanges();
+            Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
         }
 
         public Exercise GetExerciseById(int exId)
@@ -117,7 +150,7 @@ namespace FitAndGym.ViewModels
                 db.ExTrDayConnectors.Where(x =>
                     x._exerciseId == exerciseToDelete.ExerciseId));
 
-            db.SubmitChanges();
+            Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
         }
 
         public void DeleteTraining(TrainingDay trainingToDelete)
@@ -132,7 +165,7 @@ namespace FitAndGym.ViewModels
                 db.ExTrDayConnectors.Where(x =>
                     x._trainingDayId == trainingToDelete.TrainingDayId));
 
-            db.SubmitChanges();
+            Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
         }
 
         #region Events Stuff
@@ -141,15 +174,15 @@ namespace FitAndGym.ViewModels
         private void NotifyPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
-            {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
         }
 
         #endregion
 
         internal void UpdateTraining(TrainingDay trainingToUpdate)
         {
+            int index = 0;
+
             TrainingDay trToUpdate = GetTrainingById(trainingToUpdate.TrainingDayId);
             if (trToUpdate == null) throw new Exception("Training to edit not found - from UpdateTraining");
 
@@ -160,19 +193,34 @@ namespace FitAndGym.ViewModels
                 db.ExTrDayConnectors.Where(x =>
                     x._trainingDayId == trainingToUpdate.TrainingDayId));
 
-            TrainingDays.Add(trainingToUpdate);
+            foreach (TrainingDay training in TrainingDays.ToList())
+            {
+                if (trainingToUpdate.StartTime <= training.StartTime) break;
+                ++index;
+            }
+
+            TrainingDays.Insert(index, trainingToUpdate);
+
             trainingToUpdate.TrainingDayId = 0;
             db.TrainingDays.InsertOnSubmit(trainingToUpdate);
 
-            db.SubmitChanges();
+            Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
         }
 
         internal void AddNewTraining(TrainingDay newTraining)
         {
-            TrainingDays.Add(newTraining);
+            int index = 0;
+
+            foreach (TrainingDay training in TrainingDays.ToList())
+            {
+                if (newTraining.StartTime <= training.StartTime) break;
+                ++index;
+            }
+
+            TrainingDays.Insert(index, newTraining);
 
             db.TrainingDays.InsertOnSubmit(newTraining);
-            db.SubmitChanges();
+            Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
         }
     }
 }

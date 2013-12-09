@@ -67,6 +67,24 @@ namespace FitAndGym
             NavigationService.Navigate(new Uri("/View/AddNewTrainingPage.xaml?action=edit&trId=" + trainingToEdit.TrainingDayId.ToString(), UriKind.RelativeOrAbsolute));
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            string page;
+            string action;
+
+            if (NavigationContext.QueryString.TryGetValue("PivotMain.SelectedIndex", out page))
+            {
+                if (page == "0") PivotMain.SelectedIndex = 0;
+                else if (page == "1") PivotMain.SelectedIndex = 1;
+            }
+
+            if (NavigationContext.QueryString.TryGetValue("viewBag", out action))
+            {
+               // if (action == "addedTraining")
+
+            }
+        }
+
         private void ExercisesList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (ExercisesList.SelectedItem is Exercise)

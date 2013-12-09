@@ -374,7 +374,7 @@
 
                             <!--Other Block-->
                             <TextBlock Grid.Row="5" Margin="0 5 0 0" FontSize="25" Text="{Binding Path=LocalizedResources.NewTrainingOtherInfoHeader, Source={StaticResource LocalizedStrings}}" />
-                            <local:AdvTextBox Margin="20 0 0 0" Grid.Row="6" x:Name="NewTrOthersTextBox" FontSize="20" AcceptsReturn="True" Height="120" TextWrapping="Wrap" TextChanged="NewTrOthersTextBox_TextChanged"  Text="{Binding OtherInfo, Mode=TwoWay, UpdateSourceTrigger=Explicit}" DefaultText="{Binding Path=LocalizedResources.NewTrainingOtherInfoPlaceholder, Source={StaticResource LocalizedStrings}}" />
+                            <local:AdvTextBox Margin="20 0 0 0" Grid.Row="6" x:Name="NewTrOthersTextBox" FontSize="20" AcceptsReturn="True" Height="120" TextWrapping="Wrap" Text="{Binding OtherInfo, Mode=TwoWay}" DefaultText="{Binding Path=LocalizedResources.NewTrainingOtherInfoPlaceholder, Source={StaticResource LocalizedStrings}}" />
                         </Grid>
                     </ScrollViewer>
                 </Grid>

@@ -285,4 +285,22 @@ info</value>
     <value>Woda
 (litry)</value>
   </data>
+  <data name="AmountOfRepsCaptionOnTheMainPage" xml:space="preserve">
+    <value>Powtórzenia</value>
+  </data>
+  <data name="AmountOfSetsCaptionOnTheMainPage" xml:space="preserve">
+    <value>Serie</value>
+  </data>
+  <data name="Duration2CaptionOnTheMainPage" xml:space="preserve">
+    <value>Długość (min.)</value>
+  </data>
+  <data name="IntensityCaptionOnTheMainPage" xml:space="preserve">
+    <value>Intensywność</value>
+  </data>
+  <data name="OtherInfo2CaptionOnTheMainPage" xml:space="preserve">
+    <value>Inne info</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value />
+  </data>
 </root>

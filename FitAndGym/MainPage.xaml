@@ -19,7 +19,9 @@
 
     <Grid x:Name="LayoutRoot">
         <Grid.Resources>
+            <converters:EnumToStringConverter x:Name="EnumToStringConverter" />
             <converters:OtherInfoExistanceConverter x:Name="OtherInfoExistanceConverter" />
+            <converters:SecondsToMinutesConverter x:Name="SecondsToMinutesConverter" />
             <toolkit:FullViewDateTimeConverter x:Key="DailyDateTimeConverter"/>
             
             <DataTemplate x:Key="TrainingsListTemplate">
@@ -44,12 +46,9 @@
                         <TextBlock Text="{Binding LocalizedResources.OtherInfoCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" FontSize="15" TextAlignment="Center"  Grid.Row="0" Grid.Column="2" />
                         
                         <TextBlock Text="{Binding Hydration}" TextAlignment="Center" FontSize="17" FontWeight="Bold" Grid.Row="1" Grid.Column="0" />
-                        <TextBlock Text="{Binding DurationInMinutes}" TextAlignment="Center" FontSize="17" FontWeight="Bold" Grid.Row="1" Grid.Column="1" />
+                        <TextBlock Text="{Binding DurationInMinutes, Converter={StaticResource SecondsToMinutesConverter}}" TextAlignment="Center" FontSize="17" FontWeight="Bold" Grid.Row="1" Grid.Column="1" />
                         <TextBlock Text="{Binding OtherInfo, Converter={StaticResource OtherInfoExistanceConverter}}" TextAlignment="Center" FontSize="17" FontWeight="Bold" Grid.Row="1" Grid.Column="2" />
                     </Grid>
-                    <!--<TextBlock Text="{Binding DurationInMinutes}" />
-                    <TextBlock Text="{Binding Hydration}" />
-                    <TextBlock Text="{Binding OtherInfo}" />-->
                     <toolkit:ContextMenuService.ContextMenu>
                         <toolkit:ContextMenu>
                             <toolkit:MenuItem x:Name="EditTrainingContextMenuItem" Click="EditTrainingContextMenuItem_Click"  Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
@@ -60,12 +59,31 @@
             </DataTemplate>
             <DataTemplate x:Key="ExercisesListTemplate">
                 <StackPanel Margin="10 0 0 10" Background="{StaticResource PhoneAccentBrush}" Orientation="Vertical">
-                    <TextBlock Text="{Binding ExerciseName}" />
-                    <TextBlock Text="{Binding Intensity}" />
-                    <TextBlock Text="{Binding DurationInMinutes}" />
-                    <TextBlock Text="{Binding AmountOfSets}" />
-                    <TextBlock Text="{Binding AmountOfReps}" />
-                    <TextBlock Text="{Binding OtherInfo, Converter={StaticResource OtherInfoExistanceConverter}}" />
+                    <TextBlock Text="{Binding ExerciseName}" Height="78" Margin="5" TextWrapping="Wrap" />
+                    <Grid Margin="5 0 5 0" Height="110">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding LocalizedResources.AmountOfSetsCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15"  Grid.Row="0" Grid.Column="0" />
+                        <TextBlock Text="{Binding LocalizedResources.AmountOfRepsCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" Grid.Row="1" Grid.Column="0" />
+                        <TextBlock Text="{Binding LocalizedResources.IntensityCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" Grid.Row="2" Grid.Column="0" />
+                        <TextBlock Text="{Binding LocalizedResources.Duration2CaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" Grid.Row="3" Grid.Column="0" />
+                        <TextBlock Text="{Binding LocalizedResources.OtherInfo2CaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" Grid.Row="4" Grid.Column="0" />
+
+                        <TextBlock Text="{Binding AmountOfSets}" TextAlignment="Center" FontSize="16" FontWeight="Bold" Grid.Row="0" Grid.Column="1" />
+                        <TextBlock Text="{Binding AmountOfReps}" TextAlignment="Center" FontSize="16" FontWeight="Bold" Grid.Row="1" Grid.Column="1" />
+                        <TextBlock Text="{Binding Intensity, Converter={StaticResource EnumToStringConverter}}" TextAlignment="Center" FontSize="16" FontWeight="Bold" Grid.Row="2" Grid.Column="1" />
+                        <TextBlock Text="{Binding DurationInMinutes, Converter={StaticResource SecondsToMinutesConverter}}" TextAlignment="Center" FontSize="16" FontWeight="Bold" Grid.Row="3" Grid.Column="1" />
+                        <TextBlock TextAlignment="Center" Text="{Binding OtherInfo, Converter={StaticResource OtherInfoExistanceConverter}}" FontSize="16" FontWeight="Bold" Grid.Row="4" Grid.Column="1" />
+                    </Grid>
                     <toolkit:ContextMenuService.ContextMenu>
                         <toolkit:ContextMenu>
                             <toolkit:MenuItem x:Name="EditExerciseContextMenuItem" Click="EditExerciseContextMenuItem_Click"  Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
@@ -86,7 +104,7 @@
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10 0 10 0">
-            <phone:Pivot Margin="0 -22 0 0" SelectionChanged="Pivot_SelectionChanged">
+            <phone:Pivot x:Name="PivotMain" Margin="0 -22 0 0" SelectionChanged="Pivot_SelectionChanged">
                 <phone:PivotItem Header="{Binding LocalizedResources.TrainingDaysPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
                     <phone:LongListSelector x:Name="TrainingDaysList"
                         LayoutMode="Grid"

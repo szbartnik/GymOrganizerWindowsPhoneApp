@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,7 +24,7 @@ namespace FitAndGym.View
             InitializeComponent();
         }
 
-        private void CheckIfEditOrAddActionRequired()
+        private async Task CheckIfEditOrAddActionRequiredAsync()
         {
             string action;
 
@@ -39,7 +40,7 @@ namespace FitAndGym.View
                         _trToEdit = App.FitAndGymViewModel.GetTrainingById(trId);
                         if (_trToEdit != null)
                         {
-                            _viewModel = new TrainingPageViewModel(_trToEdit);
+                            await Task.Factory.StartNew(() => _viewModel = new TrainingPageViewModel(_trToEdit));
                             DataContext = _viewModel;
 
                         }
@@ -51,7 +52,7 @@ namespace FitAndGym.View
                 }
                 else if (action == "add")
                 {
-                    _viewModel = new TrainingPageViewModel();
+                    await Task.Factory.StartNew(() => _viewModel = new TrainingPageViewModel());
                     DataContext = _viewModel;
                 }
                 else
@@ -107,13 +108,13 @@ namespace FitAndGym.View
             if (trainingToUpdate != null)
             {
                 App.FitAndGymViewModel.UpdateTraining(trainingToUpdate);
-                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedTraining", UriKind.RelativeOrAbsolute));
+                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedTraining&PivotMain.SelectedIndex=0", UriKind.RelativeOrAbsolute));
             }
         }
 
         private void discardChangesButton_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
+            if (NavigationService.CanGoBack) NavigationService.GoBack();
         }
 
         private void saveChanges_Click(object sender, EventArgs e)
@@ -122,7 +123,7 @@ namespace FitAndGym.View
             if (newTraining != null)
             {
                 App.FitAndGymViewModel.AddNewTraining(newTraining);
-                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedNewTraining", UriKind.RelativeOrAbsolute));
+                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedTraining&PivotMain.SelectedIndex=0", UriKind.RelativeOrAbsolute));
             }
         }
 
@@ -160,14 +161,14 @@ namespace FitAndGym.View
             MessageBox.Show(e.ErrorMessage, AppResources.ValidationErrorTitle, MessageBoxButton.OK);
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        protected override async void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             // I have to commemorate guy who saved me - http://samondotnet.blogspot.com/2011/12/onnavigatedto-will-be-called-after.html
             // Line of rescue:
             if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back) return;
 
             BuildLocalizedApplicationBar();
-            CheckIfEditOrAddActionRequired();
+            await CheckIfEditOrAddActionRequiredAsync();
         }
 
         private void NewTrName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

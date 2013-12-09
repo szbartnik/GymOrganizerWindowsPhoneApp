@@ -282,4 +282,19 @@ info</value>
     <value>Water
 (liters)</value>
   </data>
+  <data name="AmountOfRepsCaptionOnTheMainPage" xml:space="preserve">
+    <value>Reps</value>
+  </data>
+  <data name="AmountOfSetsCaptionOnTheMainPage" xml:space="preserve">
+    <value>Sets</value>
+  </data>
+  <data name="Duration2CaptionOnTheMainPage" xml:space="preserve">
+    <value>Duration (min.)</value>
+  </data>
+  <data name="IntensityCaptionOnTheMainPage" xml:space="preserve">
+    <value>Intensity</value>
+  </data>
+  <data name="OtherInfo2CaptionOnTheMainPage" xml:space="preserve">
+    <value>Other info</value>
+  </data>
 </root>
