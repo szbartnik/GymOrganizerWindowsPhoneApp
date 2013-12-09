@@ -173,10 +173,10 @@
     <value>Średnia</value>
   </data>
   <data name="IntensityVeryHigh" xml:space="preserve">
-    <value>Bardzo duża</value>
+    <value>Ogromna</value>
   </data>
   <data name="IntensityVeryLow" xml:space="preserve">
-    <value>Bardzo mała</value>
+    <value>Malutka</value>
   </data>
   <data name="TypeNameOfExercisePlaceholder" xml:space="preserve">
     <value>Wpisz nazwę ćwiczenia...</value>

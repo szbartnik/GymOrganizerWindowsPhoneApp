@@ -93,6 +93,22 @@
                     </toolkit:ContextMenuService.ContextMenu>
                 </StackPanel>
             </DataTemplate>
+
+            <DataTemplate x:Key="ListOfExercisesOfTrainingTemplate">
+                <ScrollViewer>
+                    <phone:LongListSelector
+                        Tap="ExercisesList_Tap"
+					    ItemsSource="{Binding}"
+                        LayoutMode="Grid"
+                        Margin="10 10 0 0"
+                        GridCellSize="210 200"
+                        toolkit:TiltEffect.IsTiltEnabled="True"
+					    ItemTemplate="{StaticResource ExercisesListTemplate}"
+                        MinHeight="200"
+                        MaxHeight="500"/>
+                </ScrollViewer>
+            </DataTemplate>
+
         </Grid.Resources>
 
         <Grid.RowDefinitions>

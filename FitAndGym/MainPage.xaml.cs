@@ -96,32 +96,17 @@ namespace FitAndGym
             if (TrainingDaysList.SelectedItem is TrainingDay)
             {
                 var listOfExercises = new List<Exercise>();
-                var trainingToShow = TrainingDaysList.SelectedItem as TrainingDay;
-                trainingToShow.ExConns.ToList().ForEach(x => listOfExercises.Add(x.Exercise));
+                var trainingToShow = (TrainingDaysList.SelectedItem as TrainingDay).ExConns.ToList();
 
-                var longListSelector = new LongListSelector()
-                {
-                    Margin = new Thickness(0, 10, 0, 0),
-                    LayoutMode = LongListSelectorLayoutMode.Grid,
-                    ItemsSource = listOfExercises,
-                    GridCellSize = new Size(210, 200),
-                    ItemTemplate = (DataTemplate)this.LayoutRoot.Resources["ExercisesListTemplate"],
-                    Height = 500,
-                };
-                longListSelector.Tap += ExercisesList_Tap;
-                
-                    var scroll = new ScrollViewer()
-                {
-                    Content = longListSelector,
-                };
+                trainingToShow.ForEach(x => listOfExercises.Add(x.Exercise));
+                listOfExercises.Sort((tr1, tr2) => tr1.ExerciseName.CompareTo(tr2.ExerciseName));
 
                 CustomMessageBox messageBox = new CustomMessageBox()
                 {
                     Caption = AppResources.ConnectedExercisesMessageBoxHeader,
-                    Content = scroll,
-                    DataContext = listOfExercises,
-                    LeftButtonContent = "OK",
-                    IsFullScreen = false
+                    Content = listOfExercises,
+                    ContentTemplate = (DataTemplate)this.LayoutRoot.Resources["ListOfExercisesOfTrainingTemplate"],
+                    LeftButtonContent = "OK"
                 };
                 messageBox.Show();
             }
@@ -138,7 +123,8 @@ namespace FitAndGym
             string page;
             string action;
 
-            if (NavigationContext.QueryString.TryGetValue("PivotMain.SelectedIndex", out page))
+            if (NavigationContext.QueryString.TryGetValue("PivotMain.SelectedIndex", out page)
+                && e.NavigationMode != NavigationMode.Back)
             {
                 if      (page == "0") PivotMain.SelectedIndex = 0;
                 else if (page == "1") PivotMain.SelectedIndex = 1;
