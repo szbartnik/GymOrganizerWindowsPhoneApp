@@ -6,6 +6,7 @@ using FitAndGym.Models;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Collections.Generic;
 
 namespace FitAndGym.ViewModels
 {
@@ -42,6 +43,14 @@ namespace FitAndGym.ViewModels
             {
                 _exercises = value;
                 NotifyPropertyChanged("Exercises");
+            }
+        }
+
+        public List<TrainingDay> IncomingTrainingDays
+        {
+            get
+            {
+                return _trainingDays.Where(x => x.StartTime >= (x.DurationInMinutes.HasValue ? (DateTime.Now + TimeSpan.FromSeconds(x.DurationInMinutes.Value)) : DateTime.Now)).Take(8).ToList();
             }
         }
 
@@ -168,17 +177,6 @@ namespace FitAndGym.ViewModels
             Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
         }
 
-        #region Events Stuff
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion
-
         internal void UpdateTraining(TrainingDay trainingToUpdate)
         {
             int index = 0;
@@ -222,5 +220,16 @@ namespace FitAndGym.ViewModels
             db.TrainingDays.InsertOnSubmit(newTraining);
             Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
         }
+
+        #region Events Stuff
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
     }
 }

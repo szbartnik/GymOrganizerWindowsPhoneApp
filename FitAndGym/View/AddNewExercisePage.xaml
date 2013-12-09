@@ -13,7 +13,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
 
@@ -70,15 +70,14 @@
                     <TextBlock Text="{Binding Path=LocalizedResources.NewExerciseIntensityText, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" FontSize="25" />
                     <Grid Grid.Row="1" Grid.Column="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="116*" />
-                            <ColumnDefinition Width="175*"/>
+                            <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
                         <!--Control-->
-                        <toolkit:ListPicker SelectedItem="{Binding Intensity, Mode=TwoWay}" IsEnabled="{Binding IntensityActive, Mode=TwoWay}" x:Name="NewExIntensityListPicker" Grid.Column="0" ItemTemplate="{StaticResource ListPickerDataTemplate}" Grid.ColumnSpan="2" />
+                        <toolkit:ListPicker SelectedItem="{Binding Intensity, Mode=TwoWay}" IsEnabled="{Binding IntensityActive, Mode=TwoWay}" x:Name="NewExIntensityListPicker" Grid.Column="0" ItemTemplate="{StaticResource ListPickerDataTemplate}" />
                         <!--CheckBox-->
-                        <CheckBox IsChecked="{Binding IntensityActive, Mode=TwoWay}" x:Name="NewExIntensityActiveCheckBox" Grid.Column="2" VerticalAlignment="Center" Margin="0,6" />
+                        <CheckBox IsChecked="{Binding IntensityActive, Mode=TwoWay}" x:Name="NewExIntensityActiveCheckBox" Grid.Column="1" VerticalAlignment="Center" Margin="0,6" />
                     </Grid>
 
                     <!--Duration Block-->
@@ -103,9 +102,9 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="70" />
-                        <ColumnDefinition Width="37*" />
+                        <ColumnDefinition Width="3*" />
                         <ColumnDefinition Width="70" />
-                        <ColumnDefinition Width="34*" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />

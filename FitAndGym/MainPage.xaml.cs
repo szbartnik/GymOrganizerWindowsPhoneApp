@@ -79,7 +79,7 @@ namespace FitAndGym
 
         void infoButton_Click(object sender, EventArgs e)
         {
-            string firstLine = String.Format("{0}\n{1}",
+            string firstLine = String.Format("\n{0}\n{1}",
                 AppResources.DesignedAndCreatedBySentence,
                 AppResources.CreatorNameAndSurname);
 
@@ -93,10 +93,10 @@ namespace FitAndGym
 
         private void TrainingDaysList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            if (TrainingDaysList.SelectedItem is TrainingDay)
+            if ((sender as LongListSelector).SelectedItem is TrainingDay)
             {
                 var listOfExercises = new List<Exercise>();
-                var trainingToShow = (TrainingDaysList.SelectedItem as TrainingDay).ExConns.ToList();
+                var trainingToShow = ((sender as LongListSelector).SelectedItem as TrainingDay).ExConns.ToList();
 
                 trainingToShow.ForEach(x => listOfExercises.Add(x.Exercise));
                 listOfExercises.Sort((tr1, tr2) => tr1.ExerciseName.CompareTo(tr2.ExerciseName));
@@ -104,6 +104,7 @@ namespace FitAndGym
                 CustomMessageBox messageBox = new CustomMessageBox()
                 {
                     Caption = AppResources.ConnectedExercisesMessageBoxHeader,
+                    Message = ((sender as LongListSelector).SelectedItem as TrainingDay).OtherInfo ,
                     Content = listOfExercises,
                     ContentTemplate = (DataTemplate)this.LayoutRoot.Resources["ListOfExercisesOfTrainingTemplate"],
                     LeftButtonContent = "OK"
@@ -120,21 +121,22 @@ namespace FitAndGym
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            string page;
-            string action;
-
-            if (NavigationContext.QueryString.TryGetValue("PivotMain.SelectedIndex", out page)
-                && e.NavigationMode != NavigationMode.Back)
+            if (e.NavigationMode != NavigationMode.Back)
             {
-                if      (page == "0") PivotMain.SelectedIndex = 0;
-                else if (page == "1") PivotMain.SelectedIndex = 1;
-                else if (page == "2") PivotMain.SelectedIndex = 2;
-            }
+                string page;
+                if (NavigationContext.QueryString.TryGetValue("PivotMain.SelectedIndex", out page))
+                {
+                    if (page == "0") PivotMain.SelectedIndex = 0;
+                    else if (page == "1") PivotMain.SelectedIndex = 1;
+                    else if (page == "2") PivotMain.SelectedIndex = 2;
+                }
 
-            if (NavigationContext.QueryString.TryGetValue("viewBag", out action))
-            {
-               // if (action == "addedTraining")
+                string action;
+                if (NavigationContext.QueryString.TryGetValue("viewBag", out action))
+                {
+                    // if (action == "addedTraining")
 
+                }
             }
         }
 

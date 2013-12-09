@@ -15,7 +15,9 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" BackKeyPress="PhoneApplicationPage_BackKeyPress">
+    shell:SystemTray.Opacity="0.1"
+    shell:SystemTray.IsVisible="True"
+    BackKeyPress="PhoneApplicationPage_BackKeyPress">
     
     <Grid x:Name="LayoutRoot">
         <Grid.Resources>
@@ -105,7 +107,7 @@
                         toolkit:TiltEffect.IsTiltEnabled="True"
 					    ItemTemplate="{StaticResource ExercisesListTemplate}"
                         MinHeight="200"
-                        MaxHeight="500"/>
+                        MaxHeight="400"/>
                 </ScrollViewer>
             </DataTemplate>
 
@@ -123,6 +125,13 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10 0 10 0">
             <phone:Pivot x:Name="PivotMain" Margin="0 -22 0 0" SelectionChanged="Pivot_SelectionChanged">
                 <phone:PivotItem Header="{Binding LocalizedResources.IncomingTrainingsPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
+                    <phone:LongListSelector x:Name="IncomingTrainingDaysList"
+                        LayoutMode="Grid"
+						Tap="TrainingDaysList_Tap"
+						ItemsSource="{Binding IncomingTrainingDays}"
+                        GridCellSize="210 200"
+                        toolkit:TiltEffect.IsTiltEnabled="True"
+                        ItemTemplate="{StaticResource TrainingsListTemplate}" />
                 </phone:PivotItem>
                 <phone:PivotItem Header="{Binding LocalizedResources.TrainingDaysPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
                     <phone:LongListSelector x:Name="TrainingDaysList"
