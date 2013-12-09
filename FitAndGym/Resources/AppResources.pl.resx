@@ -303,4 +303,30 @@ info</value>
   <data name="String2" xml:space="preserve">
     <value />
   </data>
+  <data name="AboutSentence" xml:space="preserve">
+    <value>O aplikacji</value>
+  </data>
+  <data name="ConnectedExercisesMessageBoxHeader" xml:space="preserve">
+    <value>Skojarzone ćwiczenia treningu</value>
+  </data>
+  <data name="CreatorEmail" xml:space="preserve">
+    <value>szbartnik@gmail.com</value>
+  </data>
+  <data name="CreatorNameAndSurname" xml:space="preserve">
+    <value>Szymon Bartnik</value>
+  </data>
+  <data name="DesignedAndCreatedBySentence" xml:space="preserve">
+    <value>Zaprojektowane i stworzeon przez </value>
+  </data>
+  <data name="IncomingTrainingsPivotHeader" xml:space="preserve">
+    <value>Nadchodzące</value>
+  </data>
+  <data name="InfoAppBar" xml:space="preserve">
+    <value>o aplikacji</value>
+    <comment>for ApplicationBar - max 11 lower-case chars</comment>
+  </data>
+  <data name="RateAppBar" xml:space="preserve">
+    <value>oceń aplikację</value>
+    <comment>for ApplicationBar - max 11 lower-case chars</comment>
+  </data>
 </root>

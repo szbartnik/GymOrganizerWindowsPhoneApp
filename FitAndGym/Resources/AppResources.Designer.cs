@@ -61,6 +61,15 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About app.
+        /// </summary>
+        public static string AboutSentence {
+            get {
+                return ResourceManager.GetString("AboutSentence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to create new.
         /// </summary>
         public static string AddExerciseAppBar {
@@ -151,11 +160,47 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exercises of the training.
+        /// </summary>
+        public static string ConnectedExercisesMessageBoxHeader {
+            get {
+                return ResourceManager.GetString("ConnectedExercisesMessageBoxHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to szbartnik@gmail.com.
+        /// </summary>
+        public static string CreatorEmail {
+            get {
+                return ResourceManager.GetString("CreatorEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Szymon Bartnik.
+        /// </summary>
+        public static string CreatorNameAndSurname {
+            get {
+                return ResourceManager.GetString("CreatorNameAndSurname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string DeleteWord {
             get {
                 return ResourceManager.GetString("DeleteWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Designed and created by.
+        /// </summary>
+        public static string DesignedAndCreatedBySentence {
+            get {
+                return ResourceManager.GetString("DesignedAndCreatedBySentence", resourceCulture);
             }
         }
         
@@ -256,6 +301,24 @@ namespace FitAndGym.Resources {
         public static string HelpInTrainingPageAppBar {
             get {
                 return ResourceManager.GetString("HelpInTrainingPageAppBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incoming .
+        /// </summary>
+        public static string IncomingTrainingsPivotHeader {
+            get {
+                return ResourceManager.GetString("IncomingTrainingsPivotHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to about app.
+        /// </summary>
+        public static string InfoAppBar {
+            get {
+                return ResourceManager.GetString("InfoAppBar", resourceCulture);
             }
         }
         
@@ -446,6 +509,15 @@ namespace FitAndGym.Resources {
         public static string OtherInfoCaptionOnTheMainPage {
             get {
                 return ResourceManager.GetString("OtherInfoCaptionOnTheMainPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to rate app.
+        /// </summary>
+        public static string RateAppBar {
+            get {
+                return ResourceManager.GetString("RateAppBar", resourceCulture);
             }
         }
         

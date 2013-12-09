@@ -144,6 +144,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\AboutMessageBox.cs" />
     <Compile Include="Utilities\DebugTextWriter.cs" />
     <Compile Include="ViewModels\TrainingPageViewModel.cs" />
     <Compile Include="ViewModels\ExercisePageViewModel.cs" />
@@ -240,6 +241,10 @@
     <Content Include="Images\feature.search.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\info.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\like.png" />
     <Content Include="Images\minus.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

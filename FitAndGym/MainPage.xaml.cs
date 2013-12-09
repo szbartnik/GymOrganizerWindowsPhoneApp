@@ -11,6 +11,8 @@ using FitAndGym.Resources;
 using FitAndGym.Models;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Phone.Tasks;
+using FitAndGym.Utilities;
 
 namespace FitAndGym
 {
@@ -18,6 +20,7 @@ namespace FitAndGym
     {
         private ApplicationBar _exercisesApplicationBar = null;
         private ApplicationBar _trainingsApplicationBar = null;
+        private ApplicationBar _infoApplicationBar = null;
 
         public MainPage()
         {
@@ -48,16 +51,78 @@ namespace FitAndGym
             addNewExerciseButton.Click += addNewExerciseButton_Click;
             addNewExerciseButton.Text = AppResources.AddExerciseAppBar;
             _exercisesApplicationBar.Buttons.Add(addNewExerciseButton);
+
+            //
+            // ApplicationBar for Incoming Pivot Item
+
+            _infoApplicationBar = new ApplicationBar();
+
+            var infoButton = new ApplicationBarIconButton(new Uri("/Images/info.png", UriKind.RelativeOrAbsolute));
+            infoButton.Click += infoButton_Click;
+            infoButton.Text = AppResources.InfoAppBar;
+
+            var rateButton = new ApplicationBarIconButton(new Uri("/Images/like.png", UriKind.RelativeOrAbsolute));
+            rateButton.Click += rateButton_Click;
+            rateButton.Text = AppResources.RateAppBar;
+
+            _infoApplicationBar.Buttons.Add(infoButton);
+            _infoApplicationBar.Buttons.Add(rateButton);
         }
 
         #region Events Stuff
+
+        void rateButton_Click(object sender, EventArgs e)
+        {
+            MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
+            marketplaceReviewTask.Show();
+        }
+
+        void infoButton_Click(object sender, EventArgs e)
+        {
+            string firstLine = String.Format("{0}\n{1}",
+                AppResources.DesignedAndCreatedBySentence,
+                AppResources.CreatorNameAndSurname);
+
+            AboutMessageBox.ShowAboutAppMessageBox(
+                AppResources.ApplicationTitle,
+                firstLine,
+                AppResources.CreatorNameAndSurname,
+                AppResources.CreatorEmail,
+                AppResources.AboutSentence);
+        }
 
         private void TrainingDaysList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (TrainingDaysList.SelectedItem is TrainingDay)
             {
+                var listOfExercises = new List<Exercise>();
                 var trainingToShow = TrainingDaysList.SelectedItem as TrainingDay;
-                Dispatcher.BeginInvoke(() => MessageBox.Show(trainingToShow.ToString()));
+                trainingToShow.ExConns.ToList().ForEach(x => listOfExercises.Add(x.Exercise));
+
+                var longListSelector = new LongListSelector()
+                {
+                    Margin = new Thickness(0, 10, 0, 0),
+                    LayoutMode = LongListSelectorLayoutMode.Grid,
+                    ItemsSource = listOfExercises,
+                    GridCellSize = new Size(210, 200),
+                    ItemTemplate = (DataTemplate)this.LayoutRoot.Resources["ExercisesListTemplate"],
+                    Height = 600,
+                };
+                longListSelector.Tap += ExercisesList_Tap;
+                
+                    var scroll = new ScrollViewer()
+                {
+                    Content = longListSelector,
+                };
+
+                CustomMessageBox messageBox = new CustomMessageBox()
+                {
+                    Caption = AppResources.ConnectedExercisesMessageBoxHeader,
+                    Content = scroll,
+                    DataContext = listOfExercises,
+                    LeftButtonContent = "OK",
+                };
+                messageBox.Show();
             }
         }
 
@@ -74,8 +139,9 @@ namespace FitAndGym
 
             if (NavigationContext.QueryString.TryGetValue("PivotMain.SelectedIndex", out page))
             {
-                if (page == "0") PivotMain.SelectedIndex = 0;
+                if      (page == "0") PivotMain.SelectedIndex = 0;
                 else if (page == "1") PivotMain.SelectedIndex = 1;
+                else if (page == "2") PivotMain.SelectedIndex = 2;
             }
 
             if (NavigationContext.QueryString.TryGetValue("viewBag", out action))
@@ -87,10 +153,11 @@ namespace FitAndGym
 
         private void ExercisesList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            if (ExercisesList.SelectedItem is Exercise)
+            if ((sender as LongListSelector).SelectedItem is Exercise)
             {
                 var exerciseToShow = ExercisesList.SelectedItem as Exercise;
-                Dispatcher.BeginInvoke(() => MessageBox.Show(exerciseToShow.ToString()));
+                if(exerciseToShow.OtherInfo != String.Empty)
+                    Dispatcher.BeginInvoke(() => MessageBox.Show(exerciseToShow.OtherInfo, AppResources.OtherInfo2CaptionOnTheMainPage, MessageBoxButton.OK));
             }
         }
 
@@ -105,9 +172,12 @@ namespace FitAndGym
             switch (((Pivot)sender).SelectedIndex)
             {
                 case 0:
-                    ApplicationBar = _trainingsApplicationBar;
+                    ApplicationBar = _infoApplicationBar;
                     break;
                 case 1:
+                    ApplicationBar = _trainingsApplicationBar;
+                    break;
+                case 2:
                     ApplicationBar = _exercisesApplicationBar;
                     break;
             }

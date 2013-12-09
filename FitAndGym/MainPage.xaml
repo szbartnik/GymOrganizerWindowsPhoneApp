@@ -16,7 +16,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True" BackKeyPress="PhoneApplicationPage_BackKeyPress">
-
+    
     <Grid x:Name="LayoutRoot">
         <Grid.Resources>
             <converters:EnumToStringConverter x:Name="EnumToStringConverter" />
@@ -59,8 +59,9 @@
             </DataTemplate>
             <DataTemplate x:Key="ExercisesListTemplate">
                 <StackPanel Margin="10 0 0 10" Background="{StaticResource PhoneAccentBrush}" Orientation="Vertical">
-                    <TextBlock Text="{Binding ExerciseName}" Height="78" Margin="5" TextWrapping="Wrap" />
-                    <Grid Margin="5 0 5 0" Height="110">
+                    <TextBlock Text="{Binding ExerciseName}" Height="75" Margin="5" TextWrapping="Wrap" />
+                    <Rectangle Height="3" Fill="{StaticResource PhoneForegroundBrush}" />
+                    <Grid Margin="5 0 5 0" Height="100">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*" />
                             <RowDefinition Height="1*" />
@@ -78,11 +79,11 @@
                         <TextBlock Text="{Binding LocalizedResources.Duration2CaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" Grid.Row="3" Grid.Column="0" />
                         <TextBlock Text="{Binding LocalizedResources.OtherInfo2CaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" Grid.Row="4" Grid.Column="0" />
 
-                        <TextBlock Text="{Binding AmountOfSets}" TextAlignment="Center" FontSize="16" FontWeight="Bold" Grid.Row="0" Grid.Column="1" />
-                        <TextBlock Text="{Binding AmountOfReps}" TextAlignment="Center" FontSize="16" FontWeight="Bold" Grid.Row="1" Grid.Column="1" />
-                        <TextBlock Text="{Binding Intensity, Converter={StaticResource EnumToStringConverter}}" TextAlignment="Center" FontSize="16" FontWeight="Bold" Grid.Row="2" Grid.Column="1" />
-                        <TextBlock Text="{Binding DurationInMinutes, Converter={StaticResource SecondsToMinutesConverter}}" TextAlignment="Center" FontSize="16" FontWeight="Bold" Grid.Row="3" Grid.Column="1" />
-                        <TextBlock TextAlignment="Center" Text="{Binding OtherInfo, Converter={StaticResource OtherInfoExistanceConverter}}" FontSize="16" FontWeight="Bold" Grid.Row="4" Grid.Column="1" />
+                        <TextBlock Text="{Binding AmountOfSets}"  FontSize="15" FontWeight="Bold" Grid.Row="0" Grid.Column="1" />
+                        <TextBlock Text="{Binding AmountOfReps}"  FontSize="15" FontWeight="Bold" Grid.Row="1" Grid.Column="1" />
+                        <TextBlock Text="{Binding Intensity, Converter={StaticResource EnumToStringConverter}}" FontSize="15" FontWeight="Bold" Grid.Row="2" Grid.Column="1" />
+                        <TextBlock Text="{Binding DurationInMinutes, Converter={StaticResource SecondsToMinutesConverter}}" FontSize="15" FontWeight="Bold" Grid.Row="3" Grid.Column="1" />
+                        <TextBlock Text="{Binding OtherInfo, Converter={StaticResource OtherInfoExistanceConverter}}" FontSize="15" FontWeight="Bold" Grid.Row="4" Grid.Column="1" />
                     </Grid>
                     <toolkit:ContextMenuService.ContextMenu>
                         <toolkit:ContextMenu>
@@ -105,6 +106,8 @@
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10 0 10 0">
             <phone:Pivot x:Name="PivotMain" Margin="0 -22 0 0" SelectionChanged="Pivot_SelectionChanged">
+                <phone:PivotItem Header="{Binding LocalizedResources.IncomingTrainingsPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
+                </phone:PivotItem>
                 <phone:PivotItem Header="{Binding LocalizedResources.TrainingDaysPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
                     <phone:LongListSelector x:Name="TrainingDaysList"
                         LayoutMode="Grid"

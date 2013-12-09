@@ -297,4 +297,29 @@ info</value>
   <data name="OtherInfo2CaptionOnTheMainPage" xml:space="preserve">
     <value>Other info</value>
   </data>
+  <data name="AboutSentence" xml:space="preserve">
+    <value>About app</value>
+  </data>
+  <data name="ConnectedExercisesMessageBoxHeader" xml:space="preserve">
+    <value>Exercises of the training</value>
+  </data>
+  <data name="CreatorEmail" xml:space="preserve">
+    <value>szbartnik@gmail.com</value>
+  </data>
+  <data name="CreatorNameAndSurname" xml:space="preserve">
+    <value>Szymon Bartnik</value>
+  </data>
+  <data name="DesignedAndCreatedBySentence" xml:space="preserve">
+    <value>Designed and created by</value>
+  </data>
+  <data name="IncomingTrainingsPivotHeader" xml:space="preserve">
+    <value>Incoming </value>
+  </data>
+  <data name="InfoAppBar" xml:space="preserve">
+    <value>about app</value>
+  </data>
+  <data name="RateAppBar" xml:space="preserve">
+    <value>rate app</value>
+    <comment>for ApplicationBar - max 11 lower-case chars</comment>
+  </data>
 </root>

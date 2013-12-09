@@ -108,7 +108,7 @@ namespace FitAndGym.View
             if (trainingToUpdate != null)
             {
                 App.FitAndGymViewModel.UpdateTraining(trainingToUpdate);
-                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedTraining&PivotMain.SelectedIndex=0", UriKind.RelativeOrAbsolute));
+                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedTraining&PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
             }
         }
 
@@ -123,7 +123,7 @@ namespace FitAndGym.View
             if (newTraining != null)
             {
                 App.FitAndGymViewModel.AddNewTraining(newTraining);
-                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedTraining&PivotMain.SelectedIndex=0", UriKind.RelativeOrAbsolute));
+                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedTraining&PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
             }
         }
 
