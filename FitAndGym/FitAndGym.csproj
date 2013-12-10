@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="Converters\EnumToStringConverter.cs" />
     <Compile Include="Converters\OtherInfoExistanceConverter.cs" />
+    <Compile Include="Converters\RelativeTimeConverter.cs" />
     <Compile Include="Converters\SecondsToMinutesConverter.cs" />
     <Compile Include="Infrastructure\TimeSpanToMinutesAndSeconds.cs" />
     <Compile Include="LocalizedStrings.cs" />

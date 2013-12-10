@@ -329,4 +329,22 @@ info</value>
     <value>oceń aplikację</value>
     <comment>for ApplicationBar - max 11 lower-case chars</comment>
   </data>
+  <data name="TimeConverterAgoWord" xml:space="preserve">
+    <value>temu</value>
+  </data>
+  <data name="TimeConverterDayWord" xml:space="preserve">
+    <value>d</value>
+  </data>
+  <data name="TimeConverterHourWord" xml:space="preserve">
+    <value>h</value>
+  </data>
+  <data name="TimeConverterInWord" xml:space="preserve">
+    <value>za</value>
+  </data>
+  <data name="TimeConverterMinuteWord" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="TimeConverterSecondWord" xml:space="preserve">
+    <value>s</value>
+  </data>
 </root>

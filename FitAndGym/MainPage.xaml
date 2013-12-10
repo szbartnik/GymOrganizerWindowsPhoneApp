@@ -23,14 +23,15 @@
         <Grid.Resources>
             <converters:EnumToStringConverter x:Name="EnumToStringConverter" />
             <converters:OtherInfoExistanceConverter x:Name="OtherInfoExistanceConverter" />
+            <converters:RelativeTimeConverter x:Name="RelativeTimeConverter" />
             <converters:SecondsToMinutesConverter x:Name="SecondsToMinutesConverter" />
-            <toolkit:FullViewDateTimeConverter x:Key="DailyDateTimeConverter"/>
+            <toolkit:FullViewDateTimeConverter x:Key="FullViewDateTimeConverter"/>
             
             <DataTemplate x:Key="TrainingsListTemplate">
                 <StackPanel Margin="10 0 0 10" Background="{StaticResource PhoneAccentBrush}" Orientation="Vertical">
                     <TextBlock Height="82" Margin="5 1 5 0" Text="{Binding TrainingDayName}" TextWrapping="Wrap" />
                     <Rectangle Height="3" Fill="{StaticResource PhoneForegroundBrush}" />
-                    <TextBlock Margin="5 0 5 0" Text="{Binding StartTime, Converter={StaticResource DailyDateTimeConverter}}" TextAlignment="Center" />
+                    <TextBlock Margin="5 0 5 0" Text="{Binding StartTime, Converter={StaticResource FullViewDateTimeConverter}}" TextAlignment="Center" />
                     <Rectangle Height="3" Fill="{StaticResource PhoneForegroundBrush}" />
                     <Grid Margin="5 5 5 0">
                         <Grid.RowDefinitions>
@@ -59,6 +60,41 @@
                     </toolkit:ContextMenuService.ContextMenu>
                 </StackPanel>
             </DataTemplate>
+
+            <DataTemplate x:Key="IncomingTrainingsListTemplate">
+                <StackPanel Margin="10 0 0 10" Background="{StaticResource PhoneAccentBrush}" Orientation="Vertical">
+                    <TextBlock Height="82" Margin="5 1 5 0" Text="{Binding TrainingDayName}" TextWrapping="Wrap" />
+                    <Rectangle Height="3" Fill="{StaticResource PhoneForegroundBrush}" />
+                    <TextBlock Margin="5 0 5 0" Text="{Binding StartTime, Converter={StaticResource RelativeTimeConverter}}" TextAlignment="Center" />
+                    <Rectangle Height="3" Fill="{StaticResource PhoneForegroundBrush}" />
+                    <Grid Margin="5 5 5 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding LocalizedResources.WaterCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" TextAlignment="Center"  Grid.Row="0" Grid.Column="0" />
+                        <TextBlock Text="{Binding LocalizedResources.DurationCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" TextAlignment="Center"  Grid.Row="0" Grid.Column="1" />
+                        <TextBlock Text="{Binding LocalizedResources.OtherInfoCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" FontSize="15" TextAlignment="Center"  Grid.Row="0" Grid.Column="2" />
+
+                        <TextBlock Text="{Binding Hydration}" TextAlignment="Center" FontSize="17" FontWeight="Bold" Grid.Row="1" Grid.Column="0" />
+                        <TextBlock Text="{Binding DurationInMinutes, Converter={StaticResource SecondsToMinutesConverter}}" TextAlignment="Center" FontSize="17" FontWeight="Bold" Grid.Row="1" Grid.Column="1" />
+                        <TextBlock Text="{Binding OtherInfo, Converter={StaticResource OtherInfoExistanceConverter}}" TextAlignment="Center" FontSize="17" FontWeight="Bold" Grid.Row="1" Grid.Column="2" />
+                    </Grid>
+                    <toolkit:ContextMenuService.ContextMenu>
+                        <toolkit:ContextMenu>
+                            <toolkit:MenuItem x:Name="EditTrainingContextMenuItem" Click="EditTrainingContextMenuItem_Click"  Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:MenuItem x:Name="DeleteTrainingContextMenuItem" Click="DeleteTrainingContextMenuItem_Click" Header="{Binding LocalizedResources.DeleteWord, Source={StaticResource LocalizedStrings}}" />
+                        </toolkit:ContextMenu>
+                    </toolkit:ContextMenuService.ContextMenu>
+                </StackPanel>
+            </DataTemplate>
+
             <DataTemplate x:Key="ExercisesListTemplate">
                 <StackPanel Margin="10 0 0 10" Background="{StaticResource PhoneAccentBrush}" Orientation="Vertical">
                     <TextBlock Text="{Binding ExerciseName}" Height="83" Margin="5 1 5 0" TextWrapping="Wrap" />
@@ -96,6 +132,42 @@
                 </StackPanel>
             </DataTemplate>
 
+            <DataTemplate x:Key="ExercisesOfIncomingTrainingListTemplate">
+                <StackPanel Margin="10 0 0 10" Background="{StaticResource PhoneAccentBrush}" Orientation="Vertical">
+                    <TextBlock Text="{Binding ExerciseName}" Height="83" Margin="5 1 5 0" TextWrapping="Wrap" />
+                    <Rectangle Height="3" Fill="{StaticResource PhoneForegroundBrush}" />
+                    <Grid Margin="5 0 5 0" Height="100">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding LocalizedResources.AmountOfSetsCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15"  Grid.Row="0" Grid.Column="0" />
+                        <TextBlock Text="{Binding LocalizedResources.AmountOfRepsCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" Grid.Row="1" Grid.Column="0" />
+                        <TextBlock Text="{Binding LocalizedResources.IntensityCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" Grid.Row="2" Grid.Column="0" />
+                        <TextBlock Text="{Binding LocalizedResources.Duration2CaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" Grid.Row="3" Grid.Column="0" />
+                        <TextBlock Text="{Binding LocalizedResources.OtherInfo2CaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" Grid.Row="4" Grid.Column="0" />
+
+                        <TextBlock Text="{Binding AmountOfSets}"  FontSize="15" FontWeight="Bold" Grid.Row="0" Grid.Column="1" />
+                        <TextBlock Text="{Binding AmountOfReps}"  FontSize="15" FontWeight="Bold" Grid.Row="1" Grid.Column="1" />
+                        <TextBlock Text="{Binding Intensity, Converter={StaticResource EnumToStringConverter}}" FontSize="15" FontWeight="Bold" Grid.Row="2" Grid.Column="1" />
+                        <TextBlock Text="{Binding DurationInMinutes, Converter={StaticResource SecondsToMinutesConverter}}" FontSize="15" FontWeight="Bold" Grid.Row="3" Grid.Column="1" />
+                        <TextBlock Text="{Binding OtherInfo, Converter={StaticResource OtherInfoExistanceConverter}}" FontSize="15" FontWeight="Bold" Grid.Row="4" Grid.Column="1" />
+                    </Grid>
+                    <toolkit:ContextMenuService.ContextMenu>
+                        <toolkit:ContextMenu IsZoomEnabled="False">
+                            <toolkit:MenuItem x:Name="EditExerciseContextMenuItem" Click="EditExerciseContextMenuItem_Click"  Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
+                        </toolkit:ContextMenu>
+                    </toolkit:ContextMenuService.ContextMenu>
+                </StackPanel>
+            </DataTemplate>
+
             <DataTemplate x:Key="ListOfExercisesOfTrainingTemplate">
                 <ScrollViewer>
                     <phone:LongListSelector
@@ -105,7 +177,7 @@
                         Margin="10 10 0 0"
                         GridCellSize="210 200"
                         toolkit:TiltEffect.IsTiltEnabled="True"
-					    ItemTemplate="{StaticResource ExercisesListTemplate}"
+					    ItemTemplate="{StaticResource ExercisesOfIncomingTrainingListTemplate}"
                         MinHeight="200"
                         MaxHeight="400"/>
                 </ScrollViewer>
@@ -131,7 +203,7 @@
 						ItemsSource="{Binding IncomingTrainingDays}"
                         GridCellSize="210 200"
                         toolkit:TiltEffect.IsTiltEnabled="True"
-                        ItemTemplate="{StaticResource TrainingsListTemplate}" />
+                        ItemTemplate="{StaticResource IncomingTrainingsListTemplate}" />
                 </phone:PivotItem>
                 <phone:PivotItem Header="{Binding LocalizedResources.TrainingDaysPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
                     <phone:LongListSelector x:Name="TrainingDaysList"

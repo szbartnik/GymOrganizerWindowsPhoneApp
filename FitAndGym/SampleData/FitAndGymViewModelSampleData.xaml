@@ -5,7 +5,7 @@
     xmlns:m="clr-namespace:FitAndGym.Models">
 
     <vm:FitAndGymViewModel.TrainingDays>
-        <m:TrainingDay TrainingDayId="1" TrainingDayName="Pierwszyfdsfsdfsdfasdfdasfasfdsafasfdsfsdfdasfdsf dsfa sdfasd fdas fadsfsdafdsfsdafdsfasfdsfasdffa sdfadsfdsfadsfdasf afds fdasf dzień" StartTime="2013-04-23" DurationInMinutes="20" Hydration="2.3" OtherInfo="Nic tu nie ma" />
+        <m:TrainingDay TrainingDayId="1" TrainingDayName="Pierwszyfdsfsdfsdfasdfdasfasfdsafasfdsfsdfdasfdsf dsfa sdfasd fdas fadsfsdafdsfsdafdsfasfdsfasdffa sdfadsfdsfadsfdasf afds fdasf dzień" StartTime="2013-12-11" DurationInMinutes="20" Hydration="2.3" OtherInfo="Nic tu nie ma" />
         <m:TrainingDay TrainingDayId="2" TrainingDayName="Drugi dzień" StartTime="2013-04-22" DurationInMinutes="40" Hydration="1.9" OtherInfo="Hehe" />
         <m:TrainingDay TrainingDayId="3" TrainingDayName="Trzeci dzień" StartTime="2013-05-18" DurationInMinutes="50" Hydration="1.1" OtherInfo="Koment" />
         <m:TrainingDay TrainingDayId="4" TrainingDayName="Trzeci dzień vol. 2" StartTime="2013-05-18" DurationInMinutes="20" OtherInfo="Niccc" />

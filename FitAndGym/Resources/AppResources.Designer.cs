@@ -567,6 +567,60 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ago.
+        /// </summary>
+        public static string TimeConverterAgoWord {
+            get {
+                return ResourceManager.GetString("TimeConverterAgoWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to d.
+        /// </summary>
+        public static string TimeConverterDayWord {
+            get {
+                return ResourceManager.GetString("TimeConverterDayWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to h.
+        /// </summary>
+        public static string TimeConverterHourWord {
+            get {
+                return ResourceManager.GetString("TimeConverterHourWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to in.
+        /// </summary>
+        public static string TimeConverterInWord {
+            get {
+                return ResourceManager.GetString("TimeConverterInWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.
+        /// </summary>
+        public static string TimeConverterMinuteWord {
+            get {
+                return ResourceManager.GetString("TimeConverterMinuteWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to s.
+        /// </summary>
+        public static string TimeConverterSecondWord {
+            get {
+                return ResourceManager.GetString("TimeConverterSecondWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Trainings.
         /// </summary>
         public static string TrainingDaysPivotHeader {

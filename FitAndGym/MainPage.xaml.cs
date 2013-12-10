@@ -130,13 +130,6 @@ namespace FitAndGym
                     else if (page == "1") PivotMain.SelectedIndex = 1;
                     else if (page == "2") PivotMain.SelectedIndex = 2;
                 }
-
-                string action;
-                if (NavigationContext.QueryString.TryGetValue("viewBag", out action))
-                {
-                    // if (action == "addedTraining")
-
-                }
             }
         }
 

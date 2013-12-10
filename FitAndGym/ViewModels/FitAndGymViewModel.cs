@@ -50,7 +50,7 @@ namespace FitAndGym.ViewModels
         {
             get
             {
-                return _trainingDays.Where(x => x.StartTime >= (x.DurationInMinutes.HasValue ? (DateTime.Now + TimeSpan.FromSeconds(x.DurationInMinutes.Value)) : DateTime.Now)).Take(8).ToList();
+                return _trainingDays.Where(x => x.StartTime >= (x.DurationInMinutes.HasValue ? (DateTime.Now - TimeSpan.FromSeconds(x.DurationInMinutes.Value)) : DateTime.Now)).Take(6).ToList();
             }
         }
 
