@@ -75,6 +75,9 @@ namespace FitAndGym.ViewModels
         public TrainingPageViewModel(TrainingDay training)
         {
             _selectedExercises = new ObservableCollection<Exercise>();
+            foreach (ExTrDayConn conn in training.ExConns)
+                _selectedExercises.Add(conn.Exercise);
+
             _hydrationActive = training.Hydration.HasValue;
             _durationActive = training.DurationInMinutes.HasValue;
             _startTime = training.StartTime;

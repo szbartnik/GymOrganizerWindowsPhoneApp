@@ -18,6 +18,7 @@ namespace FitAndGym.View
     {
         private TrainingPageViewModel _viewModel;
         private TrainingDay _trToEdit;
+        private bool isLoaded = false;
 
         public AddNewTrainingPage()
         {
@@ -151,15 +152,18 @@ namespace FitAndGym.View
 
         private void ListOfExercises_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count > 0)
+            if (isLoaded)
             {
-                var selectedExercise = e.AddedItems[0] as Exercise;
-                _viewModel.SelectedExercises.Add(selectedExercise);
-            }
-            else if (e.RemovedItems.Count > 0)
-            {
-                var unselectedExercise = e.RemovedItems[0] as Exercise;
-                _viewModel.SelectedExercises.Remove(unselectedExercise);
+                if (e.AddedItems.Count > 0)
+                {
+                    var selectedExercise = e.AddedItems[0] as Exercise;
+                    _viewModel.SelectedExercises.Add(selectedExercise);
+                }
+                else if (e.RemovedItems.Count > 0)
+                {
+                    var unselectedExercise = e.RemovedItems[0] as Exercise;
+                    _viewModel.SelectedExercises.Remove(unselectedExercise);
+                }
             }
         }
 
@@ -187,11 +191,17 @@ namespace FitAndGym.View
 
         private void Root_Loaded(object sender, RoutedEventArgs e)
         {
+            isLoaded = false;
             if (_trToEdit != null)
             {
-                foreach (ExTrDayConn conn in _trToEdit.ExConns)
-                    ListOfExercises.SelectedItems.Add(conn.Exercise);
+                foreach (var item in _viewModel.SelectedExercises)
+                {
+                    var container = ListOfExercises.ContainerFromItem(item)
+                                          as LongListMultiSelectorItem;
+                    if (container != null) container.IsSelected = true;
+                }
             }
+            isLoaded = true;
         }
 
         private void NewTrOthersTextBox_TextChanged(object sender, TextChangedEventArgs e)
