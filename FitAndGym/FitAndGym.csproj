@@ -129,6 +129,7 @@
     <Compile Include="Converters\OtherInfoExistanceConverter.cs" />
     <Compile Include="Converters\RelativeTimeConverter.cs" />
     <Compile Include="Converters\SecondsToMinutesConverter.cs" />
+    <Compile Include="Converters\SwitchConverter.cs" />
     <Compile Include="Infrastructure\TimeSpanToMinutesAndSeconds.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -158,6 +159,9 @@
     <Compile Include="View\AddNewTrainingPage.xaml.cs">
       <DependentUpon>AddNewTrainingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\TrainingCopyActionsPage.xaml.cs">
+      <DependentUpon>TrainingCopyActionsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -183,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddNewTrainingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TrainingCopyActionsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

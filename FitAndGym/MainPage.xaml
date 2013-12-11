@@ -55,6 +55,7 @@
                     <toolkit:ContextMenuService.ContextMenu>
                         <toolkit:ContextMenu>
                             <toolkit:MenuItem x:Name="EditTrainingContextMenuItem" Click="EditTrainingContextMenuItem_Click"  Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:MenuItem x:Name="CopyTrainingContextMenuItem" Click="CopyTrainingContextMenuItem_Click" Header="{Binding LocalizedResources.CopyTrainingMenuItemText, Source={StaticResource LocalizedStrings}}" />
                             <toolkit:MenuItem x:Name="DeleteTrainingContextMenuItem" Click="DeleteTrainingContextMenuItem_Click" Header="{Binding LocalizedResources.DeleteWord, Source={StaticResource LocalizedStrings}}" />  
                         </toolkit:ContextMenu>
                     </toolkit:ContextMenuService.ContextMenu>
@@ -88,7 +89,7 @@
                     </Grid>
                     <toolkit:ContextMenuService.ContextMenu>
                         <toolkit:ContextMenu>
-                            <toolkit:MenuItem x:Name="EditTrainingContextMenuItem" Click="EditTrainingContextMenuItem_Click"  Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:MenuItem x:Name="EditTrainingContextMenuItem" Click="EditTrainingContextMenuItem_Click" Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
                             <toolkit:MenuItem x:Name="DeleteTrainingContextMenuItem" Click="DeleteTrainingContextMenuItem_Click" Header="{Binding LocalizedResources.DeleteWord, Source={StaticResource LocalizedStrings}}" />
                         </toolkit:ContextMenu>
                     </toolkit:ContextMenuService.ContextMenu>
@@ -182,7 +183,6 @@
                         MaxHeight="400"/>
                 </ScrollViewer>
             </DataTemplate>
-
         </Grid.Resources>
 
         <Grid.RowDefinitions>

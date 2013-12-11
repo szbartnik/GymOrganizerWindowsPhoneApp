@@ -240,7 +240,9 @@
     <value>Additional info</value>
   </data>
   <data name="HelpContentInManageTraining" xml:space="preserve">
-    <value>In the next step you will be able to set repeats for your new trening.</value>
+    <value>Later you will be able to clone your trainings (if you do it regularly for example).
+
+If you want to do it, after saving the current training tap &amp; hold your training on "Trainings" page and everything will be clear then.</value>
   </data>
   <data name="HelpHeaderInManageTraining" xml:space="preserve">
     <value>Help &amp; Info</value>
@@ -322,6 +324,24 @@ info</value>
     <value>rate app</value>
     <comment>for ApplicationBar - max 11 lower-case chars</comment>
   </data>
+  <data name="CopyTrainingMenuItemText" xml:space="preserve">
+    <value>Clone the training</value>
+  </data>
+  <data name="DaysCaption" xml:space="preserve">
+    <value>days</value>
+  </data>
+  <data name="DeleteOldTrainingsMenuText" xml:space="preserve">
+    <value>Delete old trainings</value>
+  </data>
+  <data name="FrequenceEveryDay" xml:space="preserve">
+    <value>everyday</value>
+  </data>
+  <data name="FrequenceWithoutRepeats" xml:space="preserve">
+    <value>once only</value>
+  </data>
+  <data name="SetFrequencyOfTrainingMessage" xml:space="preserve">
+    <value>Set the intervals between trainings</value>
+  </data>
   <data name="TimeConverterAgoWord" xml:space="preserve">
     <value>ago</value>
   </data>
@@ -339,5 +359,23 @@ info</value>
   </data>
   <data name="TimeConverterSecondWord" xml:space="preserve">
     <value>s</value>
+  </data>
+  <data name="TrainingCopyActionHeader" xml:space="preserve">
+    <value>Clone the training</value>
+  </data>
+  <data name="TrainingCopyActionCheckBoxCaption" xml:space="preserve">
+    <value>Clone trainings</value>
+  </data>
+  <data name="TrainingCopyActionsFrequency" xml:space="preserve">
+    <value>Repeat training</value>
+  </data>
+  <data name="EndDateOfCloningText" xml:space="preserve">
+    <value>The date of end of cloning trainings</value>
+  </data>
+  <data name="IntervalsBetweenTrainingsText" xml:space="preserve">
+    <value>Intervals between trainings (days)</value>
+  </data>
+  <data name="ProceedCloningAppBar" xml:space="preserve">
+    <value>accept</value>
   </data>
 </root>

@@ -42,6 +42,10 @@ namespace FitAndGym
             addNewTrainingButton.Text = AppResources.AddTrainingAppBar;
             _trainingsApplicationBar.Buttons.Add(addNewTrainingButton);
 
+            var deleteOldTrainingsMenuItem = new ApplicationBarMenuItem(AppResources.DeleteOldTrainingsMenuText);
+            deleteOldTrainingsMenuItem.Click += deleteOldTrainingsMenuItem_Click;
+            _trainingsApplicationBar.MenuItems.Add(deleteOldTrainingsMenuItem);
+
             //
             // ApplicationBar for Exercises Pivot Item
 
@@ -67,6 +71,11 @@ namespace FitAndGym
 
             _infoApplicationBar.Buttons.Add(infoButton);
             _infoApplicationBar.Buttons.Add(rateButton);
+        }
+
+        void deleteOldTrainingsMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #region Events Stuff
@@ -199,6 +208,13 @@ namespace FitAndGym
                         Application.Current.Terminate();
             });
             e.Cancel = true;
+        }
+
+        private void CopyTrainingContextMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var trainingToCopy = (sender as MenuItem).DataContext as TrainingDay;
+
+            NavigationService.Navigate(new Uri("/View/TrainingCopyActionsPage.xaml?trainingId=" + trainingToCopy.TrainingDayId, UriKind.RelativeOrAbsolute));
         }
 
         #endregion

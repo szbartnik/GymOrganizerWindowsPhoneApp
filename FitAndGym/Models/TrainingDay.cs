@@ -155,6 +155,24 @@ namespace FitAndGym.Models
 
         #endregion
 
+        public TrainingDay Copy()
+        {
+            var copiedTraining = new TrainingDay()
+            {
+                TrainingDayId = 0,
+                DurationInMinutes = this.DurationInMinutes,
+                TrainingDayName = this.TrainingDayName,
+                Hydration = this.Hydration,
+                StartTime = this.StartTime,
+                OtherInfo = this.OtherInfo,
+            };
+
+            foreach (ExTrDayConn item in this.ExConns)
+                copiedTraining.ExConns.Add(new ExTrDayConn() { Exercise = item.Exercise, TrainingDay = copiedTraining });
+
+            return copiedTraining;
+        }
+
         public override string ToString()
         {
             var str = new System.Text.StringBuilder();

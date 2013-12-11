@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using FitAndGym.Models;
 using FitAndGym.Resources;
+using FitAndGym.Utilities;
 using FitAndGym.ViewModels;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;

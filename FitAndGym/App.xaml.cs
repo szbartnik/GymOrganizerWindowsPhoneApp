@@ -11,6 +11,7 @@ using FitAndGym.Models;
 using System.IO.IsolatedStorage;
 using FitAndGym.ViewModels;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace FitAndGym
 {
@@ -249,11 +250,6 @@ namespace FitAndGym
 
                 throw;
             }
-        }
-
-        private void AddTrainingButton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

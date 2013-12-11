@@ -169,6 +169,15 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clone the training.
+        /// </summary>
+        public static string CopyTrainingMenuItemText {
+            get {
+                return ResourceManager.GetString("CopyTrainingMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to szbartnik@gmail.com.
         /// </summary>
         public static string CreatorEmail {
@@ -183,6 +192,24 @@ namespace FitAndGym.Resources {
         public static string CreatorNameAndSurname {
             get {
                 return ResourceManager.GetString("CreatorNameAndSurname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to days.
+        /// </summary>
+        public static string DaysCaption {
+            get {
+                return ResourceManager.GetString("DaysCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete old trainings.
+        /// </summary>
+        public static string DeleteOldTrainingsMenuText {
+            get {
+                return ResourceManager.GetString("DeleteOldTrainingsMenuText", resourceCulture);
             }
         }
         
@@ -242,6 +269,15 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The date of end of cloning trainings.
+        /// </summary>
+        public static string EndDateOfCloningText {
+            get {
+                return ResourceManager.GetString("EndDateOfCloningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to edit exercise.
         /// </summary>
         public static string ExercisePageTitleEditMode {
@@ -278,7 +314,27 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In the next step you will be able to set repeats for your new trening..
+        ///   Looks up a localized string similar to everyday.
+        /// </summary>
+        public static string FrequenceEveryDay {
+            get {
+                return ResourceManager.GetString("FrequenceEveryDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to once only.
+        /// </summary>
+        public static string FrequenceWithoutRepeats {
+            get {
+                return ResourceManager.GetString("FrequenceWithoutRepeats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Later you will be able to clone your trainings (if you do it regularly for example).
+        ///
+        ///If you want to do it, after saving the current training tap &amp; hold your training on &quot;Trainings&quot; page and everything will be clear then..
         /// </summary>
         public static string HelpContentInManageTraining {
             get {
@@ -373,6 +429,15 @@ namespace FitAndGym.Resources {
         public static string IntensityVeryLow {
             get {
                 return ResourceManager.GetString("IntensityVeryLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intervals between trainings (days).
+        /// </summary>
+        public static string IntervalsBetweenTrainingsText {
+            get {
+                return ResourceManager.GetString("IntervalsBetweenTrainingsText", resourceCulture);
             }
         }
         
@@ -513,6 +578,15 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to accept.
+        /// </summary>
+        public static string ProceedCloningAppBar {
+            get {
+                return ResourceManager.GetString("ProceedCloningAppBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to rate app.
         /// </summary>
         public static string RateAppBar {
@@ -545,6 +619,15 @@ namespace FitAndGym.Resources {
         public static string SaveChangesAppBar {
             get {
                 return ResourceManager.GetString("SaveChangesAppBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the intervals between trainings.
+        /// </summary>
+        public static string SetFrequencyOfTrainingMessage {
+            get {
+                return ResourceManager.GetString("SetFrequencyOfTrainingMessage", resourceCulture);
             }
         }
         
@@ -617,6 +700,33 @@ namespace FitAndGym.Resources {
         public static string TimeConverterSecondWord {
             get {
                 return ResourceManager.GetString("TimeConverterSecondWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clone trainings.
+        /// </summary>
+        public static string TrainingCopyActionCheckBoxCaption {
+            get {
+                return ResourceManager.GetString("TrainingCopyActionCheckBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clone the training.
+        /// </summary>
+        public static string TrainingCopyActionHeader {
+            get {
+                return ResourceManager.GetString("TrainingCopyActionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repeat training.
+        /// </summary>
+        public static string TrainingCopyActionsFrequency {
+            get {
+                return ResourceManager.GetString("TrainingCopyActionsFrequency", resourceCulture);
             }
         }
         

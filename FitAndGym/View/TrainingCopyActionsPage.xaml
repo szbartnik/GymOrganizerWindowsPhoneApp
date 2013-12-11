@@ -1,0 +1,59 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="FitAndGym.View.TrainingCopyActionsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    xmlns:converters="clr-namespace:FitAndGym.Converters"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.Resources>
+            <converters:SwitchConverter x:Name="SwitchConverter" />
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,0">
+            <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+            <TextBlock Text="{Binding Path=LocalizedResources.TrainingCopyActionHeader, Source={StaticResource LocalizedStrings}}" Margin="9,-14,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <toolkit:ToggleSwitch IsChecked="true" x:Name="cloneSwitch" Content="{Binding Path=LocalizedResources.TrainingCopyActionHeader, Source={StaticResource LocalizedStrings}}" />
+            <StackPanel Visibility="{Binding IsChecked, ElementName=cloneSwitch, Converter={StaticResource SwitchConverter}}">
+                <Grid Visibility="{Binding IsChecked, ElementName=cloneSwitch, Converter={StaticResource SwitchConverter}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Margin="10" FontSize="30" Text="Intervals between trainings (days)" />
+                </Grid>
+                <Slider ValueChanged="intervalSlider_ValueChanged" Margin="0 0 0 -40" SmallChange="1" Value="5" x:Name="intervalSlider" Minimum="1" Maximum="30" />
+                <TextBlock x:Name="txtBlockFrequencyValue" FontSize="40" TextAlignment="Center" Text="{Binding Value, ElementName=intervalSlider}" />
+                <TextBlock Margin="10" FontSize="30" Text="The date of end of cloning trainings" TextWrapping="Wrap" />
+                <toolkit:DatePicker x:Name="EndDateOfWritingTrainings" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+
+</phone:PhoneApplicationPage>

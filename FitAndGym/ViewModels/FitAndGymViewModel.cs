@@ -177,6 +177,32 @@ namespace FitAndGym.ViewModels
             Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
         }
 
+        private void DeleteOldTrainings(TimeSpan youngestAgeOfTrainingToDelete)
+        {
+            var toDelete = db.TrainingDays.Where(x =>
+                (x.DurationInMinutes.HasValue
+                    ? x.StartTime + TimeSpan.FromSeconds(x.DurationInMinutes.Value)
+                    : x.StartTime) < (DateTime.Now - youngestAgeOfTrainingToDelete));
+
+            foreach (var item in toDelete)
+            {
+                TrainingDays.Remove(item);
+
+                db.ExTrDayConnectors.DeleteAllOnSubmit(
+                    db.ExTrDayConnectors.Where(x =>
+                        x._trainingDayId == item.TrainingDayId));
+            }
+
+            db.TrainingDays.DeleteAllOnSubmit(toDelete);
+
+            Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
+        }
+
+        public void CopyTraining()
+        {
+            throw new NotImplementedException();
+        }
+
         internal void UpdateTraining(TrainingDay trainingToUpdate)
         {
             int index = 0;
