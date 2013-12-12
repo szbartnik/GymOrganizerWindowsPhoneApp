@@ -173,6 +173,12 @@ namespace FitAndGym.Models
             return copiedTraining;
         }
 
+        public TrainingDay SetDate(DateTime dateOfTraining)
+        {
+            StartTime = dateOfTraining;
+            return this;
+        }
+
         public override string ToString()
         {
             var str = new System.Text.StringBuilder();

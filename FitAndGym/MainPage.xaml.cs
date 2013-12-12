@@ -75,7 +75,7 @@ namespace FitAndGym
 
         void deleteOldTrainingsMenuItem_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            NavigationService.Navigate(new Uri("/View/DeleteTrainingsByDatePage.xaml", UriKind.RelativeOrAbsolute));
         }
 
         #region Events Stuff

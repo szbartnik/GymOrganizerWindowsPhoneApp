@@ -376,13 +376,55 @@ info</value>
   <data name="TrainingCopyActionsFrequency" xml:space="preserve">
     <value>Powtarzaj trening</value>
   </data>
-  <data name="EndDateOfCloningText" xml:space="preserve">
-    <value>Ostatni dzień dodawania treningów</value>
+  <data name="DatesOfTrainingsThatWillBeDeleted" xml:space="preserve">
+    <value>Treningi, które zostaną usunięte</value>
   </data>
-  <data name="IntervalsBetweenTrainingsText" xml:space="preserve">
-    <value>Odstępy pomiędzy treningami (dni)</value>
+  <data name="DeleteTrainingsByDateHeader" xml:space="preserve">
+    <value>Usuń stare treningi</value>
+  </data>
+  <data name="DescriptionDeleteTrainingsByDate" xml:space="preserve">
+    <value>Tutaj możesz usunąć stare treningi z listy treningów jeśli uznasz, że przez ich ilość lista staje się mało czytelna.
+
+Wybierz datę do której chcesz usunąć wszystkie treningi. Czytaj jako: </value>
+  </data>
+  <data name="EndDateCannotBeBeforeStartDate" xml:space="preserve">
+    <value>Data końca klonowania treningów nie może występować przed datą rozpoczęcia treningu.</value>
+  </data>
+  <data name="EndDateOfCloningText" xml:space="preserve">
+    <value>Ostatni dzień klonowania treningów</value>
+  </data>
+  <data name="IntervalsBetweenTrainings" xml:space="preserve">
+    <value>Odstępy między treningami (dni)</value>
+  </data>
+  <data name="NumOfTrainingsThatWillBeAdded" xml:space="preserve">
+    <value>Liczba treningów, które zostaną dodane</value>
+  </data>
+  <data name="OlderThan" xml:space="preserve">
+    <value>Starsze niż</value>
   </data>
   <data name="ProceedCloningAppBar" xml:space="preserve">
     <value>akceptuj</value>
+  </data>
+  <data name="ProceedDeleteByDateAppBar" xml:space="preserve">
+    <value>wykonaj</value>
+    <comment>for ApplicationBar - max 11 lower-case chars</comment>
+  </data>
+  <data name="TheDateOfEndOfCloningTrainings" xml:space="preserve">
+    <value>Końcowa data dodawania treningów</value>
+  </data>
+  <data name="TrainingsThatWillBeAdded" xml:space="preserve">
+    <value>Treningi zostaną sklonowane do następujących dat:</value>
+  </data>
+  <data name="WarningDeleteTrainingsByDate" xml:space="preserve">
+    <value>"treningi z datą rozpoczęcia (+ewentualny czas trwania treningu) zostaną bezpowrotnie usunięte z lokalnej bazy danych"</value>
+  </data>
+  <data name="YouCannotInsertMoreThanxClonesSimu" xml:space="preserve">
+    <value>Jednorazowo nie możesz dodać więcej niż 30 klonów treningów. Zmniejsz zakres dat.</value>
+  </data>
+  <data name="YouCannotInsertTrainingsInThePast" xml:space="preserve">
+    <value>Nie możesz klonować treningów z minioną datą.</value>
+  </data>
+  <data name="YouHaveToAddMoreThanZeroClones" xml:space="preserve">
+    <value>Zakres jest zbyt wąski by jakiekolwiek klony mogły zostać dodane.</value>
   </data>
 </root>

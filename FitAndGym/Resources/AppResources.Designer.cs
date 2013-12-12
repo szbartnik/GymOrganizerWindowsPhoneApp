@@ -196,6 +196,15 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Trainings that will be deleted.
+        /// </summary>
+        public static string DatesOfTrainingsThatWillBeDeleted {
+            get {
+                return ResourceManager.GetString("DatesOfTrainingsThatWillBeDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to days.
         /// </summary>
         public static string DaysCaption {
@@ -214,11 +223,33 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete old trainings.
+        /// </summary>
+        public static string DeleteTrainingsByDateHeader {
+            get {
+                return ResourceManager.GetString("DeleteTrainingsByDateHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string DeleteWord {
             get {
                 return ResourceManager.GetString("DeleteWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here you can delete old trainings if you find your training list hard to read because of many items on the list.
+        ///
+        ///Select a date to which you want to delete all trainings from local database.
+        ///
+        ///Understand as: .
+        /// </summary>
+        public static string DescriptionDeleteTrainingsByDate {
+            get {
+                return ResourceManager.GetString("DescriptionDeleteTrainingsByDate", resourceCulture);
             }
         }
         
@@ -265,6 +296,15 @@ namespace FitAndGym.Resources {
         public static string EditWord {
             get {
                 return ResourceManager.GetString("EditWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date of cloning of trainings can&apos;t be less than the start date of the training.
+        /// </summary>
+        public static string EndDateCannotBeBeforeStartDate {
+            get {
+                return ResourceManager.GetString("EndDateCannotBeBeforeStartDate", resourceCulture);
             }
         }
         
@@ -435,9 +475,9 @@ namespace FitAndGym.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Intervals between trainings (days).
         /// </summary>
-        public static string IntervalsBetweenTrainingsText {
+        public static string IntervalsBetweenTrainings {
             get {
-                return ResourceManager.GetString("IntervalsBetweenTrainingsText", resourceCulture);
+                return ResourceManager.GetString("IntervalsBetweenTrainings", resourceCulture);
             }
         }
         
@@ -559,6 +599,24 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of trainings that will be added.
+        /// </summary>
+        public static string NumOfTrainingsThatWillBeAdded {
+            get {
+                return ResourceManager.GetString("NumOfTrainingsThatWillBeAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Older than.
+        /// </summary>
+        public static string OlderThan {
+            get {
+                return ResourceManager.GetString("OlderThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Other info.
         /// </summary>
         public static string OtherInfo2CaptionOnTheMainPage {
@@ -583,6 +641,15 @@ namespace FitAndGym.Resources {
         public static string ProceedCloningAppBar {
             get {
                 return ResourceManager.GetString("ProceedCloningAppBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to execute.
+        /// </summary>
+        public static string ProceedDeleteByDateAppBar {
+            get {
+                return ResourceManager.GetString("ProceedDeleteByDateAppBar", resourceCulture);
             }
         }
         
@@ -646,6 +713,15 @@ namespace FitAndGym.Resources {
         public static string StartTimeOfTrainingPropertyIsRequiredNotification {
             get {
                 return ResourceManager.GetString("StartTimeOfTrainingPropertyIsRequiredNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The date of end of cloning trainings.
+        /// </summary>
+        public static string TheDateOfEndOfCloningTrainings {
+            get {
+                return ResourceManager.GetString("TheDateOfEndOfCloningTrainings", resourceCulture);
             }
         }
         
@@ -758,6 +834,15 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The training will be cloned to following dates:.
+        /// </summary>
+        public static string TrainingsThatWillBeAdded {
+            get {
+                return ResourceManager.GetString("TrainingsThatWillBeAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type the name of exercise....
         /// </summary>
         public static string TypeNameOfExercisePlaceholder {
@@ -794,6 +879,15 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;trainings with start date (+ optional duration of the training) older than selected date will be deleted permanently from your local database&quot;.
+        /// </summary>
+        public static string WarningDeleteTrainingsByDate {
+            get {
+                return ResourceManager.GetString("WarningDeleteTrainingsByDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Water
         ///(liters).
         /// </summary>
@@ -809,6 +903,33 @@ namespace FitAndGym.Resources {
         public static string Yes {
             get {
                 return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simultaneously you can&apos;t add more than 30 clones of trainings.
+        /// </summary>
+        public static string YouCannotInsertMoreThanxClonesSimu {
+            get {
+                return ResourceManager.GetString("YouCannotInsertMoreThanxClonesSimu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can&apos;t clone training to the past.
+        /// </summary>
+        public static string YouCannotInsertTrainingsInThePast {
+            get {
+                return ResourceManager.GetString("YouCannotInsertTrainingsInThePast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The range is too short to insert any clones..
+        /// </summary>
+        public static string YouHaveToAddMoreThanZeroClones {
+            get {
+                return ResourceManager.GetString("YouHaveToAddMoreThanZeroClones", resourceCulture);
             }
         }
     }

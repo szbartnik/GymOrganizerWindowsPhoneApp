@@ -369,13 +369,57 @@ info</value>
   <data name="TrainingCopyActionsFrequency" xml:space="preserve">
     <value>Repeat training</value>
   </data>
+  <data name="DatesOfTrainingsThatWillBeDeleted" xml:space="preserve">
+    <value>Trainings that will be deleted</value>
+  </data>
+  <data name="DeleteTrainingsByDateHeader" xml:space="preserve">
+    <value>Delete old trainings</value>
+  </data>
+  <data name="DescriptionDeleteTrainingsByDate" xml:space="preserve">
+    <value>Here you can delete old trainings if you find your training list hard to read because of many items on the list.
+
+Select a date to which you want to delete all trainings from local database.
+
+Understand as: </value>
+  </data>
+  <data name="EndDateCannotBeBeforeStartDate" xml:space="preserve">
+    <value>End date of cloning of trainings can't be less than the start date of the training</value>
+  </data>
   <data name="EndDateOfCloningText" xml:space="preserve">
     <value>The date of end of cloning trainings</value>
   </data>
-  <data name="IntervalsBetweenTrainingsText" xml:space="preserve">
+  <data name="IntervalsBetweenTrainings" xml:space="preserve">
     <value>Intervals between trainings (days)</value>
+  </data>
+  <data name="NumOfTrainingsThatWillBeAdded" xml:space="preserve">
+    <value>Number of trainings that will be added</value>
+  </data>
+  <data name="OlderThan" xml:space="preserve">
+    <value>Older than</value>
   </data>
   <data name="ProceedCloningAppBar" xml:space="preserve">
     <value>accept</value>
+  </data>
+  <data name="ProceedDeleteByDateAppBar" xml:space="preserve">
+    <value>execute</value>
+    <comment>for ApplicationBar - max 11 lower-case chars</comment>
+  </data>
+  <data name="TheDateOfEndOfCloningTrainings" xml:space="preserve">
+    <value>The date of end of cloning trainings</value>
+  </data>
+  <data name="TrainingsThatWillBeAdded" xml:space="preserve">
+    <value>The training will be cloned to following dates:</value>
+  </data>
+  <data name="WarningDeleteTrainingsByDate" xml:space="preserve">
+    <value>"trainings with start date (+ optional duration of the training) older than selected date will be deleted permanently from your local database"</value>
+  </data>
+  <data name="YouCannotInsertMoreThanxClonesSimu" xml:space="preserve">
+    <value>Simultaneously you can't add more than 30 clones of trainings</value>
+  </data>
+  <data name="YouCannotInsertTrainingsInThePast" xml:space="preserve">
+    <value>You can't clone training to the past</value>
+  </data>
+  <data name="YouHaveToAddMoreThanZeroClones" xml:space="preserve">
+    <value>The range is too short to insert any clones.</value>
   </data>
 </root>

@@ -159,6 +159,9 @@
     <Compile Include="View\AddNewTrainingPage.xaml.cs">
       <DependentUpon>AddNewTrainingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DeleteTrainingsByDatePage.xaml.cs">
+      <DependentUpon>DeleteTrainingsByDatePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TrainingCopyActionsPage.xaml.cs">
       <DependentUpon>TrainingCopyActionsPage.xaml</DependentUpon>
     </Compile>
@@ -187,6 +190,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddNewTrainingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DeleteTrainingsByDatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

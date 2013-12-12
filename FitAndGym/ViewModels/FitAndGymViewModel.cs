@@ -162,6 +162,24 @@ namespace FitAndGym.ViewModels
             Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
         }
 
+        public void DeleteTrainingsByDate(DateTime dateToWhichDelete)
+        {
+            var trainingsToDelete = db.TrainingDays.Where(x => x.StartTime < dateToWhichDelete);
+
+            foreach (var item in trainingsToDelete)
+            {
+                TrainingDays.Remove(item);
+
+                db.ExTrDayConnectors.DeleteAllOnSubmit(
+                    db.ExTrDayConnectors.Where(x =>
+                        x._trainingDayId == item.TrainingDayId));
+            }
+
+            db.TrainingDays.DeleteAllOnSubmit(trainingsToDelete);
+
+            Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges());
+        }
+
         public void DeleteTraining(TrainingDay trainingToDelete)
         {
             TrainingDay trToDelete = GetTrainingById(trainingToDelete.TrainingDayId);

@@ -180,7 +180,7 @@
                         toolkit:TiltEffect.IsTiltEnabled="True"
 					    ItemTemplate="{StaticResource ExercisesOfIncomingTrainingListTemplate}"
                         MinHeight="200"
-                        MaxHeight="400"/>
+                        MaxHeight="430"/>
                 </ScrollViewer>
             </DataTemplate>
         </Grid.Resources>

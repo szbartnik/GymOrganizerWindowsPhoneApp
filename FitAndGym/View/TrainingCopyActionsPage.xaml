@@ -12,7 +12,6 @@
     xmlns:converters="clr-namespace:FitAndGym.Converters"
     SupportedOrientations="Portrait" Orientation="Portrait"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 
@@ -37,7 +36,7 @@
         <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <toolkit:ToggleSwitch IsChecked="true" x:Name="cloneSwitch" Content="{Binding Path=LocalizedResources.TrainingCopyActionHeader, Source={StaticResource LocalizedStrings}}" />
             <StackPanel Visibility="{Binding IsChecked, ElementName=cloneSwitch, Converter={StaticResource SwitchConverter}}">
-                <Grid Visibility="{Binding IsChecked, ElementName=cloneSwitch, Converter={StaticResource SwitchConverter}}">
+                <Grid Margin="0 -10 0 0" Visibility="{Binding IsChecked, ElementName=cloneSwitch, Converter={StaticResource SwitchConverter}}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -46,12 +45,14 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <TextBlock Margin="10" FontSize="30" Text="Intervals between trainings (days)" />
+                    <TextBlock Margin="10" FontSize="30" Text="{Binding Path=LocalizedResources.IntervalsBetweenTrainings, Source={StaticResource LocalizedStrings}}" />
                 </Grid>
-                <Slider ValueChanged="intervalSlider_ValueChanged" Margin="0 0 0 -40" SmallChange="1" Value="5" x:Name="intervalSlider" Minimum="1" Maximum="30" />
-                <TextBlock x:Name="txtBlockFrequencyValue" FontSize="40" TextAlignment="Center" Text="{Binding Value, ElementName=intervalSlider}" />
-                <TextBlock Margin="10" FontSize="30" Text="The date of end of cloning trainings" TextWrapping="Wrap" />
-                <toolkit:DatePicker x:Name="EndDateOfWritingTrainings" />
+                <Slider ValueChanged="intervalSlider_ValueChanged" Margin="0 -10 0 -40" SmallChange="1" Value="5" x:Name="intervalSlider" Minimum="1" Maximum="30" />
+                <TextBlock  x:Name="txtBlockFrequencyValue" FontSize="40" TextAlignment="Center" Text="{Binding Value, ElementName=intervalSlider}" />
+                <TextBlock Margin="10 10 10 -5" FontSize="30" Text="{Binding Path=LocalizedResources.TheDateOfEndOfCloningTrainings, Source={StaticResource LocalizedStrings}}" TextWrapping="Wrap" />
+                <toolkit:DatePicker ValueChanged="EndDateOfWritingTrainings_ValueChanged" x:Name="EndDateOfWritingTrainings" />
+                <TextBlock Margin="10 10 10 -10" FontSize="30" Text="{Binding Path=LocalizedResources.NumOfTrainingsThatWillBeAdded, Source={StaticResource LocalizedStrings}}" TextWrapping="Wrap" />
+                <TextBlock x:Name="numOfTrainingsThatWillBeAddedTextBlock" FontSize="40" TextAlignment="Center" Text="0" />
             </StackPanel>
         </StackPanel>
     </Grid>
