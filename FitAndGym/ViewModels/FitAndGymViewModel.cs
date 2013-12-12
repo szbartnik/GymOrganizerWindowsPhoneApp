@@ -186,6 +186,9 @@ namespace FitAndGym.ViewModels
             if (trToDelete == null) throw new Exception("Training to delete not found - from DeleteTraining");
 
             TrainingDays.Remove(trToDelete);
+            IncomingTrainingDays.Remove(trToDelete);
+            NotifyPropertyChanged("IncomingTrainingDays");
+
             db.TrainingDays.DeleteOnSubmit(trToDelete);
 
             db.ExTrDayConnectors.DeleteAllOnSubmit(
@@ -205,6 +208,8 @@ namespace FitAndGym.ViewModels
             foreach (var item in toDelete)
             {
                 TrainingDays.Remove(item);
+                IncomingTrainingDays.Remove(item);
+                NotifyPropertyChanged("IncomingTrainingDays");
 
                 db.ExTrDayConnectors.DeleteAllOnSubmit(
                     db.ExTrDayConnectors.Where(x =>
