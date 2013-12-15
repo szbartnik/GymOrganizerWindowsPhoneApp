@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Navigation;
 using FitAndGym.Models;
 using FitAndGym.Resources;
 using FitAndGym.Utilities;
@@ -25,6 +27,17 @@ namespace FitAndGym.View
         {
             InitializeComponent();
         }
+
+        #if DEBUG
+        ~AddNewTrainingPage()
+        {
+            System.Windows.Deployment.Current.Dispatcher.BeginInvoke(new System.Action(() =>
+            {
+                System.Windows.MessageBox.Show("AddNewTrainingPage Destructing");
+                // Seeing this message box assures that this page is being cleaned up
+            }));
+        }
+        #endif
 
         private void CheckIfEditOrAddActionRequiredAsync()
         {
@@ -110,12 +123,17 @@ namespace FitAndGym.View
             if (trainingToUpdate != null)
             {
                 App.FitAndGymViewModel.UpdateTraining(trainingToUpdate);
+                DataContext = null;
+                _viewModel.ValidationError -= _viewModel_ValidationError;
+                _viewModel = null;
                 NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedTraining&PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
             }
         }
 
         private void discardChangesButton_Click(object sender, EventArgs e)
         {
+            DataContext = null;
+            _viewModel.ValidationError -= _viewModel_ValidationError;
             _viewModel = null;
             NavigationService.Navigate(new Uri("/MainPage.xaml?PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
         }
@@ -132,6 +150,9 @@ namespace FitAndGym.View
             if (newTraining != null)
             {
                 App.FitAndGymViewModel.AddNewTraining(newTraining);
+                DataContext = null;
+                _viewModel.ValidationError -= _viewModel_ValidationError;
+                _viewModel = null;
                 NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedTraining&PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
             }
         }
@@ -173,8 +194,13 @@ namespace FitAndGym.View
             MessageBox.Show(e.ErrorMessage, AppResources.ValidationErrorTitle, MessageBoxButton.OK);
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            while (NavigationService.BackStack.Any())
+            {
+                NavigationService.RemoveBackEntry();
+            }
+
             // I have to commemorate guy who saved me - http://samondotnet.blogspot.com/2011/12/onnavigatedto-will-be-called-after.html
             // Line of rescue:
             if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back) return;

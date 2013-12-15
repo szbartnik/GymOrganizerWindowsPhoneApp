@@ -20,6 +20,25 @@ namespace FitAndGym.View
             BuildLocalizedApplicationBar();
         }
 
+        #if DEBUG
+        ~DeleteTrainingsByDatePage()
+        {
+            System.Windows.Deployment.Current.Dispatcher.BeginInvoke(new System.Action(() =>
+            {
+                System.Windows.MessageBox.Show("DeleteTrainingsByDatePage Destructing");
+                // Seeing this message box assures that this page is being cleaned up
+            }));
+        }
+        #endif
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            while (NavigationService.BackStack.Any())
+            {
+                NavigationService.RemoveBackEntry();
+            }
+        }
+
         private void BuildLocalizedApplicationBar()
         {
             ApplicationBar = new ApplicationBar();

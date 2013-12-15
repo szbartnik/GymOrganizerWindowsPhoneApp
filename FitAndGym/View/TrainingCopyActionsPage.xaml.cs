@@ -32,6 +32,17 @@ namespace FitAndGym.View
             }
         }
 
+        #if DEBUG
+        ~TrainingCopyActionsPage()
+        {
+            System.Windows.Deployment.Current.Dispatcher.BeginInvoke(new System.Action(() =>
+            {
+                System.Windows.MessageBox.Show("TrainingCopyActionsPage Destructing");
+                // Seeing this message box assures that this page is being cleaned up
+            }));
+        }
+        #endif
+
         public int NumOfTrainingsThatWillBeAdded
         {
             get
@@ -85,6 +96,11 @@ namespace FitAndGym.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            while (NavigationService.BackStack.Any())
+            {
+                NavigationService.RemoveBackEntry();
+            }
+
             if (e.NavigationMode != NavigationMode.Back)
             {
                 string trainingId;
@@ -116,7 +132,7 @@ namespace FitAndGym.View
                 return false;
             }
 
-            if (NumOfTrainingsThatWillBeAdded >= MAX_NO_OF_SIM_CLONING_TRAININGS)
+            if (NumOfTrainingsThatWillBeAdded > MAX_NO_OF_SIM_CLONING_TRAININGS)
             {
                 NotifyError(AppResources.YouCannotInsertMoreThanxClonesSimu);
                 return false;

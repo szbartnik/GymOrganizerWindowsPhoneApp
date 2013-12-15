@@ -12,6 +12,7 @@ using System.IO.IsolatedStorage;
 using FitAndGym.ViewModels;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using MemoryLeak.WP8;
 
 namespace FitAndGym
 {
@@ -166,8 +167,46 @@ namespace FitAndGym
             if (RootVisual != RootFrame)
                 RootVisual = RootFrame;
 
+            CreatePopups(RootFrame);
+
             // Remove this handler since it is no longer needed
             RootFrame.Navigated -= CompleteInitializePhoneApplication;
+        }
+
+        const string ControlNamePopups = "Popups";
+        bool popupsCreated;
+
+        private void CreatePopups(Frame frame)
+        {
+            if (!popupsCreated)
+            {
+                Page page = frame.Content as Page;
+
+                if (page != null)
+                {
+                    Grid content = page.Content as Grid;
+
+                    if (content != null)
+                    {
+                        Grid popups = content.FindName(ControlNamePopups) as Grid;
+
+                        if (popups == null)
+                        {
+                            popups = new Grid { Name = ControlNamePopups };
+                        }
+                        else
+                        {
+                            popups.Children.Clear();
+                        }
+#if DEBUG
+                        popups.Children.Add(new DebugInfoPopup());
+#endif
+
+                        content.Children.Add(popups);
+                        popupsCreated = true;
+                    }
+                }
+            }
         }
 
         private void CheckForResetNavigation(object sender, NavigationEventArgs e)

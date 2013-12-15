@@ -30,6 +30,17 @@ namespace FitAndGym
             DataContext = App.FitAndGymViewModel;
         }
 
+        #if DEBUG
+        ~MainPage()
+        {
+            System.Windows.Deployment.Current.Dispatcher.BeginInvoke(new System.Action(() =>
+            {
+                System.Windows.MessageBox.Show("MainPage Destructing");
+                // Seeing this message box assures that this page is being cleaned up
+            }));
+        }
+        #endif
+
         private void BuildLocalizedApplicationBar()
         {
             //
@@ -73,12 +84,12 @@ namespace FitAndGym
             _infoApplicationBar.Buttons.Add(rateButton);
         }
 
+        #region Events Stuff
+
         void deleteOldTrainingsMenuItem_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/View/DeleteTrainingsByDatePage.xaml", UriKind.RelativeOrAbsolute));
         }
-
-        #region Events Stuff
 
         void rateButton_Click(object sender, EventArgs e)
         {
@@ -130,6 +141,11 @@ namespace FitAndGym
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            while (NavigationService.BackStack.Any())
+            {
+                NavigationService.RemoveBackEntry();
+            }
+
             if (e.NavigationMode != NavigationMode.Back)
             {
                 string page;
@@ -150,6 +166,20 @@ namespace FitAndGym
                 if(exerciseToShow.OtherInfo != String.Empty)
                     Dispatcher.BeginInvoke(() => MessageBox.Show(exerciseToShow.OtherInfo, AppResources.OtherInfo2CaptionOnTheMainPage, MessageBoxButton.OK));
             }
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            TrainingDaysList.ClearValue(LongListSelector.ItemsSourceProperty);
+            TrainingDaysList.ClearValue(LongListSelector.ItemTemplateProperty);
+
+            ExercisesList.ClearValue(LongListSelector.ItemsSourceProperty);
+            ExercisesList.ClearValue(LongListSelector.ItemTemplateProperty);
+
+            IncomingTrainingDaysList.ClearValue(LongListSelector.ItemsSourceProperty);
+            IncomingTrainingDaysList.ClearValue(LongListSelector.ItemTemplateProperty);
+
+            DataContext = null;
         }
 
         private void EditExerciseContextMenuItem_Click(object sender, RoutedEventArgs e)

@@ -8,6 +8,7 @@ using FitAndGym.Resources;
 using FitAndGym.ViewModels;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Linq;
 
 namespace FitAndGym.View
 {
@@ -22,6 +23,17 @@ namespace FitAndGym.View
             // filling ListPicker by enums
             NewExIntensityListPicker.ItemsSource = Enum.GetValues(typeof(Intensity));
         }
+
+        #if DEBUG
+        ~AddNewExercisePage()
+        {
+            System.Windows.Deployment.Current.Dispatcher.BeginInvoke(new System.Action(() =>
+            {
+                System.Windows.MessageBox.Show("AddNewExercisePage Destructing");
+                // Seeing this message box assures that this page is being cleaned up
+            }));
+        }
+        #endif
 
         private void BuildLocalizedApplicationBar()
         {
@@ -92,6 +104,11 @@ namespace FitAndGym.View
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            while (NavigationService.BackStack.Any())
+            {
+                NavigationService.RemoveBackEntry();
+            }
+
             // I have to commemorate guy who saved me - http://samondotnet.blogspot.com/2011/12/onnavigatedto-will-be-called-after.html
             // Line of rescue:
             if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back) return;
