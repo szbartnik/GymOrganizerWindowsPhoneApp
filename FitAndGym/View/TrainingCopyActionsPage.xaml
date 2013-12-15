@@ -11,9 +11,11 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     xmlns:converters="clr-namespace:FitAndGym.Converters"
     SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.Opacity="0.1"
+    shell:SystemTray.IsVisible="True"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
+    Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">

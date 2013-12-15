@@ -32,17 +32,6 @@ namespace FitAndGym.View
             }
         }
 
-        #if DEBUG
-        ~TrainingCopyActionsPage()
-        {
-            System.Windows.Deployment.Current.Dispatcher.BeginInvoke(new System.Action(() =>
-            {
-                System.Windows.MessageBox.Show("TrainingCopyActionsPage Destructing");
-                // Seeing this message box assures that this page is being cleaned up
-            }));
-        }
-        #endif
-
         public int NumOfTrainingsThatWillBeAdded
         {
             get
@@ -62,6 +51,17 @@ namespace FitAndGym.View
             InitializeComponent();
             BuildLocalizedApplicationBar();
         }
+
+        #if DEBUG
+        ~TrainingCopyActionsPage()
+        {
+            System.Windows.Deployment.Current.Dispatcher.BeginInvoke(new System.Action(() =>
+            {
+                System.Windows.MessageBox.Show("TrainingCopyActionsPage Destructing");
+                // Seeing this message box assures that this page is being cleaned up
+            }));
+        }
+        #endif
 
         private void BuildLocalizedApplicationBar()
         {

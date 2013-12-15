@@ -9,12 +9,14 @@ using FitAndGym.ViewModels;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Linq;
+using System.Windows.Navigation;
 
 namespace FitAndGym.View
 {
     public partial class AddNewExercisePage : PhoneApplicationPage
     {
         private ExercisePageViewModel _viewModel;
+        private bool actionOfUserToLeaveThePagePerformed = false;
 
         public AddNewExercisePage()
         {
@@ -100,7 +102,20 @@ namespace FitAndGym.View
             }         
         }
 
+        private void ClearThePage()
+        {
+            NewExIntensityListPicker.ClearValue(ListPicker.DataContextProperty);
+            _viewModel.ValidationError -= _viewModel_ValidationError;
+            _viewModel = null;
+        }
+
         #region Events stuff
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if(actionOfUserToLeaveThePagePerformed)
+                ClearThePage();
+        }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
@@ -122,6 +137,7 @@ namespace FitAndGym.View
             var exerciseToUpdate = _viewModel.GenerateModel();
             if (exerciseToUpdate != null)
             {
+                actionOfUserToLeaveThePagePerformed = true;
                 App.FitAndGymViewModel.UpdateExercise(exerciseToUpdate);
                 NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedExercise&PivotMain.SelectedIndex=2", UriKind.RelativeOrAbsolute));
             }
@@ -129,7 +145,7 @@ namespace FitAndGym.View
 
         private void discardChangesButton_Click(object sender, EventArgs e)
         {
-            _viewModel = null;
+            actionOfUserToLeaveThePagePerformed = true;
             NavigationService.Navigate(new Uri("/MainPage.xaml?PivotMain.SelectedIndex=2", UriKind.RelativeOrAbsolute));
         }
 
@@ -144,6 +160,7 @@ namespace FitAndGym.View
             var newExercise = _viewModel.GenerateModel();
             if (newExercise != null)
             {
+                actionOfUserToLeaveThePagePerformed = true;
                 App.FitAndGymViewModel.AddNewExercise(newExercise);
                 NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedExercise&PivotMain.SelectedIndex=2", UriKind.RelativeOrAbsolute));
             }

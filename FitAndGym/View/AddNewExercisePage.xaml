@@ -15,6 +15,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
+    shell:SystemTray.Opacity="0.1"
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -75,7 +76,10 @@
                         </Grid.ColumnDefinitions>
 
                         <!--Control-->
-                        <toolkit:ListPicker SelectedItem="{Binding Intensity, Mode=TwoWay}" IsEnabled="{Binding IntensityActive, Mode=TwoWay}" x:Name="NewExIntensityListPicker" Grid.Column="0" ItemTemplate="{StaticResource ListPickerDataTemplate}" />
+                        <toolkit:ListPicker SelectedItem="{Binding Intensity, Mode=TwoWay}" 
+                                            IsEnabled="{Binding IntensityActive, Mode=TwoWay}" 
+                                            x:Name="NewExIntensityListPicker" Grid.Column="0" 
+                                            ItemTemplate="{StaticResource ListPickerDataTemplate}" />
                         <!--CheckBox-->
                         <CheckBox IsChecked="{Binding IntensityActive, Mode=TwoWay}" x:Name="NewExIntensityActiveCheckBox" Grid.Column="1" VerticalAlignment="Center" Margin="0,6" />
                     </Grid>
@@ -132,7 +136,16 @@
 
                 <!--Other Block-->
                 <TextBlock Grid.Row="4" Margin="0 5 0 0" FontSize="25" Text="{Binding Path=LocalizedResources.NewExerciseOtherInfoHeader, Source={StaticResource LocalizedStrings}}" />
-                <local:AdvTextBox Margin="20 0 0 0" Grid.Row="5" x:Name="NewExOthersTextBox" FontSize="20" AcceptsReturn="True" Height="120" TextWrapping="Wrap" TextChanged="NewExOthersTextBox_TextChanged"  Text="{Binding OtherInfo, Mode=TwoWay, UpdateSourceTrigger=Explicit}" DefaultText="{Binding Path=LocalizedResources.NewExerciseOtherInfoPlaceholder, Source={StaticResource LocalizedStrings}}" />
+                <local:AdvTextBox Margin="20 0 0 0" 
+                                  Grid.Row="5" 
+                                  x:Name="NewExOthersTextBox"
+                                  FontSize="20" 
+                                  AcceptsReturn="True" 
+                                  Height="120" 
+                                  TextWrapping="Wrap" 
+                                  TextChanged="NewExOthersTextBox_TextChanged"  
+                                  Text="{Binding OtherInfo, Mode=TwoWay, UpdateSourceTrigger=Explicit}" 
+                                  DefaultText="{Binding Path=LocalizedResources.NewExerciseOtherInfoPlaceholder, Source={StaticResource LocalizedStrings}}" />
             </Grid>
         </ScrollViewer>
     </Grid>

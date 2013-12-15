@@ -15,6 +15,7 @@
     mc:Ignorable="d"
     d:DataContext="{d:DesignData /SampleData/TrainingManageViewModelSampleData.xaml}"
     SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.Opacity="0.1"
     shell:SystemTray.IsVisible="True"
     Name="Root" Loaded="Root_Loaded">
 

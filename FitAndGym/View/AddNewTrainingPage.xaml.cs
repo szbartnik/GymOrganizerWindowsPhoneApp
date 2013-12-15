@@ -22,6 +22,7 @@ namespace FitAndGym.View
         private TrainingPageViewModel _viewModel;
         private TrainingDay _trToEdit;
         private bool isLoaded = false;
+        private bool actionOfUserToLeaveThePagePerformed = false;
 
         public AddNewTrainingPage()
         {
@@ -77,6 +78,16 @@ namespace FitAndGym.View
             }
         }
 
+        private void ClearThePage()
+        {
+            ListOfExercises.ClearValue(LongListMultiSelector.ItemsSourceProperty);
+            ListOfExercises.ClearValue(LongListMultiSelector.ItemTemplateProperty);
+
+            DataContext = null;
+            _viewModel.ValidationError -= _viewModel_ValidationError;
+            _viewModel = null;
+        }
+
         private void BuildLocalizedApplicationBar()
         {
             ApplicationBar = new ApplicationBar();
@@ -117,24 +128,26 @@ namespace FitAndGym.View
 
         #region Events Stuff
 
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if (actionOfUserToLeaveThePagePerformed)
+                ClearThePage();
+        }
+
         private void updateChanges_Click(object sender, EventArgs e)
         {
             var trainingToUpdate = _viewModel.GenerateModel();
             if (trainingToUpdate != null)
             {
+                actionOfUserToLeaveThePagePerformed = true;
                 App.FitAndGymViewModel.UpdateTraining(trainingToUpdate);
-                DataContext = null;
-                _viewModel.ValidationError -= _viewModel_ValidationError;
-                _viewModel = null;
                 NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedTraining&PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
             }
         }
 
         private void discardChangesButton_Click(object sender, EventArgs e)
         {
-            DataContext = null;
-            _viewModel.ValidationError -= _viewModel_ValidationError;
-            _viewModel = null;
+            actionOfUserToLeaveThePagePerformed = true;
             NavigationService.Navigate(new Uri("/MainPage.xaml?PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
         }
 
@@ -149,10 +162,8 @@ namespace FitAndGym.View
             var newTraining = _viewModel.GenerateModel();
             if (newTraining != null)
             {
+                actionOfUserToLeaveThePagePerformed = true;
                 App.FitAndGymViewModel.AddNewTraining(newTraining);
-                DataContext = null;
-                _viewModel.ValidationError -= _viewModel_ValidationError;
-                _viewModel = null;
                 NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedTraining&PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
             }
         }

@@ -12,6 +12,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
+    shell:SystemTray.Opacity="0.1"
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->

@@ -1,0 +1,7 @@
+﻿<UserControl x:Class="MemoryLeak.WP8.DebugInfoPopup"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Popup x:Name="PopupControl" IsOpen="True" Opened="PopupControl_OnOpened">
+        <TextBlock TextAlignment="Center" Margin="0 4 0 0" Width="480" Foreground="{StaticResource PhoneForegroundBrush}" x:Name="MemoryBlock" VerticalAlignment="Top"/>
+    </Popup>
+</UserControl>
