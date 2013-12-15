@@ -186,7 +186,6 @@ namespace FitAndGym.ViewModels
             if (trToDelete == null) throw new Exception("Training to delete not found - from DeleteTraining");
 
             TrainingDays.Remove(trToDelete);
-            IncomingTrainingDays.Remove(trToDelete);
             NotifyPropertyChanged("IncomingTrainingDays");
 
             db.TrainingDays.DeleteOnSubmit(trToDelete);

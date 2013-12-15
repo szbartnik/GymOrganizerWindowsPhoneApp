@@ -53,7 +53,7 @@
                         <TextBlock Text="{Binding OtherInfo, Converter={StaticResource OtherInfoExistanceConverter}}" TextAlignment="Center" FontSize="17" FontWeight="Bold" Grid.Row="1" Grid.Column="2" />
                     </Grid>
                     <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu>
+                        <toolkit:ContextMenu Opened="ContextMenu_Opened">
                             <toolkit:MenuItem x:Name="EditTrainingContextMenuItem" Click="EditTrainingContextMenuItem_Click"  Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
                             <toolkit:MenuItem x:Name="CopyTrainingContextMenuItem" Click="CopyTrainingContextMenuItem_Click" Header="{Binding LocalizedResources.CopyTrainingMenuItemText, Source={StaticResource LocalizedStrings}}" />
                             <toolkit:MenuItem x:Name="DeleteTrainingContextMenuItem" Click="DeleteTrainingContextMenuItem_Click" Header="{Binding LocalizedResources.DeleteWord, Source={StaticResource LocalizedStrings}}" />  
@@ -88,7 +88,7 @@
                         <TextBlock Text="{Binding OtherInfo, Converter={StaticResource OtherInfoExistanceConverter}}" TextAlignment="Center" FontSize="17" FontWeight="Bold" Grid.Row="1" Grid.Column="2" />
                     </Grid>
                     <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu>
+                        <toolkit:ContextMenu Opened="ContextMenu_Opened">
                             <toolkit:MenuItem x:Name="EditTrainingContextMenuItem" Click="EditTrainingContextMenuItem_Click" Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
                             <toolkit:MenuItem x:Name="DeleteTrainingContextMenuItem" Click="DeleteTrainingContextMenuItem_Click" Header="{Binding LocalizedResources.DeleteWord, Source={StaticResource LocalizedStrings}}" />
                         </toolkit:ContextMenu>
@@ -125,7 +125,7 @@
                         <TextBlock Text="{Binding OtherInfo, Converter={StaticResource OtherInfoExistanceConverter}}" FontSize="15" FontWeight="Bold" Grid.Row="4" Grid.Column="1" />
                     </Grid>
                     <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu>
+                        <toolkit:ContextMenu Opened="ContextMenu_Opened">
                             <toolkit:MenuItem x:Name="EditExerciseContextMenuItem" Click="EditExerciseContextMenuItem_Click"  Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
                             <toolkit:MenuItem x:Name="DeleteExerciseContextMenuItem" Click="DeleteExerciseContextMenuItem_Click" Header="{Binding LocalizedResources.DeleteWord, Source={StaticResource LocalizedStrings}}" />
                         </toolkit:ContextMenu>
@@ -162,7 +162,7 @@
                         <TextBlock Text="{Binding OtherInfo, Converter={StaticResource OtherInfoExistanceConverter}}" FontSize="15" FontWeight="Bold" Grid.Row="4" Grid.Column="1" />
                     </Grid>
                     <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu IsZoomEnabled="False">
+                        <toolkit:ContextMenu IsZoomEnabled="False" Opened="ContextMenu_Opened">
                             <toolkit:MenuItem x:Name="EditExerciseContextMenuItem" Click="EditExerciseContextMenuItem_Click"  Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
                         </toolkit:ContextMenu>
                     </toolkit:ContextMenuService.ContextMenu>

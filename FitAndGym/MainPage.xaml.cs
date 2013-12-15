@@ -18,6 +18,7 @@ namespace FitAndGym
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        private bool actionOfUserToLeaveThePagePerformed = false;
         private ApplicationBar _exercisesApplicationBar = null;
         private ApplicationBar _trainingsApplicationBar = null;
         private ApplicationBar _infoApplicationBar = null;
@@ -88,6 +89,7 @@ namespace FitAndGym
 
         void deleteOldTrainingsMenuItem_Click(object sender, EventArgs e)
         {
+            actionOfUserToLeaveThePagePerformed = true;
             NavigationService.Navigate(new Uri("/View/DeleteTrainingsByDatePage.xaml", UriKind.RelativeOrAbsolute));
         }
 
@@ -136,6 +138,7 @@ namespace FitAndGym
         private void EditTrainingContextMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var trainingToEdit = (sender as MenuItem).DataContext as TrainingDay;
+            actionOfUserToLeaveThePagePerformed = true;
             NavigationService.Navigate(new Uri("/View/AddNewTrainingPage.xaml?action=edit&trId=" + trainingToEdit.TrainingDayId.ToString(), UriKind.RelativeOrAbsolute));
         }
 
@@ -170,21 +173,25 @@ namespace FitAndGym
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            TrainingDaysList.ClearValue(LongListSelector.ItemsSourceProperty);
-            TrainingDaysList.ClearValue(LongListSelector.ItemTemplateProperty);
+            if (actionOfUserToLeaveThePagePerformed)
+            {
+                TrainingDaysList.ClearValue(LongListSelector.ItemsSourceProperty);
+                TrainingDaysList.ClearValue(LongListSelector.ItemTemplateProperty);
 
-            ExercisesList.ClearValue(LongListSelector.ItemsSourceProperty);
-            ExercisesList.ClearValue(LongListSelector.ItemTemplateProperty);
+                ExercisesList.ClearValue(LongListSelector.ItemsSourceProperty);
+                ExercisesList.ClearValue(LongListSelector.ItemTemplateProperty);
 
-            IncomingTrainingDaysList.ClearValue(LongListSelector.ItemsSourceProperty);
-            IncomingTrainingDaysList.ClearValue(LongListSelector.ItemTemplateProperty);
+                IncomingTrainingDaysList.ClearValue(LongListSelector.ItemsSourceProperty);
+                IncomingTrainingDaysList.ClearValue(LongListSelector.ItemTemplateProperty);
 
-            DataContext = null;
+                DataContext = null;
+            }
         }
 
         private void EditExerciseContextMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var exerciseToEdit = (sender as MenuItem).DataContext as Exercise;
+            actionOfUserToLeaveThePagePerformed = true;
             NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml?action=edit&exId=" + exerciseToEdit.ExerciseId.ToString(), UriKind.RelativeOrAbsolute));
         }
 
@@ -206,11 +213,13 @@ namespace FitAndGym
 
         void addNewExerciseButton_Click(object sender, EventArgs e)
         {
+            actionOfUserToLeaveThePagePerformed = true;
             NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml?action=add", UriKind.Relative));
         }
 
         void addNewTrainingButton_Click(object sender, EventArgs e)
         {
+            actionOfUserToLeaveThePagePerformed = true;
             NavigationService.Navigate(new Uri("/View/AddNewTrainingPage.xaml?action=add", UriKind.Relative));
         }
 
@@ -243,8 +252,17 @@ namespace FitAndGym
         private void CopyTrainingContextMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var trainingToCopy = (sender as MenuItem).DataContext as TrainingDay;
+            actionOfUserToLeaveThePagePerformed = true;
 
             NavigationService.Navigate(new Uri("/View/TrainingCopyActionsPage.xaml?trainingId=" + trainingToCopy.TrainingDayId, UriKind.RelativeOrAbsolute));
+        }
+
+        private void ContextMenu_Opened(object sender, RoutedEventArgs e)
+        {
+            var menu = (ContextMenu)sender;
+            var owner = (FrameworkElement)menu.Owner;
+            if (owner.DataContext != menu.DataContext)
+                menu.DataContext = owner.DataContext;
         }
 
         #endregion
