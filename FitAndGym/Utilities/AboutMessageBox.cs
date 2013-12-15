@@ -12,29 +12,37 @@ namespace FitAndGym.Utilities
 {
     public static class AboutMessageBox
     {
-        public static void ShowAboutAppMessageBox(string applicationTitle, string firstLine, string creatorName, string mail, string aboutSentence)
+        public static void ShowAboutAppMessageBox(string createdByLine, string additionalContentLine)
         {
             var firstLineInMessageBox = new TextBlock()
             {
                 Margin = new Thickness(10, 0, 0, 0),
-                Text = firstLine
+                Text = createdByLine
+            };
+
+            var secondLineInMessageBox = new TextBlock()
+            {
+                TextWrapping = System.Windows.TextWrapping.Wrap,
+                Margin = new Thickness(10, 10, 20, 0),
+                Text = additionalContentLine
             };
 
             var hyperlinkButton = new HyperlinkButton()
             {
-                Content = mail,
+                Content = AppResources.CreatorEmail,
                 Margin = new Thickness(0, 28, 0, 8),
                 HorizontalAlignment = HorizontalAlignment.Left,
-                NavigateUri = new Uri("mailto://" + mail, UriKind.Absolute)
+                NavigateUri = new Uri("mailto://" + AppResources.CreatorEmail, UriKind.Absolute)
             };
 
             var contentStackPanel = new StackPanel();
             contentStackPanel.Children.Add(firstLineInMessageBox);
             contentStackPanel.Children.Add(hyperlinkButton);
+            contentStackPanel.Children.Add(secondLineInMessageBox);
 
             CustomMessageBox messageBox = new CustomMessageBox()
             {
-                Caption = String.Format("{0} {1}", aboutSentence, applicationTitle),
+                Caption = String.Format("{0} {1}", AppResources.AboutSentence, AppResources.ApplicationTitle),
                 Content = contentStackPanel,
                 LeftButtonContent = "OK"
             };

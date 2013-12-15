@@ -427,4 +427,11 @@ Wybierz datę do której chcesz usunąć wszystkie treningi. Czytaj jako: </valu
   <data name="YouHaveToAddMoreThanZeroClones" xml:space="preserve">
     <value>Zakres jest zbyt wąski by jakiekolwiek klony mogły zostać dodane.</value>
   </data>
+  <data name="AdditionalContentOfAboutBox" xml:space="preserve">
+    <value>Jeśli zauważyłeś, że aplikacji brakuje jakiejś funkcjonalności, bądź coś nie działa to koniecznie daj mi znać.
+
+Twoje informacja nie zostanie zignorowana.
+
+PS. Oceny i komentarze będą mile widziane ;)</value>
+  </data>
 </root>

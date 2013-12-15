@@ -79,6 +79,19 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you have noticed any lack of functionality or any bug of the Fit&amp;Gym app, let me know about it.
+        ///
+        ///Your information won&apos;t be ignored.
+        ///
+        ///PS. Rates and comments will be welcome ;).
+        /// </summary>
+        public static string AdditionalContentOfAboutBox {
+            get {
+                return ResourceManager.GetString("AdditionalContentOfAboutBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to create new.
         /// </summary>
         public static string AddTrainingAppBar {

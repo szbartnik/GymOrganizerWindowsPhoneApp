@@ -101,16 +101,11 @@ namespace FitAndGym
 
         void infoButton_Click(object sender, EventArgs e)
         {
-            string firstLine = String.Format("\n{0}\n{1}",
+            string createdByLine = String.Format("\n{0}\n{1}",
                 AppResources.DesignedAndCreatedBySentence,
                 AppResources.CreatorNameAndSurname);
 
-            AboutMessageBox.ShowAboutAppMessageBox(
-                AppResources.ApplicationTitle,
-                firstLine,
-                AppResources.CreatorNameAndSurname,
-                AppResources.CreatorEmail,
-                AppResources.AboutSentence);
+            AboutMessageBox.ShowAboutAppMessageBox(createdByLine, AppResources.AdditionalContentOfAboutBox);
         }
 
         private void TrainingDaysList_Tap(object sender, System.Windows.Input.GestureEventArgs e)

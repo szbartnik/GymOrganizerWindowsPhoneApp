@@ -422,4 +422,11 @@ Understand as: </value>
   <data name="YouHaveToAddMoreThanZeroClones" xml:space="preserve">
     <value>The range is too short to insert any clones.</value>
   </data>
+  <data name="AdditionalContentOfAboutBox" xml:space="preserve">
+    <value>If you have noticed any lack of functionality or any bug of the Fit&amp;Gym app, let me know about it.
+
+Your information won't be ignored.
+
+PS. Rates and comments will be welcome ;)</value>
+  </data>
 </root>
