@@ -79,6 +79,12 @@ namespace FitAndGym.View
             ApplicationBar.Buttons.Add(discardChangesButton);
         }
 
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            discardChangesButton_Click(this, e);
+        }
+
         void discardChangesButton_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/MainPage.xaml?PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
@@ -163,6 +169,7 @@ namespace FitAndGym.View
                 {
                     foreach (var item in trainingsToAdd)
                         App.FitAndGymViewModel.AddNewTraining(item);
+
 
                     NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=afterCloning&PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
                 }

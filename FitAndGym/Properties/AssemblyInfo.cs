@@ -7,11 +7,11 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Fit&Gym")]
-[assembly: AssemblyDescription("Gym and diet organizer")]
+[assembly: AssemblyDescription("Gym organizer")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Szymon Bartnik")]
 [assembly: AssemblyProduct("FitAndGym")]
-[assembly: AssemblyCopyright("Copyright Fit&Gym ©  2013")]
+[assembly: AssemblyCopyright("Copyright Fit&Gym © 2014")]
 [assembly: AssemblyTrademark("Fit&Gym")]
 [assembly: AssemblyCulture("")]
 

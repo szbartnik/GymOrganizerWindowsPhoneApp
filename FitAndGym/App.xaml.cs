@@ -13,6 +13,8 @@ using FitAndGym.ViewModels;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using MemoryLeak.WP8;
+using System.Threading;
+using System.Globalization;
 
 namespace FitAndGym
 {
@@ -94,6 +96,8 @@ namespace FitAndGym
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-pl");
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("pl-pl");
         }
 
         // Code to execute when the application is activated (brought to foreground)

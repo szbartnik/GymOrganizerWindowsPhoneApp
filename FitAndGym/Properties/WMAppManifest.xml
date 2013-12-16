@@ -5,35 +5,35 @@
     <Language code="pl" />
     <Language code="en" />
   </Languages>
-  <App xmlns="" ProductID="{483c77b0-bd0a-4fe5-b29c-f1e28ac866d7}" Title="Fit&amp;Gym" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Szymon Bartnik" Description="Gym and diet organizer" Publisher="Szymon Bartnik" PublisherID="{85014b23-5d1d-4643-b205-c938e4e1f0e1}">
+  <App xmlns="" ProductID="{483c77b0-bd0a-4fe5-b29c-f1e28ac866d7}" Title="Fit&amp;Gym" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Szymon Bartnik" Description="Gym organizer" Publisher="Szymon Bartnik" PublisherID="{85014b23-5d1d-4643-b205-c938e4e1f0e1}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
-      <Capability Name="ID_CAP_NETWORKING" />
-      <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
-      <Capability Name="ID_CAP_MEDIALIB_PLAYBACK" />
-      <Capability Name="ID_CAP_SENSORS" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="/MainPage.xaml" />
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="FitAndGymToken" TaskName="_default">
-        <TemplateFlip>
-          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
+        <TemplateIconic>
+          <SmallImageURI IsRelative="true" IsResource="false">Assets\IconicTileSmall.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
-          <Title>Fit&amp;Gym</Title>
-          <BackContent>
-          </BackContent>
-          <BackBackgroundImageURI>
-          </BackBackgroundImageURI>
-          <BackTitle>
-          </BackTitle>
-          <DeviceLockImageURI>
+          <IconImageURI IsRelative="true" IsResource="false">Assets\IconicTileMedium.png</IconImageURI>
+          <Title>
+          </Title>
+          <Message>
+          </Message>
+          <BackgroundColor>
+          </BackgroundColor>
+          <HasLarge>False</HasLarge>
+          <LargeContent1>
+          </LargeContent1>
+          <LargeContent2>
+          </LargeContent2>
+          <LargeContent3>
+          </LargeContent3>
+          <DeviceLockImageURI IsRelative="true" IsResource="false">
           </DeviceLockImageURI>
-          <HasLarge>
-          </HasLarge>
-        </TemplateFlip>
+        </TemplateIconic>
       </PrimaryToken>
     </Tokens>
     <ScreenResolutions>
