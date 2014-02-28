@@ -269,21 +269,20 @@ namespace FitAndGym.ViewModels
             Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
         }
 
-        public int GetNumberOfTrainingsOfDay(DateTime date)
-        {
-            return db.TrainingDays.Where(x => x.StartTime.Date == date.Date).Count();
-        }
-
         public Dictionary<DateTime, int> GetNumberOfTrainingsPerDayByMonth(DateTime month)
         {
             var toReturn = new Dictionary<DateTime, int>();
             toReturn = db.TrainingDays
                 .GroupBy(x => x.StartTime.Date)
-                .ToDictionary(gdc => gdc.Key, gdc => gdc.Count());
+                .ToDictionary(gdc => gdc.Key, gdc => gdc.ToList().Sum(s => s.ExConns.Count()));
 
             return toReturn;
         }
 
+        public IEnumerable<TrainingDay> GetTrainingsByDate(DateTime date)
+        {
+            return db.TrainingDays.Where(x => x.StartTime.Date == date);
+        }
 
         #region Events Stuff
 

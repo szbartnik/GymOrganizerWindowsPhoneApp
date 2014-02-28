@@ -1094,7 +1094,9 @@ namespace WPControls
 
                             // my important customization
                             item.IsMarked = markedDatesDictionary.ContainsKey(item.ItemDate);
-                            if (item.IsMarked) item.NumberOfEvents = markedDatesDictionary[item.ItemDate];
+                            item.NumberOfEvents = item.IsMarked
+                                ? markedDatesDictionary[item.ItemDate]
+                                : 0;
 
                             item.SetBackcolor();
                             item.SetForecolor();

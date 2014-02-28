@@ -264,6 +264,14 @@ namespace FitAndGym
                 menu.DataContext = owner.DataContext;
         }
 
+        private void calendarControl_SelectionChanged(object sender, WPControls.SelectionChangedEventArgs e)
+        {
+            var str = new StringBuilder();
+            App.FitAndGymViewModel.GetTrainingsByDate(e.SelectedDate).ToList().ForEach(x => str.AppendLine(x.StartTime.ToString()));
+
+            Dispatcher.BeginInvoke((Action)(() => MessageBox.Show(str.ToString())));
+        }
+
         #endregion
     }
 }

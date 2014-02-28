@@ -234,7 +234,8 @@
                         StartingDayOfWeek="Monday"
                         MarkDatesRetriever="{StaticResource CalendarMarkDatesRetriever}"
                         Margin="0 20 0 0"
-                        ColorConverter="{StaticResource CalendarColorsConverter}" />
+                        ColorConverter="{StaticResource CalendarColorsConverter}"
+                        SelectionChanged="calendarControl_SelectionChanged" />
                 </phone:PivotItem>
             </phone:Pivot>
         </Grid>
