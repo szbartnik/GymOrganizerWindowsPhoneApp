@@ -190,7 +190,7 @@ namespace FitAndGym
             NavigationService.Navigate(new Uri("/View/AddNewExercisePage.xaml?action=edit&exId=" + exerciseToEdit.ExerciseId.ToString(), UriKind.RelativeOrAbsolute));
         }
 
-        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch (((Pivot)sender).SelectedIndex)
             {
@@ -202,6 +202,10 @@ namespace FitAndGym
                     break;
                 case 2:
                     ApplicationBar = _exercisesApplicationBar;
+                    break;
+                case 3:
+                    ApplicationBar = _infoApplicationBar;
+                    await new Task(() => calendarControl.Refresh());
                     break;
             }
         }

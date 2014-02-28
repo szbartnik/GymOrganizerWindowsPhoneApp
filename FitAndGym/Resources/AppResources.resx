@@ -429,4 +429,7 @@ Your information won't be ignored.
 
 PS. Rates and comments will be welcome ;)</value>
   </data>
+  <data name="CalendarPivotHeader" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
 </root>

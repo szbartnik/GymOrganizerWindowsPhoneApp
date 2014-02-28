@@ -225,7 +225,7 @@ namespace FitAndGym.ViewModels
             throw new NotImplementedException();
         }
 
-        internal void UpdateTraining(TrainingDay trainingToUpdate)
+        public void UpdateTraining(TrainingDay trainingToUpdate)
         {
             int index = 0;
 
@@ -253,7 +253,7 @@ namespace FitAndGym.ViewModels
             Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
         }
 
-        internal void AddNewTraining(TrainingDay newTraining)
+        public void AddNewTraining(TrainingDay newTraining)
         {
             int index = 0;
 
@@ -268,6 +268,22 @@ namespace FitAndGym.ViewModels
             db.TrainingDays.InsertOnSubmit(newTraining);
             Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
         }
+
+        public int GetNumberOfTrainingsOfDay(DateTime date)
+        {
+            return db.TrainingDays.Where(x => x.StartTime.Date == date.Date).Count();
+        }
+
+        public Dictionary<DateTime, int> GetNumberOfTrainingsPerDayByMonth(DateTime month)
+        {
+            var toReturn = new Dictionary<DateTime, int>();
+            toReturn = db.TrainingDays
+                .GroupBy(x => x.StartTime.Date)
+                .ToDictionary(gdc => gdc.Key, gdc => gdc.Count());
+
+            return toReturn;
+        }
+
 
         #region Events Stuff
 

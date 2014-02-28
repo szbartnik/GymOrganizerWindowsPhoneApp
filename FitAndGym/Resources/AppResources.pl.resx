@@ -416,7 +416,7 @@ Wybierz datę do której chcesz usunąć wszystkie treningi. Czytaj jako: </valu
     <value>Treningi zostaną sklonowane do następujących dat:</value>
   </data>
   <data name="WarningDeleteTrainingsByDate" xml:space="preserve">
-    <value>"treningi z datą rozpoczęcia (+ewentualny czas trwania treningu) zostaną bezpowrotnie usunięte z lokalnej bazy danych"</value>
+    <value>"treningi z datą rozpoczęcia (+ewentualny czas trwania treningu) wcześniejszą niż wybrana poniżej zostaną bezpowrotnie usunięte z lokalnej bazy danych"</value>
   </data>
   <data name="YouCannotInsertMoreThanxClonesSimu" xml:space="preserve">
     <value>Jednorazowo nie możesz dodać więcej niż 30 klonów treningów. Zmniejsz zakres dat.</value>
@@ -433,5 +433,8 @@ Wybierz datę do której chcesz usunąć wszystkie treningi. Czytaj jako: </valu
 Twoje informacja nie zostanie zignorowana.
 
 PS. Oceny i komentarze będą mile widziane ;)</value>
+  </data>
+  <data name="CalendarPivotHeader" xml:space="preserve">
+    <value>Kalendarz</value>
   </data>
 </root>

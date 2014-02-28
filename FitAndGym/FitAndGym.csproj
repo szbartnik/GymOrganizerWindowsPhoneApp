@@ -125,6 +125,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\CalendarColorsConverter.cs" />
+    <Compile Include="Converters\CalendarMarkDatesRetriever.cs" />
     <Compile Include="Converters\EnumToStringConverter.cs" />
     <Compile Include="Converters\OtherInfoExistanceConverter.cs" />
     <Compile Include="Converters\RelativeTimeConverter.cs" />
@@ -272,6 +274,10 @@
     <ProjectReference Include="..\AdvControls\AdvControls.csproj">
       <Project>{23F75AAD-EA4C-455A-939E-646534C7DB36}</Project>
       <Name>AdvControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPControls\WPControls.csproj">
+      <Project>{15A9E5AB-7282-4BFD-98C6-06DD26051399}</Project>
+      <Name>WPControls</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
