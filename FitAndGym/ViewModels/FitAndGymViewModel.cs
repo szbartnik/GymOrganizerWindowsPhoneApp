@@ -194,8 +194,9 @@ namespace FitAndGym.ViewModels
                 db.ExTrDayConnectors.Where(x =>
                     x._trainingDayId == trainingToDelete.TrainingDayId));
 
-            Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
+            db.SubmitChanges();
         }
+        
 
         private void DeleteOldTrainings(TimeSpan youngestAgeOfTrainingToDelete)
         {
@@ -269,7 +270,7 @@ namespace FitAndGym.ViewModels
             Deployment.Current.Dispatcher.BeginInvoke(() => db.SubmitChanges()); 
         }
 
-        public Dictionary<DateTime, int> GetNumberOfTrainingsPerDayByMonth(DateTime month)
+        public Dictionary<DateTime, int> GetNumberOfExercisesPerDayByMonth(DateTime month)
         {
             var toReturn = new Dictionary<DateTime, int>();
             toReturn = db.TrainingDays

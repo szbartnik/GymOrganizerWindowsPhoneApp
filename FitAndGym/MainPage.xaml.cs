@@ -22,6 +22,8 @@ namespace FitAndGym
         private ApplicationBar _exercisesApplicationBar = null;
         private ApplicationBar _trainingsApplicationBar = null;
         private ApplicationBar _infoApplicationBar = null;
+        private ApplicationBar _calendarApplicationBar = null;
+        private CustomMessageBox calendarMessageBox = null;
 
         public MainPage()
         {
@@ -83,6 +85,24 @@ namespace FitAndGym
 
             _infoApplicationBar.Buttons.Add(infoButton);
             _infoApplicationBar.Buttons.Add(rateButton);
+
+            //
+            // ApplicationBar for Calendar Pivot Item
+
+            _calendarApplicationBar = new ApplicationBar();
+
+            var helpOfCalendarButton = new ApplicationBarIconButton(new Uri("/Images/questionmark.png", UriKind.RelativeOrAbsolute));
+            helpOfCalendarButton.Click += helpOfCalendarButton_Click;
+            helpOfCalendarButton.Text = AppResources.HelpButtonInCalendarAppBar;
+
+            _calendarApplicationBar.Buttons.Add(helpOfCalendarButton);
+            _calendarApplicationBar.Buttons.Add(infoButton);
+            _calendarApplicationBar.Buttons.Add(rateButton);
+        }
+
+        void helpOfCalendarButton_Click(object sender, EventArgs e)
+        {
+            Dispatcher.BeginInvoke(() => MessageBox.Show(AppResources.HelpContentInCalendar, AppResources.HelpHeaderInCalendar, MessageBoxButton.OK));
         }
 
         #region Events Stuff
@@ -146,12 +166,14 @@ namespace FitAndGym
 
             if (e.NavigationMode != NavigationMode.Back)
             {
-                string page;
-                if (NavigationContext.QueryString.TryGetValue("PivotMain.SelectedIndex", out page))
+                string s_page;
+
+                if (NavigationContext.QueryString.TryGetValue("PivotMain.SelectedIndex", out s_page))
                 {
-                    if (page == "0") PivotMain.SelectedIndex = 0;
-                    else if (page == "1") PivotMain.SelectedIndex = 1;
-                    else if (page == "2") PivotMain.SelectedIndex = 2;
+                    int i_page;
+
+                    if (Int32.TryParse(s_page, out i_page))
+                        PivotMain.SelectedIndex = i_page;
                 }
             }
         }
@@ -195,17 +217,17 @@ namespace FitAndGym
             switch (((Pivot)sender).SelectedIndex)
             {
                 case 0:
-                    ApplicationBar = _infoApplicationBar;
+                    ApplicationBar = _calendarApplicationBar;
+                    await new Task(() => calendarControl.Refresh());
                     break;
                 case 1:
-                    ApplicationBar = _trainingsApplicationBar;
+                    ApplicationBar = _infoApplicationBar;
                     break;
                 case 2:
-                    ApplicationBar = _exercisesApplicationBar;
+                    ApplicationBar = _trainingsApplicationBar;
                     break;
                 case 3:
-                    ApplicationBar = _infoApplicationBar;
-                    await new Task(() => calendarControl.Refresh());
+                    ApplicationBar = _exercisesApplicationBar;
                     break;
             }
         }
@@ -264,14 +286,31 @@ namespace FitAndGym
                 menu.DataContext = owner.DataContext;
         }
 
-        private void calendarControl_SelectionChanged(object sender, WPControls.SelectionChangedEventArgs e)
+        private void calendarControl_DateClicked(object sender, WPControls.SelectionChangedEventArgs e)
         {
-            var str = new StringBuilder();
-            App.FitAndGymViewModel.GetTrainingsByDate(e.SelectedDate).ToList().ForEach(x => str.AppendLine(x.StartTime.ToString()));
+            var listOfTrainings = App.FitAndGymViewModel.GetTrainingsByDate(e.SelectedDate).ToList();
 
-            Dispatcher.BeginInvoke((Action)(() => MessageBox.Show(str.ToString())));
+            if (listOfTrainings.Count == 0) return;
+
+            calendarMessageBox = new CustomMessageBox()
+            {
+                Caption = AppResources.TrainingsOfTheDay,
+                Content = listOfTrainings,
+                ContentTemplate = (DataTemplate)this.LayoutRoot.Resources["ListOfTrainingsOfDayTemplate"],
+                LeftButtonContent = "OK"
+            };
+            calendarMessageBox.Show();
+
         }
 
+        private void DeleteTrainingInCalendar_Click(object sender, RoutedEventArgs e)
+        {
+            var trainingToDelete = (sender as MenuItem).DataContext as TrainingDay;
+            App.FitAndGymViewModel.DeleteTraining(trainingToDelete);
+            calendarMessageBox.Dismiss();
+            calendarControl.Refresh();
+        }
+        
         #endregion
     }
 }

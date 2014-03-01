@@ -432,4 +432,19 @@ PS. Rates and comments will be welcome ;)</value>
   <data name="CalendarPivotHeader" xml:space="preserve">
     <value>Calendar</value>
   </data>
+  <data name="HelpButtonInCalendarAppBar" xml:space="preserve">
+    <value>help</value>
+    <comment>for ApplicationBar - max 11 lower-case chars</comment>
+  </data>
+  <data name="HelpContentInCalendar" xml:space="preserve">
+    <value>Days with bound trainings are marked by your phone's current theme colour.
+
+The numbers on these days express total sums of exercises of every training day.</value>
+  </data>
+  <data name="HelpHeaderInCalendar" xml:space="preserve">
+    <value>Help &amp; Info</value>
+  </data>
+  <data name="TrainingsOfTheDay" xml:space="preserve">
+    <value>Trainings of the selected day</value>
+  </data>
 </root>

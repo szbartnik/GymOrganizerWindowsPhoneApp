@@ -87,7 +87,7 @@ namespace FitAndGym.View
 
         void discardChangesButton_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/MainPage.xaml?PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
+            NavigationService.Navigate(new Uri("/MainPage.xaml?PivotMain.SelectedIndex=2", UriKind.RelativeOrAbsolute));
         }
 
         void saveChangesButton_Click(object sender, EventArgs e)
@@ -97,7 +97,7 @@ namespace FitAndGym.View
                 proceedCloning();
                 return;
             }
-            NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=afterCloning&PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
+            NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=afterCloning&PivotMain.SelectedIndex=2", UriKind.RelativeOrAbsolute));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -171,7 +171,7 @@ namespace FitAndGym.View
                         App.FitAndGymViewModel.AddNewTraining(item);
 
 
-                    NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=afterCloning&PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
+                    NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=afterCloning&PivotMain.SelectedIndex=2", UriKind.RelativeOrAbsolute));
                 }
             }
         }

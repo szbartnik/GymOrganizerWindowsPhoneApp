@@ -99,6 +99,40 @@
                 </StackPanel>
             </DataTemplate>
 
+            <DataTemplate x:Key="CalendarTrainingsListTemplate">
+                <StackPanel Margin="10 0 0 10" Background="{StaticResource PhoneAccentBrush}" Orientation="Vertical">
+                    <TextBlock Height="82" Margin="5 1 5 0" Text="{Binding TrainingDayName}" TextWrapping="Wrap" />
+                    <Rectangle Height="3" Fill="{StaticResource PhoneForegroundBrush}" />
+                    <TextBlock Margin="5 0 5 0" Text="{Binding StartTime, Converter={StaticResource RelativeTimeConverter}}" TextAlignment="Center" />
+                    <Rectangle Height="3" Fill="{StaticResource PhoneForegroundBrush}" />
+                    <Grid Margin="5 5 5 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding LocalizedResources.WaterCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" TextAlignment="Center"  Grid.Row="0" Grid.Column="0" />
+                        <TextBlock Text="{Binding LocalizedResources.DurationCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" FontSize="15" TextAlignment="Center"  Grid.Row="0" Grid.Column="1" />
+                        <TextBlock Text="{Binding LocalizedResources.OtherInfoCaptionOnTheMainPage, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" FontSize="15" TextAlignment="Center"  Grid.Row="0" Grid.Column="2" />
+
+                        <TextBlock Text="{Binding Hydration}" TextAlignment="Center" FontSize="17" FontWeight="Bold" Grid.Row="1" Grid.Column="0" />
+                        <TextBlock Text="{Binding DurationInMinutes, Converter={StaticResource SecondsToMinutesConverter}}" TextAlignment="Center" FontSize="17" FontWeight="Bold" Grid.Row="1" Grid.Column="1" />
+                        <TextBlock Text="{Binding OtherInfo, Converter={StaticResource OtherInfoExistanceConverter}}" TextAlignment="Center" FontSize="17" FontWeight="Bold" Grid.Row="1" Grid.Column="2" />
+                    </Grid>
+                    <toolkit:ContextMenuService.ContextMenu>
+                        <toolkit:ContextMenu Opened="ContextMenu_Opened" IsZoomEnabled="False">
+                            <toolkit:MenuItem x:Name="EditTrainingContextMenuItem" Click="EditTrainingContextMenuItem_Click" Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:MenuItem x:Name="DeleteTrainingInCalendar" Click="DeleteTrainingInCalendar_Click" Header="{Binding LocalizedResources.DeleteWord, Source={StaticResource LocalizedStrings}}" />
+                        </toolkit:ContextMenu>
+                    </toolkit:ContextMenuService.ContextMenu>
+                </StackPanel>
+            </DataTemplate>
+
             <DataTemplate x:Key="ExercisesListTemplate">
                 <StackPanel Margin="10 0 0 10" Background="{StaticResource PhoneAccentBrush}" Orientation="Vertical">
                     <TextBlock Text="{Binding ExerciseName}" Height="83" Margin="5 1 5 0" TextWrapping="Wrap" />
@@ -186,6 +220,21 @@
                         MaxHeight="430"/>
                 </ScrollViewer>
             </DataTemplate>
+
+            <DataTemplate x:Key="ListOfTrainingsOfDayTemplate">
+                <ScrollViewer>
+                    <phone:LongListSelector
+                        Tap="TrainingDaysList_Tap"
+					    ItemsSource="{Binding}"
+                        LayoutMode="Grid"
+                        Margin="10 10 0 0"
+                        GridCellSize="210 200"
+                        toolkit:TiltEffect.IsTiltEnabled="True"
+					    ItemTemplate="{StaticResource CalendarTrainingsListTemplate}"
+                        MinHeight="200"
+                        MaxHeight="430"/>
+                </ScrollViewer>
+            </DataTemplate>
         </Grid.Resources>
 
         <Grid.RowDefinitions>
@@ -199,6 +248,15 @@
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10 0 10 0">
             <phone:Pivot x:Name="PivotMain" Margin="0 -22 0 0" SelectionChanged="Pivot_SelectionChanged">
+                <phone:PivotItem Header="{Binding LocalizedResources.CalendarPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
+                    <CalendarControl:Calendar
+                        x:Name="calendarControl"
+                        StartingDayOfWeek="Monday"
+                        MarkDatesRetriever="{StaticResource CalendarMarkDatesRetriever}"
+                        Margin="0 20 0 0"
+                        ColorConverter="{StaticResource CalendarColorsConverter}"
+                        DateClicked="calendarControl_DateClicked" />
+                </phone:PivotItem>
                 <phone:PivotItem Header="{Binding LocalizedResources.IncomingTrainingsPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
                     <phone:LongListSelector x:Name="IncomingTrainingDaysList"
                         LayoutMode="Grid"
@@ -226,16 +284,6 @@
                         GridCellSize="210 200"
                         toolkit:TiltEffect.IsTiltEnabled="True"
 						ItemTemplate="{StaticResource ExercisesListTemplate}" />
-                </phone:PivotItem>
-
-                <phone:PivotItem Header="{Binding LocalizedResources.CalendarPivotHeader, Source={StaticResource LocalizedStrings}}" Margin="12 5 12 0">
-                    <CalendarControl:Calendar
-                        x:Name="calendarControl"
-                        StartingDayOfWeek="Monday"
-                        MarkDatesRetriever="{StaticResource CalendarMarkDatesRetriever}"
-                        Margin="0 20 0 0"
-                        ColorConverter="{StaticResource CalendarColorsConverter}"
-                        SelectionChanged="calendarControl_SelectionChanged" />
                 </phone:PivotItem>
             </phone:Pivot>
         </Grid>

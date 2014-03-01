@@ -5,7 +5,7 @@
     <Language code="pl" />
     <Language code="en" />
   </Languages>
-  <App xmlns="" ProductID="{483c77b0-bd0a-4fe5-b29c-f1e28ac866d7}" Title="Fit&amp;Gym" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Szymon Bartnik" Description="Gym organizer" Publisher="Szymon Bartnik" PublisherID="{85014b23-5d1d-4643-b205-c938e4e1f0e1}">
+  <App xmlns="" ProductID="{483c77b0-bd0a-4fe5-b29c-f1e28ac866d7}" Title="Fit&amp;Gym" RuntimeType="Silverlight" Version="1.1.*" Genre="apps.normal" Author="Szymon Bartnik" Description="Gym organizer" Publisher="Szymon Bartnik" PublisherID="{85014b23-5d1d-4643-b205-c938e4e1f0e1}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
     </Capabilities>

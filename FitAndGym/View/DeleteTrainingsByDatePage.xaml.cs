@@ -63,7 +63,7 @@ namespace FitAndGym.View
 
         void discardChangesButton_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/MainPage.xaml?PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
+            NavigationService.Navigate(new Uri("/MainPage.xaml?PivotMain.SelectedIndex=2", UriKind.RelativeOrAbsolute));
         }
 
         void proceedDelete_Click(object sender, EventArgs e)
@@ -71,7 +71,7 @@ namespace FitAndGym.View
             if (DateToWhichDelete != null && MessageBox.Show(AppResources.OlderThan + " " + DateToWhichDelete.Value.Value.Date.ToLongDateString(), AppResources.DatesOfTrainingsThatWillBeDeleted, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 App.FitAndGymViewModel.DeleteTrainingsByDate(DateToWhichDelete.Value.Value);
 
-            NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=afterCloning&PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
+            NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=afterCloning&PivotMain.SelectedIndex=2", UriKind.RelativeOrAbsolute));
         }
     }
 }

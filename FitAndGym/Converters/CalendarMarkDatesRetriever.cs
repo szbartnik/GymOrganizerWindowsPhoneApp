@@ -11,7 +11,7 @@ namespace FitAndGym.Converters
     public class CalendarMarkDatesRetriever : IMarkDatesRetriever
     {
         // Declared as Func<> in order to keep visual designer working (bug in VS? or my ignorance?! ;/)
-        Func<DateTime, Dictionary<DateTime, int>> function = App.FitAndGymViewModel.GetNumberOfTrainingsPerDayByMonth;
+        Func<DateTime, Dictionary<DateTime, int>> function = App.FitAndGymViewModel.GetNumberOfExercisesPerDayByMonth;
 
         public Dictionary<DateTime, int> Retrieve(DateTime month)
         {

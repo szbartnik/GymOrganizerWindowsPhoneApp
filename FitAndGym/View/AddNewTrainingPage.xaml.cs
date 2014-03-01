@@ -141,14 +141,14 @@ namespace FitAndGym.View
             {
                 actionOfUserToLeaveThePagePerformed = true;
                 App.FitAndGymViewModel.UpdateTraining(trainingToUpdate);
-                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedTraining&PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
+                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedTraining&PivotMain.SelectedIndex=2", UriKind.RelativeOrAbsolute));
             }
         }
 
         private void discardChangesButton_Click(object sender, EventArgs e)
         {
             actionOfUserToLeaveThePagePerformed = true;
-            NavigationService.Navigate(new Uri("/MainPage.xaml?PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
+            NavigationService.Navigate(new Uri("/MainPage.xaml?PivotMain.SelectedIndex=2", UriKind.RelativeOrAbsolute));
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
@@ -164,7 +164,7 @@ namespace FitAndGym.View
             {
                 actionOfUserToLeaveThePagePerformed = true;
                 App.FitAndGymViewModel.AddNewTraining(newTraining);
-                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedTraining&PivotMain.SelectedIndex=1", UriKind.RelativeOrAbsolute));
+                NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedTraining&PivotMain.SelectedIndex=2", UriKind.RelativeOrAbsolute));
             }
         }
 

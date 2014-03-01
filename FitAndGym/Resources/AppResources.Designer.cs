@@ -394,6 +394,26 @@ namespace FitAndGym.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to help.
+        /// </summary>
+        public static string HelpButtonInCalendarAppBar {
+            get {
+                return ResourceManager.GetString("HelpButtonInCalendarAppBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Days with bound trainings are marked by your phone&apos;s current theme colour.
+        ///
+        ///The numbers on these days express total sums of exercises of every training day..
+        /// </summary>
+        public static string HelpContentInCalendar {
+            get {
+                return ResourceManager.GetString("HelpContentInCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Later you will be able to clone your trainings (if you do it regularly for example).
         ///
         ///If you want to do it, after saving the current training tap &amp; hold your training on &quot;Trainings&quot; page and everything will be clear then..
@@ -401,6 +421,15 @@ namespace FitAndGym.Resources {
         public static string HelpContentInManageTraining {
             get {
                 return ResourceManager.GetString("HelpContentInManageTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help &amp; Info.
+        /// </summary>
+        public static string HelpHeaderInCalendar {
+            get {
+                return ResourceManager.GetString("HelpHeaderInCalendar", resourceCulture);
             }
         }
         
@@ -852,6 +881,15 @@ namespace FitAndGym.Resources {
         public static string TrainingPageTitleNewMode {
             get {
                 return ResourceManager.GetString("TrainingPageTitleNewMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trainings of the selected day.
+        /// </summary>
+        public static string TrainingsOfTheDay {
+            get {
+                return ResourceManager.GetString("TrainingsOfTheDay", resourceCulture);
             }
         }
         
