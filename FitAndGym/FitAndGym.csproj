@@ -154,9 +154,10 @@
     </Compile>
     <Compile Include="Utilities\AboutMessageBox.cs" />
     <Compile Include="Utilities\DebugTextWriter.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\TrainingPageViewModel.cs" />
     <Compile Include="ViewModels\ExercisePageViewModel.cs" />
-    <Compile Include="ViewModels\FitAndGymViewModel.cs" />
+    <Compile Include="DB\FitAndGymDBMethods.cs" />
     <Compile Include="ViewModels\IValidableModel.cs" />
     <Compile Include="View\AddNewExercisePage.xaml.cs">
       <DependentUpon>AddNewExercisePage.xaml</DependentUpon>

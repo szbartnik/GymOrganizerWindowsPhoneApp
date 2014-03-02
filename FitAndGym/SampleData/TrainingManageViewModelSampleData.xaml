@@ -1,10 +1,10 @@
-﻿<vm:FitAndGymViewModel
+﻿<vm:MainPageViewModel
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="clr-namespace:FitAndGym.ViewModels"
     xmlns:m="clr-namespace:FitAndGym.Models">
 
-    <vm:FitAndGymViewModel.Exercises>
+    <vm:MainPageViewModel.Exercises>
         <m:Exercise ExerciseId="1" ExerciseName="Pierwsze ćwiczenf asdf dsf asdf asdf dsaf dasf asdfd fasdf sdfie" Intensity="High" DurationInMinutes="5" AmountOfReps="5" AmountOfSets="12" OtherInfo="Nic tu nie ma" />
         <m:Exercise ExerciseId="2" ExerciseName="Drugie ćwiczenie" Intensity="Medium" DurationInMinutes="6" AmountOfReps="5" AmountOfSets="9" OtherInfo="Info" />
         <m:Exercise ExerciseId="3" ExerciseName="Trzecie ćwiczenie" Intensity="Low" DurationInMinutes="4" AmountOfReps="8" AmountOfSets="15" OtherInfo="Nic tu nie ma" />
@@ -14,5 +14,5 @@
         <m:Exercise ExerciseId="7" ExerciseName="Siódme ćwiczenie" Intensity="Low" DurationInMinutes="3" AmountOfReps="2" AmountOfSets="6" OtherInfo="Nic tu nie ma" />
         <m:Exercise ExerciseId="8" ExerciseName="Ósme ćwiczenie" Intensity="Low" DurationInMinutes="2" AmountOfReps="7" AmountOfSets="8" OtherInfo="Info" />
         <m:Exercise ExerciseId="9" ExerciseName="Dziewiąte ćwiczenie" Intensity="VeryHigh" DurationInMinutes="8" AmountOfReps="1" AmountOfSets="9" OtherInfo="Nic tu nie ma" />
-    </vm:FitAndGymViewModel.Exercises>
-</vm:FitAndGymViewModel>
+    </vm:MainPageViewModel.Exercises>
+</vm:MainPageViewModel>

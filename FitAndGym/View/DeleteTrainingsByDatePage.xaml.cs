@@ -69,7 +69,7 @@ namespace FitAndGym.View
         void proceedDelete_Click(object sender, EventArgs e)
         {
             if (DateToWhichDelete != null && MessageBox.Show(AppResources.OlderThan + " " + DateToWhichDelete.Value.Value.Date.ToLongDateString(), AppResources.DatesOfTrainingsThatWillBeDeleted, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                App.FitAndGymViewModel.DeleteTrainingsByDate(DateToWhichDelete.Value.Value);
+                App.FitAndGymDBMethods.DeleteTrainingsByDate(DateToWhichDelete.Value.Value);
 
             NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=afterCloning&PivotMain.SelectedIndex=2", UriKind.RelativeOrAbsolute));
         }

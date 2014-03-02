@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using FitAndGym.Models;
 using FitAndGym.Resources;
+using System.Linq;
 
 namespace FitAndGym.ViewModels
 {
@@ -41,7 +42,7 @@ namespace FitAndGym.ViewModels
 
         public ObservableCollection<Exercise> Exercises
         {
-            get { return App.FitAndGymViewModel.Exercises; }
+            get { return _selectedExercises; }
         }
 
         public ObservableCollection<Exercise> SelectedExercises
@@ -59,7 +60,7 @@ namespace FitAndGym.ViewModels
 
         public TrainingPageViewModel()
         {
-            _selectedExercises = new ObservableCollection<Exercise>();
+            App.FitAndGymDBMethods.LoadExercisesCollectionFromDatabase().ToList().ForEach(x => Exercises.Add(x));
             _pageTitle = AppResources.TrainingPageTitleNewMode;
             _startTime = DateTime.Now;
             _startDate = DateTime.Today;

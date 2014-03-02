@@ -84,7 +84,7 @@ namespace FitAndGym.View
 
                     if (NavigationContext.QueryString.TryGetValue("exId", out exIdStr) && Int32.TryParse(exIdStr, out exId))
                     {
-                        Exercise exToEdit = App.FitAndGymViewModel.GetExerciseById(exId);
+                        Exercise exToEdit = App.FitAndGymDBMethods.GetExerciseById(exId);
                         if (exToEdit != null)
                             _viewModel = new ExercisePageViewModel(exToEdit);
                         else
@@ -138,7 +138,7 @@ namespace FitAndGym.View
             if (exerciseToUpdate != null)
             {
                 actionOfUserToLeaveThePagePerformed = true;
-                App.FitAndGymViewModel.UpdateExercise(exerciseToUpdate);
+                App.FitAndGymDBMethods.UpdateExercise(exerciseToUpdate);
                 NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedExercise&PivotMain.SelectedIndex=3", UriKind.RelativeOrAbsolute));
             }
         }
@@ -161,7 +161,7 @@ namespace FitAndGym.View
             if (newExercise != null)
             {
                 actionOfUserToLeaveThePagePerformed = true;
-                App.FitAndGymViewModel.AddNewExercise(newExercise);
+                App.FitAndGymDBMethods.AddNewExercise(newExercise);
                 NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedExercise&PivotMain.SelectedIndex=3", UriKind.RelativeOrAbsolute));
             }
         }

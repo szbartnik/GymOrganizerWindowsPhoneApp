@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Phone.Tasks;
 using FitAndGym.Utilities;
+using FitAndGym.ViewModels;
 
 namespace FitAndGym
 {
@@ -24,19 +25,21 @@ namespace FitAndGym
         private ApplicationBar _infoApplicationBar = null;
         private ApplicationBar _calendarApplicationBar = null;
         private CustomMessageBox calendarMessageBox = null;
+        private MainPageViewModel _viewModel = null;
 
         public MainPage()
         {
             BuildLocalizedApplicationBar();
             InitializeComponent();
 
-            DataContext = App.FitAndGymViewModel;
+            _viewModel = new MainPageViewModel();
+            DataContext = _viewModel;
         }
 
         #if DEBUG
         ~MainPage()
         {
-            System.Windows.Deployment.Current.Dispatcher.BeginInvoke(new System.Action(() =>
+            System.Windows.Deployment.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 System.Windows.MessageBox.Show("MainPage Destructing");
                 // Seeing this message box assures that this page is being cleaned up
@@ -247,13 +250,13 @@ namespace FitAndGym
         private void DeleteTrainingContextMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var trainingToDelete = (sender as MenuItem).DataContext as TrainingDay;
-            App.FitAndGymViewModel.DeleteTraining(trainingToDelete);
+            App.FitAndGymDBMethods.DeleteTraining(trainingToDelete);
         }
 
         private void DeleteExerciseContextMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var exerciseToDelete = (sender as MenuItem).DataContext as Exercise;
-            App.FitAndGymViewModel.DeleteExercise(exerciseToDelete);
+            App.FitAndGymDBMethods.DeleteExercise(exerciseToDelete);
         }
         
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
@@ -288,7 +291,7 @@ namespace FitAndGym
 
         private void calendarControl_DateClicked(object sender, WPControls.SelectionChangedEventArgs e)
         {
-            var listOfTrainings = App.FitAndGymViewModel.GetTrainingsByDate(e.SelectedDate).ToList();
+            var listOfTrainings = App.FitAndGymDBMethods.GetTrainingsByDate(e.SelectedDate).ToList();
 
             if (listOfTrainings.Count == 0) return;
 
@@ -306,14 +309,9 @@ namespace FitAndGym
         private void DeleteTrainingInCalendar_Click(object sender, RoutedEventArgs e)
         {
             var trainingToDelete = (sender as MenuItem).DataContext as TrainingDay;
-            App.FitAndGymViewModel.DeleteTraining(trainingToDelete);
+            App.FitAndGymDBMethods.DeleteTraining(trainingToDelete);
             calendarMessageBox.Dismiss();
             calendarControl.Refresh();
-        }
-
-        private void calendarControl_DateHold(object sender, WPControls.SelectionChangedEventArgs e)
-        {
-            //todo
         }
         
         #endregion

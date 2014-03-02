@@ -114,7 +114,7 @@ namespace FitAndGym.View
 
                 if (NavigationContext.QueryString.TryGetValue("trainingId", out trainingId))
                     if (int.TryParse(trainingId, out Id))
-                        trainingDay = App.FitAndGymViewModel.GetTrainingById(Id);
+                        trainingDay = App.FitAndGymDBMethods.GetTrainingById(Id);
             }
         }
 
@@ -168,7 +168,7 @@ namespace FitAndGym.View
                 if (MessageBox.Show(str.ToString(), AppResources.TrainingsThatWillBeAdded, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
                     foreach (var item in trainingsToAdd)
-                        App.FitAndGymViewModel.AddNewTraining(item);
+                        App.FitAndGymDBMethods.AddNewTraining(item);
 
 
                     NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=afterCloning&PivotMain.SelectedIndex=2", UriKind.RelativeOrAbsolute));

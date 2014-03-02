@@ -255,7 +255,6 @@
                         StartingDayOfWeek="Monday"
                         MarkDatesRetriever="{StaticResource CalendarMarkDatesRetriever}"
                         Margin="0 20 0 0"
-                        DateHold="calendarControl_DateHold"
                         ColorConverter="{StaticResource CalendarColorsConverter}"
                         DateClicked="calendarControl_DateClicked" />
                 </phone:PivotItem>
@@ -263,7 +262,7 @@
                     <phone:LongListSelector x:Name="IncomingTrainingDaysList"
                         LayoutMode="Grid"
 						Tap="TrainingDaysList_Tap"
-						ItemsSource="{Binding IncomingTrainingDays}"
+						ItemsSource="{Binding IncomingTrainings}"
                         GridCellSize="210 200"
                         toolkit:TiltEffect.IsTiltEnabled="True"
                         ItemTemplate="{StaticResource IncomingTrainingsListTemplate}" />
@@ -272,7 +271,7 @@
                     <phone:LongListSelector x:Name="TrainingDaysList"
                         LayoutMode="Grid"
 						Tap="TrainingDaysList_Tap"
-						ItemsSource="{Binding TrainingDays}"
+						ItemsSource="{Binding Trainings}"
                         GridCellSize="210 200"
                         toolkit:TiltEffect.IsTiltEnabled="True"
                         ItemTemplate="{StaticResource TrainingsListTemplate}" />

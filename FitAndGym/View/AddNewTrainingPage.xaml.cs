@@ -53,7 +53,7 @@ namespace FitAndGym.View
 
                     if (NavigationContext.QueryString.TryGetValue("trId", out trIdStr) && Int32.TryParse(trIdStr, out trId))
                     {
-                        _trToEdit = App.FitAndGymViewModel.GetTrainingById(trId);
+                        _trToEdit = App.FitAndGymDBMethods.GetTrainingById(trId);
                         if (_trToEdit != null)
                         {
                             _viewModel = new TrainingPageViewModel(_trToEdit);
@@ -140,7 +140,7 @@ namespace FitAndGym.View
             if (trainingToUpdate != null)
             {
                 actionOfUserToLeaveThePagePerformed = true;
-                App.FitAndGymViewModel.UpdateTraining(trainingToUpdate);
+                App.FitAndGymDBMethods.UpdateTraining(trainingToUpdate);
                 NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=updatedTraining&PivotMain.SelectedIndex=2", UriKind.RelativeOrAbsolute));
             }
         }
@@ -163,7 +163,7 @@ namespace FitAndGym.View
             if (newTraining != null)
             {
                 actionOfUserToLeaveThePagePerformed = true;
-                App.FitAndGymViewModel.AddNewTraining(newTraining);
+                App.FitAndGymDBMethods.AddNewTraining(newTraining);
                 NavigationService.Navigate(new Uri("/MainPage.xaml?viewBag=addedTraining&PivotMain.SelectedIndex=2", UriKind.RelativeOrAbsolute));
             }
         }

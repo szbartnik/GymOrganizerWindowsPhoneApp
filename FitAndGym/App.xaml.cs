@@ -9,7 +9,7 @@ using Microsoft.Phone.Shell;
 using FitAndGym.Resources;
 using FitAndGym.Models;
 using System.IO.IsolatedStorage;
-using FitAndGym.ViewModels;
+using FitAndGym.DB;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using MemoryLeak.WP8;
@@ -29,20 +29,20 @@ namespace FitAndGym
         private const string DBConnectionString = "Data Source=isostore:/Base.sdf";
         private const string DbName = "Base.sdf";
 
-        private static FitAndGymViewModel _fitAndGymViewModel = null;
+        private static FitAndGymDBMethods _fitAndGymDBMethods = null;
 
         /// <summary>
-        /// A singleton static FitAndGymViewModel used by views to bind data.
+        /// A singleton static FitAndGymDBMethods used by views to bind data.
         /// </summary>
-        /// <returns>The FitAndGymViewModel object.</returns>
-        public static FitAndGymViewModel FitAndGymViewModel
+        /// <returns>The FitAndGymDBMethods object.</returns>
+        public static FitAndGymDBMethods FitAndGymDBMethods
         {
             get
             {
-                if (_fitAndGymViewModel == null)
-                    _fitAndGymViewModel = new FitAndGymViewModel(DBConnectionString);
+                if (_fitAndGymDBMethods == null)
+                    _fitAndGymDBMethods = new FitAndGymDBMethods(DBConnectionString);
 
-                return _fitAndGymViewModel;
+                return _fitAndGymDBMethods;
             }
         }
 
@@ -66,10 +66,10 @@ namespace FitAndGym
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 
-            _initializingTask = Init();
+            Init();
         }
 
-        private async Task Init()
+        private void Init()
         {
             using (var db = new FitAndGymDataContext(DBConnectionString))
             {
@@ -80,8 +80,6 @@ namespace FitAndGym
                     db.SubmitChanges();
                 }
             }
-            await App.FitAndGymViewModel.LoadTrainingDaysCollectionFromDatabase();
-            await App.FitAndGymViewModel.LoadExercisesCollectionFromDatabase();
         }
 
         [Conditional("DELBASE")]
