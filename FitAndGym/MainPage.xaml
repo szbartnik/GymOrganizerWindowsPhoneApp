@@ -93,6 +93,7 @@
                     <toolkit:ContextMenuService.ContextMenu>
                         <toolkit:ContextMenu Opened="ContextMenu_Opened" IsZoomEnabled="False">
                             <toolkit:MenuItem x:Name="EditTrainingContextMenuItem" Click="EditTrainingContextMenuItem_Click" Header="{Binding LocalizedResources.EditWord, Source={StaticResource LocalizedStrings}}" />
+                            <toolkit:MenuItem x:Name="CopyTrainingContextMenuItem" Click="CopyTrainingContextMenuItem_Click" Header="{Binding LocalizedResources.CopyTrainingMenuItemText, Source={StaticResource LocalizedStrings}}" />
                             <toolkit:MenuItem x:Name="DeleteTrainingContextMenuItem" Click="DeleteTrainingContextMenuItem_Click" Header="{Binding LocalizedResources.DeleteWord, Source={StaticResource LocalizedStrings}}" />
                         </toolkit:ContextMenu>
                     </toolkit:ContextMenuService.ContextMenu>
@@ -254,6 +255,7 @@
                         StartingDayOfWeek="Monday"
                         MarkDatesRetriever="{StaticResource CalendarMarkDatesRetriever}"
                         Margin="0 20 0 0"
+                        DateHold="calendarControl_DateHold"
                         ColorConverter="{StaticResource CalendarColorsConverter}"
                         DateClicked="calendarControl_DateClicked" />
                 </phone:PivotItem>

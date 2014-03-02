@@ -310,6 +310,11 @@ namespace FitAndGym
             calendarMessageBox.Dismiss();
             calendarControl.Refresh();
         }
+
+        private void calendarControl_DateHold(object sender, WPControls.SelectionChangedEventArgs e)
+        {
+            //todo
+        }
         
         #endregion
     }

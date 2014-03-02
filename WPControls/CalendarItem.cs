@@ -105,7 +105,16 @@ namespace WPControls
                 item.SetForecolor();
             }
         }
-        
+
+        internal bool IsToday
+        {
+            get { return (bool)GetValue(IsTodayProperty); }
+            set { SetValue(IsTodayProperty, value); }
+        }
+
+        internal static readonly DependencyProperty IsTodayProperty =
+            DependencyProperty.Register("IsToday", typeof(bool), typeof(CalendarItem), new PropertyMetadata(false));
+
         internal bool IsSelected
         {
             get { return (bool)GetValue(IsSelectedProperty); }

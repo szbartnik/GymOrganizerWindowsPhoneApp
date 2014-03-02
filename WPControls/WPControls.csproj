@@ -124,6 +124,7 @@
     <Compile Include="Calendar.cs" />
     <Compile Include="CalendarItem.cs" />
     <Compile Include="CalendarWeekItem.cs" />
+    <Compile Include="BooleanToFontWeightConverter.cs" />
     <Compile Include="NumberToVisibilityConverter.cs" />
     <Compile Include="IDateToBrushConverter.cs" />
     <Compile Include="IMarkDatesRetriever.cs" />

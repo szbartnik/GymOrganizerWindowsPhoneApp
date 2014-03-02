@@ -136,6 +136,11 @@ namespace WPControls
         public event EventHandler<SelectionChangedEventArgs> DateClicked;
 
         /// <summary>
+        /// Event that occurs after a Hold gesture is executed
+        /// </summary>
+        public event EventHandler<SelectionChangedEventArgs> DateHold;
+
+        /// <summary>
         /// Raises MonthChanging event
         /// </summary>
         /// <param name="year">Year for event arguments</param>
@@ -182,6 +187,14 @@ namespace WPControls
             if (DateClicked != null)
             {
                 DateClicked(this, new SelectionChangedEventArgs(dateTime));
+            }
+        }
+
+        protected void OnDateHold(DateTime dateTime)
+        {
+            if (DateHold != null)
+            {
+                DateHold(this, new SelectionChangedEventArgs(dateTime));
             }
         }
 
@@ -880,6 +893,22 @@ namespace WPControls
             }
         }
 
+        private void ItemHold(object sender, GestureEventArgs e)
+        {
+            if (_lastItem != null)
+            {
+                _lastItem.IsSelected = false;
+            }
+            _lastItem = (sender as CalendarItem);
+            if (_lastItem != null)
+            {
+                if (ShowSelectedDate)
+                    _lastItem.IsSelected = true;
+                SelectedDate = _lastItem.ItemDate;
+                OnDateHold(_lastItem.ItemDate);
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -1097,6 +1126,7 @@ namespace WPControls
                             item.NumberOfEvents = item.IsMarked
                                 ? markedDatesDictionary[item.ItemDate]
                                 : 0;
+                            item.IsToday = DateTime.Now.Date == item.ItemDate;
 
                             item.SetBackcolor();
                             item.SetForecolor();
@@ -1160,6 +1190,7 @@ namespace WPControls
                         item.Visibility = Visibility.Collapsed;
                         item.Tag = string.Concat(rowCount.ToString(CultureInfo.InvariantCulture), ":", columnCount.ToString(CultureInfo.InvariantCulture));
                         item.Click += ItemClick;
+                        item.Hold += ItemHold;
                         if (CalendarItemStyle != null)
                         {
                             item.Style = CalendarItemStyle;

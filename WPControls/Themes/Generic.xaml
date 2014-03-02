@@ -6,6 +6,7 @@
 
     <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     <local:NumberToVisibilityConverter x:Key="NumberToVisibilityConverter" />
+    <local:BooleanToFontWeightConverter x:Key="BooleanToFontWeightConverter" />
 
     <Style TargetType="local:Calendar">
         <Setter Property="Background" Value="Transparent"/>
@@ -81,7 +82,7 @@
             <Setter.Value>
                 <ControlTemplate  TargetType="local:CalendarItem">
                     <Grid x:Name="OuterGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0 0 -1 -1">
-                        <Border 
+                        <Border
                             BorderThickness="1"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
@@ -91,16 +92,31 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
+                                
                                 <Grid Grid.RowSpan="2" x:Name="BackgroundRectangle" Background="{TemplateBinding Background}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="8" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <Rectangle
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Margin="0 0 5 0"
+                                        Fill="{StaticResource PhoneForegroundBrush}"
+                                        Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsToday, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    
                                     <TextBlock HorizontalAlignment="Right"
-                                               VerticalAlignment="Center"
-                                               FontSize="50"
+                                               Grid.Column="1"
+                                               VerticalAlignment="Bottom"
+                                               FontSize="43"
                                                Opacity="0.4"
-                                               Margin="0 0 8 0"
+                                               Margin="0 0 5 -5"
                                                Text="{Binding Path=NumberOfEvents, RelativeSource={RelativeSource TemplatedParent}}"
                                                Visibility="{Binding Path=NumberOfEvents, Converter={StaticResource NumberToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
                                 </Grid>
-                                <TextBlock 
+                                <TextBlock
+                                    FontWeight="{Binding Path=IsToday, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToFontWeightConverter}}"
                                     x:Name="DayNumberBlock"
                                     Text="{Binding Path=DayNumber, RelativeSource={RelativeSource TemplatedParent}}" 
                                     Foreground="{TemplateBinding Foreground}" 
