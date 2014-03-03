@@ -25,7 +25,6 @@ namespace FitAndGym
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
-        private readonly Task _initializingTask;
         private const string DBConnectionString = "Data Source=isostore:/Base.sdf";
         private const string DbName = "Base.sdf";
 
